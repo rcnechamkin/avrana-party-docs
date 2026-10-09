@@ -18,9 +18,13 @@ sources.yml           engineering repositories and the revisions this site was r
 docs/                 the site's pages (Markdown)
   index.md            landing page
   introduction/       what Avrana Party is, why phones only, today versus the vision
-  architecture/       system overview, appliance and network, the Party, sessions, trust, ADRs
+  architecture/       system overview, appliance and network, the Party, sessions, trust
+  decisions/          a plain-language edition of every ADR, with an index
+  design/             plain-language editions of the main design documents
   games/              how games integrate, execution models, contracts, native games, design
-  developers/         ecosystem, local development, contributing, reading the specs, games
+  developers/         ecosystem, local development, testing, contributing, reading the specs,
+                      starting a game, the reference games
+  project/            roadmap, system map and deployment
   status/             project status snapshot and known upstream discrepancies
   about/              glossary, how this documentation works
   assets/             stylesheet and icon

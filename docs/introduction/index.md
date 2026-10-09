@@ -41,7 +41,7 @@ classroom, a long trip.
 The early prototype ran several independent systems side by side: a fork of an open-source LAN
 game hub, an arcade emulator stream and an experimental PlayStation stream. Each had its own
 idea of who a player was and where they should be. The project then made a deliberate decision
-([ADR 0002](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0002-party-platform.md)):
+([ADR 0002](../decisions/0002-party-platform.md)):
 **Avrana Party is a party platform, and games are consumers of it.**
 
 In practice the appliance owns the things that should persist from one game to the next:

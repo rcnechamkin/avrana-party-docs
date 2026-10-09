@@ -79,7 +79,7 @@ evidence gate is running the whole loop on four real phones, offline.
 
     ---
 
-    [Decision records in brief](architecture/decisions.md) summarizes every architectural
+    [Decision records in brief](decisions/index.md) summarizes every architectural
     decision, with its reasoning and real status.
 
 -   **Thinking about games?**
@@ -115,8 +115,8 @@ evidence gate is running the whole loop on four real phones, offline.
 ## What this site is not
 
 This site does not grant permission to deploy, change a contract or act on a roadmap item. It
-does not replace the [Architecture Decision Records](https://github.com/rcnechamkin/avrana-party/tree/main/docs/adr),
-the [Party ↔ Games contract](https://github.com/rcnechamkin/avrana-party/blob/main/docs/design/PARTY-GAMES-CONTRACT.md)
+does not replace the [Architecture Decision Records](decisions/index.md),
+the [Party ↔ Games contract](games/contracts-and-catalog.md#the-party-games-contract)
 or [Linear](https://linear.app/avranakern), where live work is tracked. When this site and the
 engineering repositories disagree, the repositories are right and this site has a bug.
 [About this documentation](about/this-documentation.md) explains how the two are kept in step.

@@ -8,16 +8,16 @@ sources:
   - avrana-party:package.json
   - avrana-party:avrana/web/devserver.py
   - avrana-party-games:CONTRIBUTING.md
+  - avrana-party:docs/GENERATED.md
 verified: 2026-10-09
 ---
 
 # Local development
 
 You do not need a Raspberry Pi to work on Avrana Party. This page condenses the setup from the
-Party repository's [README](https://github.com/rcnechamkin/avrana-party/blob/main/README.md),
-[CONTRIBUTING](https://github.com/rcnechamkin/avrana-party/blob/main/CONTRIBUTING.md) and
-[TESTING](https://github.com/rcnechamkin/avrana-party/blob/main/docs/TESTING.md). Those files
-are authoritative and list platform-specific details.
+Party repository's README, contribution guide and testing guide. Those files are authoritative,
+list platform-specific details, and are linked at the foot of this page. [Testing](testing.md)
+explains the test suites in more depth.
 
 ## Prerequisites
 
@@ -112,12 +112,22 @@ the services work, not that the experience works in someone's hand.
 
 Some committed files are generated: the built CSS, icons, avatars, artwork and the compiled
 catalog. Change their sources and regenerate them with the npm scripts; never edit the
-generated files by hand. `npm run check:repo` fails if they are out of date. The complete list
-is in [GENERATED](https://github.com/rcnechamkin/avrana-party/blob/main/docs/GENERATED.md).
+generated files by hand. `npm run check:repo` fails if they are out of date. The complete list,
+with the command that regenerates each file, is `docs/GENERATED.md` in the Party repository.
 
 ## Working on the Games repository
 
-The Games repository has its own Python test suite, static checks and CI. Its
-[CONTRIBUTING](https://github.com/rcnechamkin/avrana-party-games/blob/main/CONTRIBUTING.md) lists
-the commands. With a sibling Party checkout, it also runs the cross-repository tests, which its
-CI requires.
+The Games repository has its own Python test suite, static checks and CI. The everyday commands,
+from its root:
+
+```sh
+python -m venv .venv
+.venv/bin/python -m pip install -r requirements-dev.txt
+.venv/bin/python -m pytest -q
+python ops/export_avrana_catalog.py --check provider/catalog.json
+bash ops/check_static.sh
+```
+
+With a sibling Party checkout, it also runs the cross-repository tests, which its CI requires.
+Every Markdown file in that repository needs an entry in its own documentation manifest, as in
+the Party repository. See [Testing](testing.md) for what each kind of test proves.

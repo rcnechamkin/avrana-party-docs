@@ -24,8 +24,14 @@ a [discrepancy](../status/discrepancies.md) to report upstream.
 
 In particular:
 
+- **Every engineering document has a plain-language edition.** The ADRs have their own
+  [Decision records](../decisions/index.md) section, the main design documents a
+  [Design](../design/party-platform.md) section, and the rest a page or section that explains
+  them. Pages link to these editions, never straight into the engineering repositories. Each
+  page's **Canonical sources** block links to the originals.
 - **Contracts are not copied here.** Protocol message tables, JSON schemas and exact
-  configuration change often. This site explains what they are for and links to them.
+  configuration change often. This site explains what they are for. The originals are one click
+  away in each page's sources block.
 - **Live work is not tracked here.** Linear owns it. The [status](../status/index.md) page is a
   dated snapshot.
 - **This site grants no permission.** Nothing here authorizes a deployment, a change to a

@@ -4,6 +4,7 @@ description: The repositories that make up Avrana Party, what each holds, and ho
 sources:
   - avrana-party:README.md
   - avrana-party:docs/CROSS-REPO.md
+  - avrana-party:docs/WORKFLOW.md
   - avrana-party:AGENTS.md
   - avrana-party-games:README.md
   - avrana-party-games:LICENSE
@@ -62,8 +63,9 @@ Work that changes both repositories uses **paired branches** with the same Linea
 (`feat/avr-123-…` in each). Each repository's CI checks out the other repository's matching
 branch, or `main` if there is none, and runs the contract checker and the cross-repository
 tests against it. The vendored protocol, result and bridge files must be byte-identical on both
-sides. The process is described in
-[CROSS-REPO](https://github.com/rcnechamkin/avrana-party/blob/main/docs/CROSS-REPO.md).
+sides. [Contracts, catalog and grants](../games/contracts-and-catalog.md#the-party-games-contract)
+explains what is compared, and [Contributing](contributing.md#making-the-change) covers paired
+branches.
 
 ## Related repositories
 
@@ -82,7 +84,7 @@ sides. The process is described in
 | System | Role |
 |---|---|
 | **[Linear](https://linear.app/avranakern)** (team `AVR`) | Live work: priorities, sequencing, acceptance criteria, ownership. Every change starts from an `AVR-N` issue |
-| **The appliance** | The source of truth for what is *running*: `/party/api/status` and its deployment manifest |
+| **The appliance** | The source of truth for what is *running*. In source, `/party/api/status` and a deployment manifest report it; every recorded deployed build predates them, so today the [system map](../project/system-map.md) is the best summary |
 | **GitHub Actions** | CI for both repositories, including the cross-repository contract check and a weekly drift report |
 
 ## Licensing

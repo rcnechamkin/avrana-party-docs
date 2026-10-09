@@ -6,8 +6,11 @@ For each page under docs/ this checks that:
   * the front matter has `sources` and `verified`;
   * each source names a repository listed in sources.yml;
   * each source file or directory exists at that repository's recorded `verified_revision`;
-  * each link into an engineering repository (github.com/rcnechamkin/<repo>/blob|tree/<ref>/<path>)
-    points at a path that exists.
+  * the page body does not link to files in an engineering repository
+    (github.com/rcnechamkin/<repo>/blob|tree/...). Readers are sent to this site's
+    plain-language editions; originals belong in `sources`, which the build renders as the
+    "Canonical sources" block. Links to a repository's root are fine. A page may opt out with
+    `allow_source_links: true`, and any such link must still point at a path that exists.
 
 It also warns when a source no longer exists on the repository's current branch (the page
 explains something that has since moved or been deleted, and needs reconciling), and when a
@@ -103,6 +106,11 @@ def main(argv: list[str] | None = None) -> int:
             check(page.rel, repo_name, path, None, "source")
         for repo_name, ref, path in links(page):
             check(page.rel, repo_name, path, ref, "link to")
+            # Readers follow links to this site's plain-language editions. The originals are
+            # reached through the page's `sources` (rendered as "Canonical sources").
+            if not page.meta.get("allow_source_links"):
+                errors.append(f"{page.rel}: body links to {repo_name}:{path}; link to this site's "
+                              "edition instead and list the original in `sources`")
 
     for line in warnings:
         print(f"warning: {line}")
