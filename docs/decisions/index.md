@@ -39,7 +39,7 @@ Three conventions in the project's ADRs differ from what readers may expect:
   keeps its text and gains a dated **amendment** section or a "superseded in part" banner. To
   understand a topic, read the newest ADR that touches it and follow its links back.
 - **History stays useful.** A partly superseded ADR still describes the deployed system
-  accurately where the replacement has not been built yet.
+  accurately where the replacement has not been deployed and verified yet.
 
 ## The records
 
@@ -50,7 +50,7 @@ line is older than the code, the column says so.
 | ADR | Decision in one sentence | Built today |
 |---|---|---|
 | [0001](0001-load-soak-fault-harness.md) | Build a repeatable load, soak, fault and regression harness for the arcade stream. It runs from a machine on the Party Wi-Fi against the live appliance. | <span class="avr-badge source">In source</span> |
-| [0002](0002-party-platform.md) | Avrana Party is a **party platform**: one persistent Party that games consume, with layered identity, the host separate from the admin, and a small, optional integration contract. | Direction realized through ADRs 0006–0011 |
+| [0002](0002-party-platform.md) | Avrana Party is a **party platform**: one persistent Party that games consume, with layered identity, the host separate from the admin, and a small, optional integration contract. | Partly realized: Party Core, host and navigation <span class="avr-badge deployed">Deployed</span> (ADRs 0006–0010), the console model <span class="avr-badge reported">Owner-reported</span>; profiles, admin and durable history <span class="avr-badge planned">Planned</span> |
 | [0003](0003-ids-and-keys.md) | Identifiers, credentials and display values are never mixed: ids grant nothing, secrets never leave their lane, and games get a session key and a name, never a device identity. | Invariants <span class="avr-badge deployed">Deployed</span> on the server side; game pages can still act as the player in the browser, the gap ADR 0013 addresses; profiles and PINs <span class="avr-badge planned">Planned</span> |
 | [0004](0004-full-mode-contracts-and-providers.md) | `https://party.avrana.net` is the canonical origin with no HSTS; per-seat capability evaluation; Game Contract v0; three provider interfaces; three evidence tiers. | <span class="avr-badge deployed">Deployed</span>; the HTTPS-only consequence was later superseded by ADR 0012 |
 | [0005](0005-lan-games-provider-launch.md) | The LAN Games fork becomes a **provider** behind the Party's catalog, with Party-initiated launches. | <span class="avr-badge deployed">Deployed</span>; long-term role superseded by ADR 0014 |

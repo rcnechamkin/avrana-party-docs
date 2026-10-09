@@ -13,7 +13,7 @@ verified: 2026-10-09
 # ADR 0007: The host starts the game, and Party Home follows
 
 !!! abstract "At a glance"
-    **Decided:** 2026-09-28 · **Status:** <span class="avr-badge deployed">Deployed</span>; its reconnect rule and manual Join were replaced by [ADR 0011](0011-party-console-model.md)
+    **Decided:** 2026-09-28 · **Status:** <span class="avr-badge deployed">Deployed</span>; its reconnect rule and manual Join are replaced in source by [ADR 0011](0011-party-console-model.md)
     Only the Party Host can start a party game. Every other phone learns about the start from
     Party Core and moves into the game on its own.
 

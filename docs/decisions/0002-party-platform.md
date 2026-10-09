@@ -72,7 +72,7 @@ The ADR records the alternatives it rejected:
 New games should not build their own login, profile store, chat, reconnect, team or spectator
 systems; they wait for or contribute to the platform's. The ADR also noted that the LAN Games
 token would have to be replaced without breaking the live service, and that a new party process
-had to stay small on a Raspberry Pi then suffering power problems.
+had to stay small on a Raspberry Pi that had recently had power problems.
 
 ## Later changes
 
@@ -87,7 +87,9 @@ version 1.0 is for the owner, to prove the experience before any commercializati
 **2026-10-02.** Where this amendment differs from the original, it governs:
 
 - One Party runs **one active activity at a time** ([ADR 0011](0011-party-console-model.md),
-  [ADR 0014](0014-native-games-isolated-lan-games-retired.md)).
+  [ADR 0014](0014-native-games-isolated-lan-games-retired.md)). This is the consumer
+  *Standard Mode*. A possible future Developer Mode might allow several activities for technical
+  users, but it must not shape Standard Mode.
 - **LAN Games is retiring as a runtime** (ADR 0014); its browser token is retired, not migrated.
 - **Only the Party writes durable records** of people, results, history and stats. Games decide
   outcomes and report them, and receive only session-scoped authority
@@ -102,9 +104,10 @@ version 1.0 is for the owner, to prove the experience before any commercializati
 - <span class="avr-badge deployed">Deployed</span> Party Core as a separate small service, with
   a server-issued device cookie, host succession and Party-synchronized navigation (ADRs
   0006–0010, server-side verified 2026-09-29).
-- <span class="avr-badge source">In source</span> The game contract that serves as the capability
-  manifest ([ADR 0004](0004-full-mode-contracts-and-providers.md)) and a result envelope for
-  reporting outcomes ([ADR 0015](0015-game-result-envelope.md)).
+- <span class="avr-badge deployed">Deployed</span> The game contract that serves as the
+  capability manifest ([ADR 0004](0004-full-mode-contracts-and-providers.md)).
+- <span class="avr-badge source">In source</span> A result envelope for reporting outcomes
+  ([ADR 0015](0015-game-result-envelope.md)).
 - <span class="avr-badge planned">Planned</span> Profiles, durable history and statistics, the
   provenance-tagged event sink and the System Admin role; none exists in code. Party state is in
   memory, and only hashed device tokens persist.

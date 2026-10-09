@@ -51,7 +51,8 @@ returning former host does not take the role back.
 **Device identity.** A random 256-bit token in an `HttpOnly`, `Secure` cookie, stored only as a
 hash. Forged or unknown values are never adopted, and merely loading a page creates no
 membership. The cookie was originally scoped to `/party/`, so game pages' own requests never
-carried it.
+carried it. A game page could still *call* `/party/api/` itself, and that request did carry the
+cookie: the gap [ADR 0013](0013-party-and-game-browser-origins.md) later closes.
 
 **One game session at a time.** A session goes from *launching* to *active*, *ending* and *ended*,
 with one of four outcomes: completed, abandoned, ended by the host, or failed to launch. At launch
@@ -77,12 +78,13 @@ There are four kinds of message:
 - **Ended** (game to Party): the session finished, completed or abandoned. Version 0 carried no
   results.
 
-Server-to-server messages expire after 30 seconds and carry a nonce, so replays are refused.
+Server-to-server messages expire after 30 seconds and carry a nonce (a random value used
+once), so a recorded message replayed later is refused.
 Reconnecting means fetching a fresh ticket, which carries the same participant id; from it the
 game derives a stable secret **game token** to use where LAN Games used the browser's token.
 
 **Completion cannot be forged.** Party Core accepts *ended* only from the local machine, without
-proxy headers, properly signed and for the current session, so an old report can never end or
+the headers nginx adds to forwarded requests (so it cannot have come from a phone), properly signed and for the current session, so an old report can never end or
 revive a newer session. A browser has neither the key nor a route.
 
 The reference implementation is one standard-library Python file that a game repository can copy,
@@ -123,8 +125,8 @@ PlayStation runtime and the SDK.
   authoritative location.
 - **2026-10-02:** v0 stays as deployed, and tickets become **single-use**: each game records spent
   tickets until they expire and refuses a second presentation. This closed a gap against
-  ADR 0003, which always required it. Tickets gained a random `jti` field so two minted in the same
-  second differ, and a ticket dated more than 5 seconds in the future is refused as a clock
+  ADR 0003, which always required it. Tickets gained a random identifier (`jti`) so two minted in the
+  same second differ, and a ticket dated more than 5 seconds in the future is refused as a clock
   problem rather than as expired. Results are to cross the boundary in a versioned envelope, with
   the Party alone keeping the durable record
   ([ADR 0014](0014-native-games-isolated-lan-games-retired.md)), and game pages stop calling the
@@ -139,7 +141,8 @@ PlayStation runtime and the SDK.
   ticket now says whether its participant was host when minted, and because that may be stale,
   the game must also ask Party Core, server to server, whether the participant is host *now*, and
   act only on a yes. A host who lost the role has nothing left to spend, and games keep no host of
-  their own.
+  their own. During the transition, a ticket from an older Party carries no claim; a game then
+  keeps its earlier behaviour and must say so, and that allowance is to be removed later.
 
 ## Where it stands today
 

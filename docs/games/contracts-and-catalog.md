@@ -31,7 +31,7 @@ documentation. They answer three different questions:
 
 ## The game contract
 
-<span class="avr-badge source">In source</span>, schema `avrana.game/v0`
+<span class="avr-badge deployed">Deployed</span>, schema `avrana.game/v0`. The deployed catalog is compiled from these contracts; later additions, such as the stand-in contract, are in source only
 
 Each game has one JSON contract in the Party repository under `contracts/games/`. Here is an excerpt of BLUFF's, with some fields omitted. The full file,
 `contracts/games/bluff.json`, is linked at the foot of this page:

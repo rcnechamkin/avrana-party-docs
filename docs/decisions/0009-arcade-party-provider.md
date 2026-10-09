@@ -1,5 +1,5 @@
 ---
-title: "ADR 0009: The arcade as a Party game"
+title: "ADR 0009: The arcade is a Party-launched game"
 description: Why the arcade's emulator now runs only while the Party is playing Gauntlet II, how Party Core starts and stops it without new privileges, and what the first version left out.
 sources:
   - avrana-party:docs/adr/0009-arcade-party-provider.md
@@ -32,8 +32,8 @@ starved the PlayStation experiment.
 ## What was decided
 
 **Party Core controls the arcade's heavy work, not the service.** Given a Party session key, the
-arcade starts idle. The page, the virtual controllers, the statistics page, the virtual display and
-the audio sink stay up; they are light. Party Core's signed `launch` starts the emulator, capture
+arcade starts idle. The page, the virtual controllers, the statistics page, the virtual screen (Xvfb)
+and the private audio output stay up; they are light. Party Core's signed `launch` starts the emulator, capture
 and encoding; its signed `end` stops them. This is the existing session protocol, so no new
 privileges, service changes or web-server changes were needed.
 
@@ -58,7 +58,7 @@ is 25 seconds, its own 15-second start limit plus time to stop.
 as abandoned, then exits; the Party leaves the game and the system restarts the arcade idle.
 
 **Always-on stays the default and the rollback.** Party-managed mode is switched on only by one
-configuration drop-in plus the key.
+extra systemd settings file plus the key.
 
 **Gauntlet II becomes a Party game.** The host gets "Start for everyone" and "Switch everyone";
 the arcade page follows the Party; a phone that opens the arcade while idle is told the host
@@ -94,7 +94,8 @@ beside BLUFF. Limits accepted for the first version:
   player's ticket identity, so a phone that drops keeps its seat and player number for
   60 seconds without renumbering anyone. Releasing the controller frees the seat at once, and
   ending, switching or relaunching clears all seats. Always-on mode still hands out the first free
-  slot. The ADR has no amendment for this; it is recorded in the arcade's README and runbook.
+  slot. The ADR mentions ticket seats only in passing, in its four-seat amendment; the details
+  are in the arcade's README and runbook.
 - **2026-10-07, four seats (AVR-311).** <span class="avr-badge source">In source</span>. Gauntlet
   II takes four phones; two had only been the most anyone had tried. The contract, the arcade and
   the emulator configuration all say four, and tests keep them equal. Four phones at once have not

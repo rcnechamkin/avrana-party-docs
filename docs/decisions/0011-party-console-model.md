@@ -64,9 +64,11 @@ stateDiagram-v2
   results --> home: host chooses Party Home
 ```
 
+*Simplified: when the host switches games, the Party goes straight to the next game's setup.*
+
 Only the host moves it. Nothing a follower does on their own phone changes it.
 
-**2. Presence is automatic.** A phone with an Avrana profile (a name and a Gaze avatar) is in the
+**2. Presence is automatic.** A phone with an Avrana profile (a name and one of the bundled "Gaze" cartoon avatars) is in the
 Party. Party Home and every game page join on their own: on load, after Party Core restarts and on
 a rename. There is no Join and no Leave button.
 
@@ -74,7 +76,7 @@ a rename. There is no Join and no Leave button.
 shown on Party Home; a round and its results on the game's page. Party Home, game pages and the
 arcade apply it on load, on reconnect and on every change, *replacing* the current page if it is
 in the wrong place. No offers, no banners, no "Rejoin", no memory of what the tab did. During a
-round, Party Home cannot be browsed and no other game can be opened. A standalone title may stay
+round, Party Home cannot be browsed and no other game can be opened. A standalone title (a LAN Games title played outside the Party) may stay
 open while the Party is home, as a personal game, and is left the moment the host moves the
 Party. A move that arrives while a phone is offline waits for the network.
 
@@ -86,7 +88,8 @@ play** entry, the roster with each person's choice, two large choices (**Play th
 the content as data, in an `onboarding.json` file beside it. How to play is one sheet that opens
 over the scene; a first-timer's Play opens it first, and "Got it, I'll play" counts as Play.
 
-**5. The game owns the screen during a round.** In a Party, the games' integration bar, and Back
+**5. The game owns the screen during a round.** In a Party, the games' integration bar (the strip of Party controls the Games repository adds to
+each game page), and Back
 to Party with it, is hidden, and the page shows no Party text. Host controls live in the game's
 own interface through a small browser API the Party provides. BLUFF puts End beside its rules
 button, and on its results screen shows **Play again** and **Party Home** to the host and
@@ -150,7 +153,7 @@ controls.
 
 <span class="avr-badge reported">Owner-reported</span> as deployed. The ADR's own status line
 (reconciled 2026-10-01) still says deployment is pending, and the last verified deployment
-(2026-09-29) predates this decision: it still had the explicit Join and the "Rejoin" offers. No
+(2026-09-29) predates its merge: it still had the explicit Join and the "Rejoin" offers. No
 dated record of a later deployment exists ([Known discrepancies](../status/discrepancies.md)).
 
 **Not verified on real phones.** Automated browser tests run at phone size (390 by 844 pixels),

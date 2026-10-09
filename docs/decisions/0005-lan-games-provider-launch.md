@@ -80,9 +80,9 @@ token remained, and there was no authoritative session state yet.
 ## Where it stands today
 
 - <span class="avr-badge deployed">Deployed</span> Provider launches and the switch to the fork,
-  since 2026-09-27. At the verified 2026-09-29 deployment the games server is still this fork.
-- <span class="avr-badge retiring">Retiring</span> The boundary as a whole. In current source the
-  Party's appliance grants offer only BLUFF and EXPO. The games server still has its hub page; it
+  since 2026-09-27. At the verified 2026-09-29 deployment the games server was still this fork.
+- <span class="avr-badge retiring">Retiring</span> The boundary as a whole. In current source, of the games
+  server's titles, the Party's appliance grants offer only BLUFF and EXPO. The games server still has its hub page; it
   can be configured so that a connection without a Party ticket may only watch, but by default
   standalone play is still admitted.
 - Party Chat's interface belongs to the Party, but its transport still runs on the fork's chat

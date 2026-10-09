@@ -55,7 +55,10 @@ carry the wrong key. This ADR fixes the rules and deliberately leaves formats an
   server. Long-lived secrets are stored only as hashes, PINs as slow hashes.
 - **Games get a game key and a persona, nothing more.** The game key is a secret for one
   participant in one session, sent only to that participant. Party-launched games must accept a
-  ticket, never an arbitrary client-supplied token.
+  ticket, never an arbitrary client-supplied token. Each game binds seats in its own way and
+  reports them back by seat id.
+- **Games key anything they store by the opaque ids they are given**, never by names or by
+  tokens of their own, so records survive renames and profile changes.
 - **One active party per appliance**: no party selector and no multi-tenant routing.
 - **Records point at identifiers, never display values**, and every statistic records its
   provenance (game-reported, platform-observed or entered by hand).

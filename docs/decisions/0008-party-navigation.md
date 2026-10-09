@@ -15,7 +15,7 @@ verified: 2026-10-09
 # ADR 0008: One activity, a host switch, and game pages that follow
 
 !!! abstract "At a glance"
-    **Decided:** 2026-09-29 · **Status:** <span class="avr-badge deployed">Deployed</span>; its "follow only what you watched" rule and in-game Party line were replaced by [ADR 0011](0011-party-console-model.md)
+    **Decided:** 2026-09-29 · **Status:** <span class="avr-badge deployed">Deployed</span>; its "follow only what you watched" rule and in-game Party line are replaced in source by [ADR 0011](0011-party-console-model.md)
     The Party runs one game at a time. The host can move everyone to another game in one step,
     and pages already inside a game follow the host's moves.
 
@@ -63,7 +63,8 @@ the Party shows why. Nothing is started on top of a game that may still be runni
 
 **Pages inside games follow Party Core.** A small follower script, loaded by integrated game
 pages and the arcade page, keeps the same long poll as Party Home. On a start it goes to that
-game; on an End it goes home if it was that game. In this first version a page moved only on
+game; on an End it goes home if it was that game. The arcade and standalone titles follow a
+start but never an end, so End did not send an arcade page home. In this first version a page moved only on
 moves it had watched; a reloaded page showed "Your party is playing X · Join them" instead.
 
 **The host's controls are where the host is.** Party Home offered "Switch everyone to this". A

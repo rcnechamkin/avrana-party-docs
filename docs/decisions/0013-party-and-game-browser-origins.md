@@ -31,8 +31,8 @@ scripts by origin. Earlier decisions put the Party, games and arcade on one orig
 Path-scoped `HttpOnly` cookies hide the device token from scripts, but any script on the origin
 can still call `/party/api/…` and the browser attaches the cookie. That limit was known and
 deferred until third-party games arrived. The 2026-10-02 review judged the deferral wrong: game
-code is already effectively third-party. The Games repository has its own release cadence, BLUFF
-ships with around 30 donor titles, and future games are independent consumers. If a game page can
+code is already effectively third-party. The Games repository has its own release cadence, the
+repository ships BLUFF alongside about thirty titles inherited from LAN Games, of varying origin, and future games are independent consumers. If a game page can
 act as the viewer against host APIs, every game bug becomes a Party bug.
 
 ## What was decided
@@ -55,7 +55,8 @@ act as the viewer against host APIs, every game bug becomes a Party bug.
 ## Why this way
 
 A **separate host name** separates everything by construction. A **separate port** does not,
-because browsers share cookies across ports. A **CSP sandbox** gives a `null` origin and
+because browsers share cookies across ports. A **CSP sandbox** (a browser rule that puts a page in a restricted, origin-less container) gives
+a `null` origin and
 second-class browser features. The host-name option also avoids the iframe drawbacks
 (fullscreen, audio unlock, storage) that [ADR 0002](0002-party-platform.md) held against frames.
 
@@ -65,9 +66,9 @@ ADR 0002's Party *service* placement stands, but games no longer share its brows
 [ADR 0004](0004-full-mode-contracts-and-providers.md)'s canonical Party address stands, but games
 move off it. ADR 0006's note that a game page can call the Party API with the cookie stays true of
 the deployed system, and is what this ADR removes. [ADR 0011](0011-party-console-model.md)'s host
-controls stay in the game's chrome; only their transport changes. Three consumers needed
+controls stay in the game's own interface; only their transport changes. Three consumers needed
 replacements before cutover: the arcade phone page, the Games integration scripts and BLUFF's
-host chrome. Turning the new origin on changes DNS, certificate names and nginx, an
+host's interface. Turning the new origin on changes DNS, certificate names and nginx, an
 owner-approved live change.
 
 ## Later changes
@@ -93,8 +94,8 @@ sequenceDiagram
   participant G as Game page (game origin)
   participant B as Bridge frame (Party origin)
   participant P as Party Core
+  B->>P: registered game origins (when the frame loads)
   G->>B: hello {game}
-  B->>P: registered origins?
   G->>B: ticket
   B->>P: ticket request (device cookie attached)
   P-->>B: single-use ticket

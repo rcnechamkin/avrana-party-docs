@@ -95,7 +95,8 @@ roadmap sets the order:
    Games runtime, launched and ended by Party Core as its own process. In review as of
    October 2026. Playing it on real phones on the appliance is a separate, later step.
 3. **Spades**: the pressure test, covering teams, private hands, reconnect, scoring and richer
-   results. A readiness packet and rule characterization tests exist. The game itself does not
+   results. A readiness packet and rule characterization tests exist. A Spades module already lives in the
+   LAN Games donor library, and Checkers does too. The native versions that run outside it do not
    exist yet.
 4. **Only then** freeze and build the SDK, the package format and the provider abstractions.
 

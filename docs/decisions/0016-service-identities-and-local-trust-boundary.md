@@ -79,9 +79,9 @@ Stated so that nobody assumes it:
 | Service | Identity | Why |
 |---|---|---|
 | Party Core | Fixed system user `avrana-party` | Owns the master key store and needs a stable group membership |
-| Arcade | Fixed system user `avrana-arcade`, plus the input and video device groups | Device access is by group; no other service gets those groups |
+| Arcade | Fixed system user `avrana-arcade`, plus the `input`, `video` and `render` device groups | Device access is by group; no other service gets those groups |
 | LAN Games fork (retiring) | Fixed system user `avrana-lan-games`, while it exists | One trust unit; deleted with the runtime |
-| Each native game | A systemd **dynamic user** from one template unit: a distinct, temporary uid per running game | Games come and go; nothing to create or clean up |
+| Each native game | A systemd **dynamic user** from one template unit: a distinct, temporary user ID (uid) per running game | Games come and go; nothing to create or clean up |
 | nginx | Unchanged (`root` master, `www-data` workers) | The front door |
 | Renewal, deployment, provisioning | `root`, one-off tasks | They create identities and write secrets |
 | Operator | The owner's login account, with `sudo` | Runs no service |
@@ -110,8 +110,11 @@ refusing real group access.
 Native games use **Unix sockets only and have no IP networking at all**: no TCP port, no route to
 the remaining loopback listeners, no way to open a port on the Party Wi-Fi. nginx and Party Core
 reach a game through its socket; a game reports its end and result on Party Core's internal
-socket. Loopback TCP stays for the public Party API behind nginx, the arcade (it needs IP for
-WebRTC) and the retiring fork, each now protected by a key that is no longer shared.
+socket. Loopback TCP stays in three places. The public Party API behind nginx is authenticated by the
+member's cookie and `Origin`, like any phone's request. The arcade needs IP for WebRTC. The
+retiring fork stays on TCP too. Once the migration runs, the arcade and the fork each use a key
+that only two identities can read. Until both leave TCP, Party Core's internal route also stays
+on its loopback port, protected by signature alone.
 
 Two layers share the work. **Socket permissions** decide which *kind* of peer may connect, enforced
 by the kernel. **The signature** decides *which game* it is, because dynamic uids are not stable
@@ -128,7 +131,7 @@ Options weighed against a Raspberry Pi appliance:
 - **A dynamic user per game: adopted.** No provisioning state, hardening built in.
 - **Dynamic users for Party Core or the arcade: rejected**, because of the key store and device
   groups.
-- **Encrypted credentials: deferred.** The Pi 4 has no TPM, and offline disk reads are physical
+- **Encrypted credentials: deferred.** The Pi 4 has no TPM (a hardware chip that could protect encryption keys), and offline disk reads are physical
   access, which is not promised.
 - **Network namespaces, system-call filters, stricter resource ceilings: deferred** until hostile
   code is in scope or real games are measured. **Containers: rejected for now.**
@@ -173,7 +176,7 @@ its own key and state; socket groups admitted only the intended peers; a game wi
 reached the Party). Against the appliance facts of 2026-10-03, the checker found **6 of 25**
 phase-one rules met. **Not yet proven on the appliance itself:** the same checks on its
 Debian/arm64 system, where service code will live, nginx joining the socket group, the arcade
-under a new user, and socket activation of a real game. No migration has been recorded as done.
+under a new user, and socket activation (systemd starting a game when its socket is first used) of a real game. No migration has been recorded as done.
 
 Deferred: community-game sandboxing (AVR-69), encrypted credentials and storage, moving the
 public API, arcade or fork to Unix sockets, a per-game Party-only channel, a web admin's

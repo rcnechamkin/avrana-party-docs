@@ -83,7 +83,7 @@ On 2026-10-03 the owner accepted six mechanisms from the
 |---|---|
 | D1 | `http://10.42.0.1`, the appliance's own address, is the canonical Limited Mode address: the only name that survives private DNS, a VPN or Private Relay. |
 | D2 | Party Core knows a request is Limited because it arrived on a second local listener, not from a header. |
-| D3 | A phone that changes mode joins again **as a new device**, with a separate `avrana_limited` credential: not `Secure`, 12 hours, memory only, accepted only on the Limited listener. A host-approved "That's me" reclaim may come later. |
+| D3 | A phone that changes mode joins again **as a new device**, with a separate `avrana_limited` credential: not `Secure`, 12 hours, kept only in Party Core's memory so a restart forgets it, accepted only on the Limited listener. A host-approved "That's me" reclaim may come later. |
 | D4 | Mixed parties are allowed and each member's mode is visible. In host succession a present Full Mode member is preferred; a present host is never displaced. |
 | D5 | In Limited Mode, first-party games use the Party's own origin; there is no game origin or community tier there. |
 | D6 | `/` on port 80 becomes a **doorway** that opens Full Mode if the secure address answers on that phone, and Limited Mode if not. |
@@ -92,9 +92,9 @@ A Limited member has ordinary Party rights, including the host role, but there i
 or profile claiming. The amendment states the costs openly. On a shared-password Wi-Fi another
 guest can read a Limited credential off the air and act as that member, which is why it is
 short-lived and the banner says the connection is not private. The 12 hours are not renewed by
-use, so a phone still present afterwards rejoins as a new member. Browsers do not send
-`Sec-Fetch-Site` over plain HTTP, so cross-site requests there are stopped by the `Origin`
-allow-list alone. And game pages follow the Party only in a secure context, so in Limited Mode a
+use, so a phone still present afterwards rejoins as a new member. Browsers label where a request came from with two headers, `Origin` and `Sec-Fetch-Site`. Over
+plain HTTP they do not send `Sec-Fetch-Site`, so there Party Core stops requests from other sites
+with its `Origin` allow-list alone. And game pages follow the Party only in a secure context, so in Limited Mode a
 game page does not yet follow the Party.
 
 ## Where it stands today

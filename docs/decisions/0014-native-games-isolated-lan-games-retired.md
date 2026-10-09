@@ -40,8 +40,8 @@ games this way would make the temporary foundation permanent by default.
 ## What was decided
 
 **Retirement.** The standalone LAN Games player flow, browser-minted `wc-token` admission and the
-monolith as the native-game runtime are retired from normal operation. LAN Games is kept only as
-donor and reference source, material for future *Classics* adaptations, and possibly a test
+monolith (the single LAN Games server process that hosts every game) as the native-game runtime are retired from normal operation. LAN Games is kept only as
+donor and reference source, material for future *Classics* adaptations (individual LAN Games titles re-built, one at a time, as native games), and possibly a test
 reference for TV-required games. Attribution is kept.
 
 **The native-game boundary.**
@@ -49,7 +49,7 @@ reference for TV-required games. Attribution is kept.
 - **Each game is an independent platform consumer**, with its own process, service identity,
   secrets and state. No game reads another's state or keys.
 - **Local communication prefers Unix sockets**; nothing a game serves is reachable except through
-  the front door.
+  the front door (nginx, the only service phones talk to).
 - **Routing is generic**, from a **game registry**. Adding a game adds a registry entry and a
   grant, not nginx edits.
 - **One provisioning path** creates every game's identity, grants, keys and registration.
@@ -83,7 +83,7 @@ settings, CLI syntax and container technology were left to implementation.
 - Chat, avatars and shared library keys need Party-owned replacements, or decisions to drop them,
   before the monolith can stop.
 - Per-game processes cost memory and CPU on a Raspberry Pi 4, so idle games must be cheap to
-  stop; games run only while active.
+  stop; games are expected to run only while active.
 - ADR 0005 remains the record of the deployed provider boundary; its long-term architecture is
   superseded. Standalone-play clauses in ADRs 0007, 0008, 0010 and 0011 stop being requirements
   once standalone LAN play is retired. ADR 0009's standalone arcade rollback path is unaffected.
@@ -112,7 +112,7 @@ runtime.
 
 Not done: the template is not installed on the appliance and no product game has a runtime grant.
 The deployed appliance still runs BLUFF inside the LAN Games fork. Native Checkers was in review
-in October 2026. Spades, the SDK and `.avrgame` do not exist. One mismatch: the ADR names
+in October 2026. A native Spades, the SDK and `.avrgame` do not exist. Checkers and Spades exist only as LAN Games modules in the donor library. One mismatch: the ADR names
 `process` as the native runtime type, but the contract validator accepts only `lan_games_module`,
 `emulator_profile` and `external`, and the stand-in declares `external` (see
 [known discrepancies](../status/discrepancies.md#4-the-native-runtime-type)).

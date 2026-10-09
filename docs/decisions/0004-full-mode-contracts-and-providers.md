@@ -35,11 +35,15 @@ evidence. The ADR answers them as decisions D1 to D6.
 
 **D1. The canonical origin is `https://party.avrana.net`.** (An *origin* is the scheme, host and
 port a browser uses to separate cookies and storage.) Avrana's pages live under `/party/` on the
-HTTPS server only. The plain-HTTP server is unchanged: captive-portal probes get their expected
-answer and there is no global redirect. There is **never HSTS**, which would make browsers refuse
+HTTPS server only. The plain-HTTP server is unchanged: captive-portal probes (the checks phones
+make to decide whether a Wi-Fi network needs a sign-in page) get their expected answer, and there
+is no global redirect. There is **never HSTS**, which would make browsers refuse
 anything but valid HTTPS and trap phones if the certificate expired. The TLS key never leaves the
 appliance, and no private certificate authority goes on phones. Because HTTP and HTTPS are
-different origins, Party identity is scoped to HTTPS and its cookie is `Secure`.
+different origins, a phone that switches between them looks like two devices, so Party identity
+is scoped to HTTPS and its cookie is `Secure`. Three questions were left open: an HTTP
+"doorway" page that tries HTTPS and hands over, a redirect for `http://party.avrana.net/`, and
+whether `/` itself becomes Party Home.
 
 **D2. Capabilities are judged per seat, by observation.** The engine keeps apart what the device
 can do (observed in the browser), the seat's role, what the appliance's runtime offers and what
@@ -95,7 +99,7 @@ cached page while every live call fails, and Safari evicts its storage after abo
 
 Deploying the shell needed a one-time, owner-approved nginx change plus an install script with
 rollback and kill-switch options. Follow-ups named at the time included Party Home adopting the
-shell's libraries, a ticket version bound to the seat, and making the arcade exit on a fatal error
+shell's libraries, a ticket version bound to the seat generation rather than the controller slot, and making the arcade exit on a fatal error
 so systemd restarts it.
 
 ## Later changes
@@ -109,16 +113,20 @@ so systemd restarts it.
   production stays HTTPS-only until a verified deployment says otherwise.
 - [ADR 0013](0013-party-and-game-browser-origins.md) keeps the Party origin but moves game pages
   to a separate one; "one origin for everything" is no longer the target.
+- D5's closing line, that the HTTP recovery origin and later an app are the real recovery routes,
+  is now read with ADR 0012: the recovery route is Limited Mode, which gets its own explicit
+  identity model, not the LAN Games hub.
 
 ## Where it stands today
 
 - <span class="avr-badge deployed">Deployed</span> The Full Mode shell under `/party/`, with its
   service worker and browser-side capability evaluation (first installed 2026-09-27, verified at
-  the 2026-09-29 deployment), and the arcade's provider-based server. The ADR's header, "nothing in
+  the 2026-09-29 deployment), the arcade's provider-based server, the game contracts and
+  appliance grants that the deployed catalog was compiled from, and both capability evaluators. The ADR's header, "nothing in
   this ADR is deployed", was true when written.
-- <span class="avr-badge source">In source</span> Game contracts for the current games, the
-  appliance grant file, both evaluators and the provider interfaces. The presentation provider's
-  attach and detach operations are documented, not built.
+- <span class="avr-badge source">In source</span> Later additions, such as the stand-in
+  contracts and the runtime grant for native games. The presentation provider's attach and
+  detach operations are documented, not built.
 - The offline CI lane runs Tiers 1 and 2; Tier 3 remains manual. The arcade source now exits on
   a fatal error so systemd restarts it.
 

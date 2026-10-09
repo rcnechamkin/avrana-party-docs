@@ -27,8 +27,9 @@ ready-and-countdown lobby: a second lobby after the Party's, where the host had 
 could choose to watch a round instead of playing it. BLUFF's only watching view was the TV view,
 which hides every hand.
 
-Two open questions framed the answer: what a game's lobby should do once the Party has formed
-(with no general lobby framework), and a shared briefing-and-ready pattern that games fill in.
+Two open issues framed the answer. One asked what a game's lobby should do once the Party has
+formed, without building a general lobby framework. The other asked for a shared
+briefing-and-ready pattern that games fill in.
 
 ## What was decided
 
@@ -55,7 +56,7 @@ asking for a ticket is told "setup". The page opens no connection to the game, s
 waiting, and asks again every two seconds. The host's start arrives as a ticket, and the page
 joins with its role.
 
-**4. The setup is platform interface; the rules are the game's.** The Party drew the setup panel:
+**4. The Party draws the setup; the game supplies its rules.** The Party drew the setup panel:
 who plays, who watches, who is still choosing, the Play and Watch buttons, and Start for the host
 only, disabled with the reason written out. A game could step in just before a member's Play;
 BLUFF used that to show its first-play briefing, so nobody plays without having seen it.
