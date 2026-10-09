@@ -58,41 +58,27 @@ also meant to be the **only writer of the durable record**: results, history and
 a person. Games decide what happened in a round and report it; they are consumers of platform
 services, not co-owners of platform state.
 
-The document is equally clear about what the platform is not:
-
-- **not a universal gameplay framework** — rules, state, rendering and turn logic stay with each
-  game;
-- **not a social network or cloud account system** — everything is local and offline, with no
-  sign-up;
-- **not a store** — installation is open, with no marketplace, payments or DRM;
-- **not dependent on a captive portal or an app** — Wi-Fi and an ordinary browser are the
-  baseline.
-
-The first real version is for the owner, to answer one question: can the whole experience
-actually work and be fun? A later commercial path is acknowledged, but only as a reason to avoid
-obvious dead ends such as hard-coded single-user assumptions.
+The document is equally clear about what the platform is not: a universal gameplay framework
+(rules, state, rendering and turn logic stay with each game), a social network or cloud account
+system, a store, or something that depends on a captive portal or an app. The first real version
+is for the owner, to answer one question: can the whole experience actually work and be fun? A
+later commercial path is acknowledged only as a reason to avoid obvious dead ends.
 
 ## Product principles
 
 The document lists 21 durable principles; breaking one needs a recorded reason. Grouped by
 theme, they say:
 
-- **The Party is the constant.** One appliance hosts one party and one activity at a time, and
-  navigation is synchronized across everyone. A future Developer Mode might relax this for
-  technical users, but it must not shape the consumer product.
-- **No friction to play.** Browser-first, guest-first, no app, no TV required, and never an
-  account step. Profiles may enhance play but are never required.
-- **Identity belongs to Avrana.** Games consume it; no game reinvents profiles, chat, reconnect,
-  teams, spectators or session lifecycle. **Device identity is not human identity**:
-  recognizing a browser never means knowing who is holding it.
-- **Authority is separated.** Admin authority over the appliance is separate from a host's
-  authority over a party. Game code is not Party code: playing a game never gives its
-  JavaScript Party, member or admin powers.
-- **Honesty.** Never claim what the platform or a game cannot actually observe.
-- **Offline-first, with HTTPS preferred but not required.** Losing the certificate degrades
-  individual capabilities; it does not disable the Party.
-- **The phone is not just a controller.** It is each player's private screen, and native games
-  should use it (see [Designing for phones](../games/designing-for-phones.md)).
+- **The Party is the constant**: one appliance, one party, one activity at a time, with
+  navigation synchronized across everyone.
+- **No friction**: browser-first, guest-first, no app, no TV required, never an account step.
+- **Identity belongs to Avrana** and games consume it; no game reinvents profiles, chat,
+  reconnect, teams, spectators or session lifecycle. **Device identity is not human identity.**
+- **Authority is separated**: admin is not host, and game code is not Party code.
+- **Honesty and resilience**: never claim what cannot be observed; work offline; prefer trusted
+  HTTPS but never require it.
+- **The phone is not just a controller**: it is each player's private screen (see
+  [Designing for phones](../games/designing-for-phones.md)).
 
 ## Locked product decisions
 
@@ -123,10 +109,9 @@ A player joins the Avrana Wi-Fi, opens the party address, and from then on the b
 whole interface. Two consequences drive much of the design.
 
 **Identity lives in exactly one browser origin.** Browsers keep separate cookies and storage per
-host name, so the same phone reaching the appliance by two names looks like two devices: two
-presences, two seats, two votes. Cookies also ignore ports, so a development instance on another
-port of the same host would receive production cookies. The design therefore never spreads Party
-identity across origins and never tries to recover it across them. The trusted Party origin is
+host name, so one phone reaching the appliance by two names looks like two devices, with two
+presences and two votes. The design therefore never spreads Party identity across origins or
+tries to recover it across them. The trusted Party origin is
 `https://party.avrana.net` <span class="avr-badge deployed">Deployed</span>, resolved locally by
 the appliance's DNS (see [the appliance and its network](../architecture/appliance-and-network.md)).
 
@@ -136,11 +121,7 @@ are still served from the Party origin; the mechanisms are in source but not con
 
 **Full and Limited Mode.** When trusted HTTPS is unavailable, the Party should keep working in a
 visibly degraded Limited Mode with its own credential, rather than weakening the secure cookie.
-The captive portal is only a convenience: no profile is chosen, no device trusted and no game
-run inside the captive mini-browser.
-
-Because every player holds a private screen, accessibility settings such as text size, contrast
-and motion can change for one person only (see [Accessibility](accessibility.md)).
+The captive portal is only a convenience: nothing is chosen, trusted or played inside it.
 
 ## Identity in layers
 
@@ -184,12 +165,8 @@ their history with it. A recognized phone would greet people with a short picker
 Cody, Audrey, someone else, guest"). A **player PIN is optional**; without one, picking a
 profile runs on the honour system and the interface says so. The **System Admin PIN is
 required**. Device recognition uses only the random server-issued token, never MAC addresses or
-fingerprinting.
-
-The proposal also sketches a profile lifecycle (promotion from guest, several devices per
-profile, trusted-device revocation, deletion that keeps other players' records true, admin-only
-merge, export without secrets, QR pairing with short-lived single-use codes) and the categories
-of per-player settings.
+fingerprinting. The proposal also sketches a profile lifecycle, from guest promotion to
+deletion, merging and QR pairing, and the categories of per-player settings.
 
 ## Admin and host are separate
 
@@ -201,7 +178,7 @@ The document keeps two kinds of authority entirely apart, and a host can never e
 | Credential | A required PIN; in v0, an SSH command-line tool | None |
 | Powers | Network, updates, storage, installing and trusting games, profile management, moderation defaults | Choosing and starting games, ending rounds, managing spectators and seats, moderating party chat, kicking from the current party |
 | Cannot | — | Touch profiles, devices, PINs, installation or admin settings; see other players' hidden state |
-| State | <span class="avr-badge planned">Planned</span>; no Admin role exists in code | <span class="avr-badge deployed">Deployed</span> |
+| State | <span class="avr-badge planned">Planned</span>; no Admin role exists in code | The role, game selection, Start, End and hand-over <span class="avr-badge deployed">Deployed</span>; seat management, chat moderation, votes and kicks are design |
 
 **The host is disposable.** If the host goes quiet, the role passes to someone else after a
 grace period, and a returning former host does not get it back; there is no "claim host"
@@ -228,16 +205,12 @@ someone out.
 <span class="avr-badge deployed">Deployed</span> · console presentation
 <span class="avr-badge reported">Owner-reported</span>
 
-Party Core exposes a single authoritative **location**: home, setup, game or results, plus which
-game and session. Only the host moves it. Party Home at `/party/` shows the roster, the host,
-the catalogue, Party Chat and the library, and owns the full-screen setup scene. Every Party
-page, game page and the arcade page applies the same rule on load, on reconnect and on every
-change: if this phone is in the wrong place, replace the page with the right one. Followers get
-no detour prompts or Rejoin offers. The details are on [The Party](../architecture/party.md) and
-in the [lifecycle design](party-lifecycle.md).
-
-The location is singular by design: one appliance, one party, one activity. Running two games at
-once is not a feature of the consumer product.
+Party Core exposes a single authoritative **location** (home, setup, game or results) that only
+the host moves, and every Party page, game page and the arcade page moves itself there on load,
+on reconnect and on every change, with no detour prompts or Rejoin offers. Party Home at
+`/party/` holds the roster, catalogue, Party Chat, the library and the full-screen setup scene.
+The location is singular by design: one appliance, one party, one activity. The details are on
+[The Party](../architecture/party.md) and in the [lifecycle design](party-lifecycle.md).
 
 ## Seats, spectators and teams
 
@@ -334,18 +307,9 @@ to `/party/` with nginx stripping cookies from game locations; in source the coo
 `__Host-avrana_device` with `Path=/`, and no such nginx directive exists (see
 [Known discrepancies](../status/discrepancies.md#1-the-device-cookie-and-same-origin-game-servers)).
 
-Untrusted community games would later get a stronger tier on top of the origin split:
-sandboxed pages with no access to host verbs, and isolated server processes with no network.
-The document also lists what it deliberately does *not* do: private certificate authorities on
-phones, JWTs, token rotation schedules, encrypted databases, device fingerprinting, email
-recovery and CAPTCHAs.
-
-## Experimental ideas
-
-Several ideas are explicitly not part of the product plan: phones forming one distributed
-display, a companion app (only ever for onboarding or hardware conveniences), Bluetooth
-discovery, optional upstream internet (the party must never depend on it), automatic Personal
-Viewport detection and per-title result adapters for emulated games.
+Untrusted community games would later get a stronger, sandboxed tier on top of the origin
+split. The document also lists what it deliberately does *not* do, including private certificate
+authorities on phones, JWTs, encrypted databases, device fingerprinting and CAPTCHAs.
 
 ## Open questions
 
@@ -361,3 +325,8 @@ The document keeps a list of questions that are still open. The main ones are:
 - the onboarding path across iOS and Android, which needs real-phone tests;
 - smaller policy points such as spectator voting, whether a kick ever reaches beyond the current
   party, a TV "screen" presence, and host-less kiosk parties.
+
+Several further ideas are explicitly experimental and outside the product plan: phones forming
+one distributed display, a companion app (only ever for onboarding or hardware conveniences),
+Bluetooth discovery, optional upstream internet (the party must never depend on it), automatic
+Personal Viewport detection, and per-title result adapters for emulated games.

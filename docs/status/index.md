@@ -25,7 +25,9 @@ verified: 2026-10-09
     [Linear](https://linear.app/avranakern) for work in progress, the
     [roadmap](../project/roadmap.md) for
     direction, the [system map](../project/system-map.md)
-    for verified deployment, and `/party/api/status` on the appliance for what is running.
+    for verified deployment. Once a build that includes it is deployed, `/party/api/status` on
+    the appliance will report what is running. Every recorded build predates that endpoint (see
+    [Deployment](../project/deployment.md#the-status-endpoint)).
 
 ## The short version
 
@@ -121,7 +123,7 @@ before it. Their state as of the snapshot:
 | 5 | One canonical per-game manifest | <span class="avr-badge source">In source</span> (game contracts) |
 | 6 | Generic registry, routing and provisioning | <span class="avr-badge source">In source</span> |
 | 7 | Versioned results from games | <span class="avr-badge source">In source</span>; durable history undecided |
-| 8 | Retire the LAN Games operational dependency | Standalone mode retired in source; BLUFF, EXPO and chat still depend on it |
+| 8 | Retire the LAN Games operational dependency | In source, nginx no longer routes the hub or other titles; the Games server can switch off standalone admission but still allows it by default; BLUFF, EXPO and chat still depend on it |
 | 9 | Checkers platform proof | In review |
 | 10 | Spades pressure test | Readiness work only |
 | 11 | Then freeze and build the SDK, package format and provider abstractions | <span class="avr-badge planned">Planned</span> |

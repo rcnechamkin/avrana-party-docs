@@ -31,23 +31,18 @@ verified: 2026-10-09
 The original labels every rule, and the labels matter because they are not interchangeable.
 This page keeps them:
 
-- **Implemented**: in source on `main` when the contract was written (2026-10-04), with a cited
-  file. Equivalent to <span class="avr-badge source">In source</span>: not a claim of deployment
-  or phone proof.
-- **Accepted**: stated by a source with its own authority, such as an accepted ADR, the
-  accessibility expectations, or a dated owner decision. It carries only the scope its source
-  states; several owner decisions apply to EXPO only.
-- **Proposed**: drafted by the contract itself. Direction for review, not contract, until the
-  owner accepts it.
+- **Implemented**: in source on `main` on 2026-10-04, like <span class="avr-badge source">In source</span>;
+  not a claim of deployment or phone proof.
+- **Accepted**: stated by a source with its own authority (an accepted ADR, the accessibility
+  rules, a dated owner decision), with only that source's scope; several apply to EXPO only.
+- **Proposed**: drafted by the contract itself; direction for review until the owner accepts it.
 
 A single rule often mixes labels: an accepted sentence followed by a proposed reading of it.
 
-The contract deliberately leaves neighbouring questions to other documents: the Party page's
-visual system (UI-DESIGN-SYSTEM), the accessibility rules ([Accessibility](accessibility.md)),
-the state machines ([Party lifecycle](party-lifecycle.md)), the wire between Party and Games
-([the Party ↔ Games contract](../games/contracts-and-catalog.md#the-party-games-contract)),
-chat (a proposed COMMUNICATION design) and Full versus Limited Mode
-([Limited Mode](limited-mode.md)).
+The contract leaves neighbouring questions to their own documents: the Party's visual system,
+[Accessibility](accessibility.md), the [Party lifecycle](party-lifecycle.md),
+[the Party ↔ Games contract](../games/contracts-and-catalog.md#the-party-games-contract), chat,
+and [Limited Mode](limited-mode.md).
 
 ## The boundary: behaviour versus look
 
@@ -324,50 +319,36 @@ symbols where they are notation, such as card suits. Platform slots today are a 
 accent colour and a summary line; example frames and wide hero art are proposed. Everything a page
 needs comes from the appliance, never a remote address.
 
-## What exists and what is only specified
+## What is only specified
 
-**Built** (in source): the authoritative location and follow rule; host controls for a game's own
-chrome with a fallback End; host authority checked at the action; the briefing shell with Play,
-Watch, Start and the blocker sentence; the rules sheet and first-play acknowledgement; the v0
-onboarding file; avatars and roster; capability and fit explanations; connection state; held
-results with the "Round over" panel.
-
-**Specified only**: the not-playing state for games without spectators; the platform rules
-overlay in play; one Cancel / End Game confirmation everywhere; the accent beyond the cover; the
-fake-turn example; shell-drawn settings; Quick Start, Rules Guide and onboarding v1; a shared
-unavailable-action shape; shared announce, sheet and confirm helpers; Party-owned preferences;
-system sound and haptic cues. The contract asks for no component library: a shared primitive is
-built when a second game needs it.
+Most of the shared behaviour on the Party side is built: the location and follow rule, host
+controls for a game's chrome, the briefing shell, the Start blocker, the rules sheet, avatars,
+capability explanations and held results. **Specified but not built**: the not-playing state,
+the in-play rules overlay, one End confirmation everywhere, the wider accent, the example strip,
+shell-drawn settings, onboarding v1 with Quick Start and Rules Guide, a shared unavailable-action
+shape, shared announce, sheet and confirm helpers, Party-owned preferences, and system cues. The
+contract asks for no component library: a shared primitive is built when a second game needs it.
 
 ## Pressure tests
 
-The contract tests itself against four kinds of game:
-
-- **BLUFF** fits well. Its strains: its in-play rules are a second, richer copy of the briefing's
-  text, its disabled actions carry no reason, and its 20-second response timer has no host
-  setting.
-- **EXPO** fits on one-viewport play and server-owned reasons. It strains as a heavy game with
-  no onboarding file (so its briefing shows only a summary) and settings that today exist only
-  in its standalone lobby.
-- **A simple two-player classic** in a party of six makes Watch the ordinary answer for most of
-  the room, which is why Watch must never feel like a penalty, and makes the "too many players"
-  blocker the main event.
-- **A hypothetical real-time game** strains the most: sheets over live action cost the player,
-  per-action sentences do not suit continuous input, and reduced motion cannot remove motion that
-  is the game. The contract notes that no such native game exists, so this is reasoning, not
-  evidence.
+The contract tests itself against four kinds of game. **BLUFF** fits well, but its in-play rules
+are a second, richer copy of the briefing's text, its disabled actions carry no reason, and its
+20-second response timer has no host setting. **EXPO** fits on one-viewport play and
+server-owned reasons, but as a heavy game it ships no onboarding file, so its briefing shows only
+a summary. **A simple two-player classic** in a party of six makes Watch the ordinary answer for
+most of the room, which is why Watch must never feel like a penalty. **A hypothetical real-time
+game** strains the most: sheets over live action cost the player, per-action sentences do not
+suit continuous input, and reduced motion cannot remove motion that is the game. No such native
+game exists, so that part is reasoning, not evidence.
 
 ## Follow-ups and outstanding evidence
 
 The owner's decisions of 2026-10-05 create work the contract does not do itself: amend ADR 0011
-to admit the rules overlay; bring the host's End to one confirmation form; design the platform
-sound cues; design the not-playing state; and design the rules overlay, including how it works
-once games are on their own origin.
+to admit the rules overlay, bring the host's End to one confirmation form, and design the
+platform sound cues, the not-playing state and the rules overlay (including across origins). The
+contract also records observations of current source against its rules, such as BLUFF's prompts
+not being announced to screen readers, as observations rather than tasks.
 
-The contract also lists observations of current source against its rules (for example, BLUFF's
-prompts are not announced to screen readers, and EXPO's top bar shows the platform's name above
-the game's). It treats them as observations, not tasks.
-
-Above all, the contract is unproven with real people. The four-person offline BLUFF playtest may
-change the briefing's size limits, the first-play gate, the all-answer Start gate, how prominent
-Watch is, the waiting line, and which platform sounds are worth having.
+Above all, it is unproven with real people. The four-person offline BLUFF playtest may change the
+briefing's size limits, the first-play gate, the all-answer Start gate, how prominent Watch is,
+the waiting line, and which platform sounds are worth having.

@@ -84,7 +84,7 @@ branches.
 | System | Role |
 |---|---|
 | **[Linear](https://linear.app/avranakern)** (team `AVR`) | Live work: priorities, sequencing, acceptance criteria, ownership. Every change starts from an `AVR-N` issue |
-| **The appliance** | The source of truth for what is *running*: `/party/api/status` and its deployment manifest |
+| **The appliance** | The source of truth for what is *running*. In source, `/party/api/status` and a deployment manifest report it; every recorded deployed build predates them, so today the [system map](../project/system-map.md) is the best summary |
 | **GitHub Actions** | CI for both repositories, including the cross-repository contract check and a weekly drift report |
 
 ## Licensing

@@ -139,11 +139,12 @@ rule. None is built yet.
 
 ## How accessibility is tested
 
-- **Automated, per page.** <span class="avr-badge source">In source</span> A Party page browser
-  test checks that visible controls have names, that buttons and links are at least 44 pixels
-  high (height only, as the game UX contract notes), that the language is set and that there is
-  no sideways scroll. The original describes this as running in Chromium and WebKit and says to
-  copy the pattern for new pages.
+- **Automated, per page.** The original describes a smoke-test pattern (controls named,
+  targets of at least 44 pixels, language set, no sideways scroll) and says to copy it for new
+  pages. <span class="avr-badge source">In source</span> the Party page's offline browser test
+  now checks, on each of its four places, that the language is set, that every control is at
+  least 44 pixels in both directions and that there is no sideways scroll, in Chromium at phone
+  sizes.
 - **Automated, the Party shell.** <span class="avr-badge source">In source</span> Since the UX/UI
   redesign, shared accessibility helpers run over every shell page and Party state: contrast,
   control edges, names and reading order, each screen also drawn with more contrast and less

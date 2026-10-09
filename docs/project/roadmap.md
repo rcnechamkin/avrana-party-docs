@@ -80,7 +80,7 @@ The engineering roadmap says none of the sequence is deployed. The state column 
 | 5 | One canonical per-game manifest for catalog and runtime metadata | <span class="avr-badge source">In source</span> (game contracts) |
 | 6 | Generic registry, routing and provisioning, with no per-title front-door setup | <span class="avr-badge source">In source</span> |
 | 7 | Versioned results from games; the Party owns the durable record | <span class="avr-badge source">In source</span>; durable history undecided |
-| 8 | Retire the LAN Games operational dependency, keeping its code as reference | Standalone mode retired in source; BLUFF, EXPO and chat still depend on it |
+| 8 | Retire the LAN Games operational dependency, keeping its code as reference | In source, nginx no longer routes the hub or other titles; the Games server can switch off standalone admission but still allows it by default; BLUFF, EXPO and chat still depend on it |
 | 9 | Checkers platform proof: a simple game outside the LAN Games runtime | In review |
 | 10 | Spades pressure test: teams, private hands, reconnect, scoring | Readiness work only |
 | 11 | Only then freeze and build the SDK, package format and provider abstractions | <span class="avr-badge planned">Planned</span> |

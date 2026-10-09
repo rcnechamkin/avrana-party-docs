@@ -29,7 +29,7 @@ its own source:
 | What does the code do? | The code and tests on `main` of each repository |
 | What is the system meant to be? | Canonical documents and accepted ADRs |
 | What should change next, and how will we know it is done? | The Linear issue |
-| What is running on the appliance? | `/party/api/status` and the deployment manifest; the [system map](../project/system-map.md) summarizes verified state |
+| What is running on the appliance? | `/party/api/status` and the deployment manifest, once deployed (every recorded build predates them); until then the [system map](../project/system-map.md) summarizes verified state |
 | How do the Party and the Games server talk? | The [Party ↔ Games contract](../games/contracts-and-catalog.md#the-party-games-contract) and its JSON declarations |
 | What does a test prove? | The testing guide (plain-language edition: [Testing](testing.md)) |
 | Where is the project going? | The [roadmap](../project/roadmap.md), which is never a task queue |

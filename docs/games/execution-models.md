@@ -54,8 +54,10 @@ that this runtime must not become the platform by default. One process held ever
 every game's keys. Its standalone mode trusted a token any browser could forge. Game-specific
 logic had crept into its shared core. So the fork is now **legacy and donor code**:
 
-- In source, standalone LAN Games play and the hub page are retired. nginx routes only BLUFF
-  and EXPO to the fork.
+- In the Party repository's source, nginx routes only BLUFF and EXPO to the fork and no longer
+  serves the hub page or the other titles. The fork itself still has its hub and still admits
+  standalone players by default. It now has a switch that turns standalone admission off, which
+  the owner has not yet flipped.
 - New native games must not be built as LAN Games modules.
 - The other titles remain as reference material for possible future "Classics" adaptations
   onto the native boundary.

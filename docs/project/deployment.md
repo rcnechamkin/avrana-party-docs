@@ -133,6 +133,13 @@ path nginx already forwards, and no sign-in is needed. From the Party Wi-Fi:
 curl -s https://party.avrana.net/party/api/status
 ```
 
+!!! note "Probably not live yet"
+
+    The endpoint was merged on 2026-10-02. Every build recorded on the appliance predates it, and
+    `ops/deploy.sh` has not yet been run there. Until a deployment that includes it is recorded,
+    expect the appliance not to answer this request, and use the
+    [system map](system-map.md) instead.
+
 It reports:
 
 | Part | What it says |
