@@ -25,8 +25,8 @@ first and then how Party Core, the small Python service at the centre, implement
 ## Identity is layered on purpose
 
 The simplest design would be a single "player" record. The project rejected that early
-([ADR 0002](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0002-party-platform.md),
-[ADR 0003](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0003-ids-and-keys.md)),
+([ADR 0002](../decisions/0002-party-platform.md),
+[ADR 0003](../decisions/0003-ids-and-keys.md)),
 after seeing what one token doing every job had done to the LAN Games fork. The platform keeps
 these concepts separate:
 
@@ -39,7 +39,7 @@ these concepts separate:
 | **Role** | Host, player or spectator. **Host is a role, not a credential.** | <span class="avr-badge deployed">Deployed</span> |
 | **Profile** | A durable, optional person record that history could attach to | <span class="avr-badge planned">Planned</span> Does not exist yet |
 
-The [ADRs](decisions.md) set a few invariants that hold throughout:
+The [ADRs](../decisions/index.md) set a few invariants that hold throughout:
 
 - **Identifiers grant nothing.** Knowing someone's member or participant id authorizes no
   action. Only a credential checked on the server does.
@@ -72,7 +72,7 @@ for later. It will have to exist before the Party stores any history about a per
 ## Membership and presence
 
 <span class="avr-badge reported">Owner-reported</span> The console model
-([ADR 0011](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0011-party-console-model.md))
+([ADR 0011](../decisions/0011-party-console-model.md))
 made presence automatic. A phone with a name and avatar **is in the Party**: Party Home and
 every game page join on their own when they load. There is no Join button and no Leave button
 in normal use. The last verified deployment still had an explicit Join step. The console model
@@ -136,7 +136,7 @@ every time, removed that whole class of bug.
 When the host picks a game, the Party enters `setup`. Every phone shows the Party's own
 full-screen briefing for that game: its art and premise, who is hosting, a "How to play" sheet,
 and two large choices, **Play this round** and **Watch this round**
-([ADR 0010](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0010-party-pregame.md)).
+([ADR 0010](../decisions/0010-party-pregame.md)).
 The game supplies the briefing content as data, so the Party renders the setup consistently
 for every game.
 
@@ -177,9 +177,9 @@ an accidental power cut loses who was hosting.
 
 ## Where to read more
 
-- [PARTY-PLATFORM](https://github.com/rcnechamkin/avrana-party/blob/main/docs/design/PARTY-PLATFORM.md):
+- [The Party platform design](../design/party-platform.md):
   the full platform design, including parts that are still proposals.
-- [PARTY-LIFECYCLE](https://github.com/rcnechamkin/avrana-party/blob/main/docs/design/PARTY-LIFECYCLE.md):
+- [Party lifecycle](../design/party-lifecycle.md):
   the lifecycle rules in detail.
-- [ADR 0011](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0011-party-console-model.md):
+- [ADR 0011](../decisions/0011-party-console-model.md):
   the console model and its amendments.

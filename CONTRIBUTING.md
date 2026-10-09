@@ -35,8 +35,13 @@ to the engineering repositories that every change here has to respect.
   them in the [glossary](docs/about/glossary.md).
 - Diagrams use Mermaid fenced blocks (` ```mermaid `). Add one only when it explains a
   relationship, sequence or state machine better than prose.
-- Link into the engineering repositories with `https://github.com/rcnechamkin/<repo>/blob/main/<path>`
-  for files and `/tree/main/<path>` for directories. Those links are checked.
+- **Link to this site, not to the engineering repositories.** When a page refers to an engineering
+  document, link to its plain-language edition here: a decision under `docs/decisions/`, a design
+  under `docs/design/`, or the page or section that explains it. If no edition exists yet, write
+  one rather than linking to the original. Put the original in the page's `sources`. The build
+  renders those as the **Canonical sources** block, which is how readers reach the authoritative
+  text. `tools/check_sources.py` fails on body links to files in the engineering repositories.
+  Links to a repository's root page are fine.
 - Inside this site, use relative links to `.md` files. `mkdocs build --strict` checks them.
 - Dates are ISO 8601 (`2026-10-09`). Status snapshots say "as of" with a date.
 

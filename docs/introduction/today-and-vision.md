@@ -23,7 +23,7 @@ feature. This page draws the line for the product as a whole. The
 --8<-- "includes/maturity-labels.md"
 
 An ADR is an *Architecture Decision Record*: the project's written record of a decision. See
-[Decision records in brief](../architecture/decisions.md).
+[Decision records in brief](../decisions/index.md).
 
 ## What exists today
 

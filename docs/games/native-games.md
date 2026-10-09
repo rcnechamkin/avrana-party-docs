@@ -27,7 +27,7 @@ has got, and why the SDK and the package format have deliberately been left unfr
 ## The boundary
 
 <span class="avr-badge accepted">Accepted direction</span>
-([ADR 0014](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0014-native-games-isolated-lan-games-retired.md))
+([ADR 0014](../decisions/0014-native-games-isolated-lan-games-retired.md))
 
 Each native game is an **independent platform consumer**:
 
@@ -121,9 +121,8 @@ actually repeats.
 <span class="avr-badge planned">Planned</span>. **No implementation exists** in any repository,
 not even a parser or a schema. `.avrgame` appears only in design documents and backlog issues.
 
-The concept, from the
-[open game installation](https://github.com/rcnechamkin/avrana-party/blob/main/docs/design/GAME-INSTALLATION.md)
-design, is an installable package for an Avrana game. Some principles around it are already
+The concept, from the project's open game installation design, is an installable package for
+an Avrana game. Some principles around it are already
 accepted:
 
 - **No store.** The intended feel is *"Sure, install that weird GitHub project."* Install a

@@ -95,7 +95,7 @@ cookies attached. So a game page could, in principle, act as the player inside t
 attaching the cookie to a script's request.
 
 The project decided
-([ADR 0013](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0013-party-and-game-browser-origins.md))
+([ADR 0013](../decisions/0013-party-and-game-browser-origins.md))
 that **the browser origin is part of the trust boundary**. Game pages will move to their own
 origin, and a game page will hold only what a Party-issued ticket gives one participant in one
 session. The Party and the game talk through a narrow, explicitly designed bridge instead of
@@ -123,7 +123,7 @@ owner's login account. As a result:
 
 The signatures themselves are sound: typed, bound to an audience and a session, expiring and
 protected against replay. What is missing is a key that only two parties can read.
-[ADR 0016](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0016-service-identities-and-local-trust-boundary.md)
+[ADR 0016](../decisions/0016-service-identities-and-local-trust-boundary.md)
 defines the fix:
 
 | Service | Planned identity |

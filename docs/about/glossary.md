@@ -19,7 +19,7 @@ Abandoned
 
 ADR (Architecture Decision Record)
 :   A dated record of an architectural decision, in the Party repository's `docs/adr/`. See
-    [Decision records in brief](../architecture/decisions.md).
+    [Decision records in brief](../decisions/index.md).
 
 Admin (System Admin)
 :   A planned, PIN-protected role that would administer the appliance itself. It is deliberately
@@ -58,7 +58,7 @@ Classics
     native-game boundary, chosen one at a time.
 
 Console model
-:   The design ([ADR 0011](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0011-party-console-model.md))
+:   The design ([ADR 0011](../decisions/0011-party-console-model.md))
     in which presence is automatic, the Party has one authoritative location, and only the host
     moves it.
 

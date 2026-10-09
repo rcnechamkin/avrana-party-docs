@@ -128,7 +128,7 @@ battery-backed clock and may boot with the wrong date. A phone may use private D
 iCloud Private Relay, so the local name never resolves. A guest may type the address without
 `https://`. Today, any of these leaves that phone without Party Home.
 
-The project decided ([ADR 0012](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0012-limited-mode-party-survives-https-loss.md))
+The project decided ([ADR 0012](../decisions/0012-limited-mode-party-survives-https-loss.md))
 that **losing trusted HTTPS must not disable the Party**. There are two consumer-facing modes of
 one Party:
 
@@ -192,7 +192,5 @@ appliance. The current tooling is:
   describe how to build a fresh appliance. That procedure has been rehearsed only on a
   simulated host.
 
-See [the engineering repository's SYSTEM document](https://github.com/rcnechamkin/avrana-party/blob/main/docs/SYSTEM.md)
-for the verified deployed topology, and the
-[deploy runbook](https://github.com/rcnechamkin/avrana-party/blob/main/docs/runbooks/deploy.md)
-for the procedure.
+See the [system map](../project/system-map.md) for the verified deployed topology, and
+[Deployment](../project/deployment.md) for how a release reaches the appliance.

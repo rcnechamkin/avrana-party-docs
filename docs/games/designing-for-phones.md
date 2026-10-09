@@ -12,9 +12,9 @@ verified: 2026-10-09
 
 # Designing for phones
 
-This page is for people thinking about *what* to build. Its main source is the project's
-[NATIVE-GAMES](https://github.com/rcnechamkin/avrana-party/blob/main/docs/design/NATIVE-GAMES.md)
-design document. Its guidance is principles and recommendations, not a built framework.
+This page is for people thinking about *what* to build. It is the plain-language edition of the
+project's native-games design document. Its guidance is principles and recommendations, not a
+built framework.
 
 ## The phone is a private, dynamic surface
 
@@ -100,12 +100,10 @@ legacy, because the Party now owns that authority.
 
 ## Platform UX that every game shares
 
-A separate contract,
-[GAME-UX-CONTRACT](https://github.com/rcnechamkin/avrana-party/blob/main/docs/design/GAME-UX-CONTRACT.md),
-defines where the line runs on a player's phone between Avrana and the game. It covers the
+A separate contract, the [shared game UX contract](../design/game-ux-contract.md), defines where the line runs on a player's phone between Avrana and the game. It covers the
 briefing, Ready, Watch and Start, access to the rules during play, how an unavailable action is
 explained, minimum touch-target and interaction standards, system cues such as sound, and art
 slots. Every rule in it is labelled as implemented, accepted or proposed. None has been
 validated on phones yet. A game designer should read it before designing screens, together
 with the project's
-[accessibility expectations](https://github.com/rcnechamkin/avrana-party/blob/main/docs/design/ACCESSIBILITY.md).
+[accessibility expectations](../design/accessibility.md).

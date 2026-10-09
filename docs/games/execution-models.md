@@ -49,7 +49,7 @@ fork receives the signed launch, admits phones only with Party tickets and repor
 the result back to Party Core.
 
 In October 2026 the project decided
-([ADR 0014](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0014-native-games-isolated-lan-games-retired.md))
+([ADR 0014](../decisions/0014-native-games-isolated-lan-games-retired.md))
 that this runtime must not become the platform by default. One process held every game and
 every game's keys. Its standalone mode trusted a token any browser could forge. Game-specific
 logic had crept into its shared core. So the fork is now **legacy and donor code**:
@@ -101,7 +101,7 @@ Encoding once and fanning the stream out keeps the cost per viewer low on a Rasp
 trade-off is that every phone sees the same picture.
 
 *Gauntlet II* is the working example. Two iPhones played it together in September 2026. Since
-[ADR 0009](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0009-arcade-party-provider.md)
+[ADR 0009](../decisions/0009-arcade-party-provider.md)
 the emulator and encoder run only while the Party has an arcade session. In that deployment,
 any phone on the arcade page can take a free controller. Admitting phones with Party tickets,
 four controller seats, seat reservations that survive a short disconnect and a redesigned

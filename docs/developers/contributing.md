@@ -15,10 +15,8 @@ verified: 2026-10-09
 
 Avrana Party is developed by its owner together with AI coding agents. The process is written
 down in detail, and it applies to human contributors as well. This page explains the shape of
-that process. The binding rules are in
-[CONTRIBUTING](https://github.com/rcnechamkin/avrana-party/blob/main/CONTRIBUTING.md),
-[AGENTS](https://github.com/rcnechamkin/avrana-party/blob/main/AGENTS.md) and
-[WORKFLOW](https://github.com/rcnechamkin/avrana-party/blob/main/docs/WORKFLOW.md).
+that process in plain language. The binding rules live in three files in the Party repository,
+`CONTRIBUTING.md`, `AGENTS.md` and `docs/WORKFLOW.md`, linked at the foot of this page.
 
 ## How to get involved
 
@@ -94,14 +92,12 @@ documents the code cites.
 
 ## Submitting
 
-A pull request ends with the project's
-[implementation report](https://github.com/rcnechamkin/avrana-party/blob/main/docs/agents/IMPLEMENTATION-REPORT.md).
-It lists the issue, branches and commits, behavioural changes, exact test commands and their
+A pull request ends with the project's standard **implementation report**. It lists the issue, branches and commits, behavioural changes, exact test commands and their
 results, documentation changed, whether anything was deployed (normally "no"), blockers and
 follow-ups. Untested hardware behaviour is stated as untested.
 
 Every change is reviewed by someone other than its author, against a written checklist
-([REVIEW](https://github.com/rcnechamkin/avrana-party/blob/main/REVIEW.md)) with three passes:
+(`REVIEW.md`) with three passes:
 
 - **Bugs**: logic errors, regressions, tests that cannot fail.
 - **Trust**: anything that moves a security boundary, such as cookies, origins, key files,

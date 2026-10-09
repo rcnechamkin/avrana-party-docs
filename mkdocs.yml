@@ -100,7 +100,31 @@ nav:
       - The Party: architecture/party.md
       - Running a game session: architecture/game-sessions.md
       - Trust boundaries: architecture/trust-boundaries.md
-      - Decision records in brief: architecture/decisions.md
+  - Decisions:
+      - decisions/index.md
+      - "0001: Testing the arcade under load": decisions/0001-load-soak-fault-harness.md
+      - "0002: A party platform": decisions/0002-party-platform.md
+      - "0003: Identifiers and credentials": decisions/0003-ids-and-keys.md
+      - "0004: Full Mode, contracts and providers": decisions/0004-full-mode-contracts-and-providers.md
+      - "0005: LAN Games as a provider": decisions/0005-lan-games-provider-launch.md
+      - "0006: The session protocol": decisions/0006-party-session-protocol.md
+      - "0007: The host launches games": decisions/0007-host-authoritative-launch.md
+      - "0008: Party navigation": decisions/0008-party-navigation.md
+      - "0009: The arcade as a provider": decisions/0009-arcade-party-provider.md
+      - "0010: Play or Watch": decisions/0010-party-pregame.md
+      - "0011: The console model": decisions/0011-party-console-model.md
+      - "0012: Full Mode and Limited Mode": decisions/0012-limited-mode-party-survives-https-loss.md
+      - "0013: Separate browser origins": decisions/0013-party-and-game-browser-origins.md
+      - "0014: Isolated native games": decisions/0014-native-games-isolated-lan-games-retired.md
+      - "0015: The result envelope": decisions/0015-game-result-envelope.md
+      - "0016: Service identities": decisions/0016-service-identities-and-local-trust-boundary.md
+  - Design:
+      - The Party platform: design/party-platform.md
+      - Party lifecycle: design/party-lifecycle.md
+      - Limited Mode: design/limited-mode.md
+      - Browser origins: design/browser-origins.md
+      - Shared game UX contract: design/game-ux-contract.md
+      - Accessibility: design/accessibility.md
   - Game platform:
       - games/index.md
       - Execution models: games/execution-models.md
@@ -111,11 +135,16 @@ nav:
       - developers/index.md
       - Repository ecosystem: developers/ecosystem.md
       - Local development: developers/local-development.md
+      - Testing: developers/testing.md
       - Contributing: developers/contributing.md
       - Reading the specifications: developers/reading-the-specs.md
       - Starting a game: developers/starting-a-game.md
-  - Project status:
-      - status/index.md
+      - The reference games, explained: developers/reference-games.md
+  - Project:
+      - Project status: status/index.md
+      - Roadmap: project/roadmap.md
+      - System map: project/system-map.md
+      - Deployment: project/deployment.md
       - Known discrepancies: status/discrepancies.md
   - About:
       - Glossary: about/glossary.md

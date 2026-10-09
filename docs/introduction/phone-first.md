@@ -27,7 +27,7 @@ trip anyway. So the product baseline is **phones alone**, and a TV is at most an
 viewer.
 
 This changes what a game can be. The project's design guidance for native games
-([NATIVE-GAMES](https://github.com/rcnechamkin/avrana-party/blob/main/docs/design/NATIVE-GAMES.md))
+(see [Designing for phones](../games/designing-for-phones.md))
 puts it this way: *the phone is not just a controller.* Each phone is a private, dynamic
 surface. It can hold a secret hand of cards, a hidden role, a private objective, a drawing
 canvas, a ballot or a map only you can see. The question every Avrana-native game is supposed

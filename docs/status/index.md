@@ -23,8 +23,8 @@ verified: 2026-10-09
 
     This page is a dated summary. It goes out of date quickly. The live sources are
     [Linear](https://linear.app/avranakern) for work in progress, the
-    [roadmap](https://github.com/rcnechamkin/avrana-party/blob/main/docs/ROADMAP.md) for
-    direction, the [system map](https://github.com/rcnechamkin/avrana-party/blob/main/docs/SYSTEM.md)
+    [roadmap](../project/roadmap.md) for
+    direction, the [system map](../project/system-map.md)
     for verified deployment, and `/party/api/status` on the appliance for what is running.
 
 ## The short version

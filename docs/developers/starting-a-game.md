@@ -19,10 +19,9 @@ The honest answer first: **there is not yet a supported path for an outside deve
 and install a new Avrana game.** No SDK exists, and no package format, installer or developer
 guide for native games either. These are deliberately waiting until Checkers and Spades have
 proven the native-game boundary
-([ADR 0014](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0014-native-games-isolated-lan-games-retired.md)).
-The Party repository's own
-[add-a-game runbook](https://github.com/rcnechamkin/avrana-party/blob/main/docs/runbooks/add-a-game.md)
-says the same: for a new native game there is "no procedure to follow here".
+([ADR 0014](../decisions/0014-native-games-isolated-lan-games-retired.md)).
+The Party repository's own add-a-game runbook says the same: for a new native game there is "no
+procedure to follow here". This page is the plain-language edition of that runbook.
 
 This site will not invent a tutorial for a path that does not exist. What follows is what you
 *can* usefully do now, ordered by how close it is to the project's direction.
@@ -35,29 +34,26 @@ The design guidance is stable even though the tooling is not. Before writing cod
   especially private information, idle phones, server deadlines and the "no TV" test;
 - read [How games integrate](../games/index.md) for what the platform owns. Do not build
   login, profiles, chat, reconnect, teams or spectating yourself;
-- read the [shared game UX contract](https://github.com/rcnechamkin/avrana-party/blob/main/docs/design/GAME-UX-CONTRACT.md)
-  and the [accessibility expectations](https://github.com/rcnechamkin/avrana-party/blob/main/docs/design/ACCESSIBILITY.md).
+- read the [shared game UX contract](../design/game-ux-contract.md)
+  and the [accessibility expectations](../design/accessibility.md).
 
 A game designed this way will port to the eventual SDK with the least friction, whatever that
 SDK turns out to be.
 
 ## 2. Study the reference implementations
 
-Two existing implementations show the shapes involved:
+Two existing implementations show the shapes involved.
+[The reference games, explained](reference-games.md) walks through both:
 
-- **BLUFF**, in [`avrana-party-games/games/bluff/`](https://github.com/rcnechamkin/avrana-party-games/tree/main/games/bluff),
-  is the reference for a hidden-information game. It has server-side masking per viewer, a
-  separate spectator view, step-numbered prompts, bots and autopilot, Party ticket admission
-  and result reporting. It runs inside the retiring LAN Games framework, so read it for its
-  *patterns*, not its plumbing.
-- **The stand-in game**, in [`avrana-party/avrana/games/standin/`](https://github.com/rcnechamkin/avrana-party/tree/main/avrana/games/standin),
-  is a minimal Python process. It uses only the standard library and the Party's own protocol
-  modules, and implements the native-game side of the session protocol end to end. It receives
-  its Unix socket from systemd, accepts a signed launch and end, redeems tickets, and reports a
-  signed `ended` with a result to Party Core's internal socket. It is test-only and is never installed on a product appliance, but it is the
-  clearest small example of what a native game process must do. Its
-  [game contract](https://github.com/rcnechamkin/avrana-party/blob/main/contracts/games/standin.json)
-  is the smallest complete example of the format.
+- **BLUFF**, in the Games repository at `games/bluff/`, is the reference for a
+  hidden-information game. It has server-side masking per viewer, a separate spectator view,
+  step-numbered prompts, bots and autopilot, Party ticket admission and result reporting. It runs
+  inside the retiring LAN Games framework, so read it for its *patterns*, not its plumbing.
+- **The stand-in game**, in the Party repository at `avrana/games/standin/`, is a minimal Python
+  process. It implements the native-game side of the session protocol end to end. It is
+  test-only and is never installed on a product appliance, but it is the clearest small example
+  of what a native game process must do. Its game contract, `contracts/games/standin.json`, is the
+  smallest complete example of the format.
 
 The session protocol and the result envelope each have a single reference implementation in
 the Party repository (`avrana/party/protocol.py` and `avrana/party/result.py`), with shared test

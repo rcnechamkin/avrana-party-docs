@@ -103,7 +103,7 @@ layer meets that rule.
 
     What is protected from whom today, what is not, and the accepted plan to tighten it.
 
--   [**Decision records in brief**](decisions.md)
+-   [**Decision records in brief**](../decisions/index.md)
 
     All sixteen ADRs in plain language, with their real status.
 
@@ -125,7 +125,7 @@ browser generated for itself, which served at once as device, person, seat and r
 credential. The arcade had no identity at all: the first free controller slot went to whoever
 connected.
 
-The [party-platform decision](decisions.md) replaced that with one Party layered over every game.
+The [party-platform decision](../decisions/index.md) replaced that with one Party layered over every game.
 Party Core arrived as a small separate service. A signed session protocol bridged it to the
 LAN Games fork, so that BLUFF could be played as a Party round. Later decisions made the host
 authoritative over navigation, gave the Party a single location and made the arcade a

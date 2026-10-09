@@ -60,7 +60,7 @@ nginx strips it. In current source:
 
 **Why it matters.** Taken together, these suggest that once this source is deployed, browsers
 would send the device cookie with requests to same-origin game servers. The design document
-[BROWSER-ORIGINS](https://github.com/rcnechamkin/avrana-party/blob/main/docs/design/BROWSER-ORIGINS.md)
+`docs/design/BROWSER-ORIGINS.md` (plain-language edition: [Browser origins](../design/browser-origins.md))
 calls `Path=/` "safe once game servers no longer share the host", which implies an ordering
 that the current source does not enforce. The practical risk today is limited: every service
 already runs as one Unix user, and the games are first-party code. But the stated invariant and
@@ -69,8 +69,8 @@ not concluded.*
 
 ## 2. The system map predates most October work
 
-[SYSTEM](https://github.com/rcnechamkin/avrana-party/blob/main/docs/SYSTEM.md) was reconciled
-on 2026-10-01. It does not mention native-game provisioning, the generic game route, the
+The engineering system map, `docs/SYSTEM.md` (plain-language edition: [System map](../project/system-map.md)),
+was reconciled on 2026-10-01. It does not mention native-game provisioning, the generic game route, the
 Unix-socket game link, origin navigation, Limited Mode steps 1–2, the service-user unit or the
 `__Host-` cookie. That is correct for a document about *deployed* state, but the file is also
 headed "machines, repositories, branches, runtime paths".
@@ -79,12 +79,11 @@ The deployed revisions are also inconsistent between sources:
 
 - SYSTEM gives the latest verified production as Party `956b968` and Games `c6d7b52`
   (2026-09-29).
-- The [AVR-130 deployment record](https://github.com/rcnechamkin/avrana-party/blob/main/docs/findings/2026-10-02-avr130-deploy.md)
+- The AVR-130 deployment record, `docs/findings/2026-10-02-avr130-deploy.md`,
   of 2026-10-02 includes a read-only inspection of the appliance. It found Party `a32b7b4` and
   Games `0b4e9d2`, and calls that Games revision "already deployed". It then staged a deployment
   of Party `bb7364c` that was waiting for the owner.
-- The [deploy runbook](https://github.com/rcnechamkin/avrana-party/blob/main/docs/runbooks/deploy.md)
-  mentions in passing that the appliance was at `bb7364c` on 2026-10-04.
+- The deploy runbook, `docs/runbooks/deploy.md`, mentions in passing that the appliance was at `bb7364c` on 2026-10-04.
 - The Linear project reports the console model as deployed.
 
 No dated finding records a deployment after 2026-09-29. The project's Linear workspace tracks
@@ -112,7 +111,7 @@ native runtime type". The game-contract validator (`avrana/contracts/game.py`) a
 
 ## 5. Stale guidance for adding a game
 
-- The Party's [add-a-game runbook](https://github.com/rcnechamkin/avrana-party/blob/main/docs/runbooks/add-a-game.md)
+- The Party's [add-a-game runbook](../developers/starting-a-game.md)
   points to `experiments/manifests/` and `ps1/profiles.py`, which are not on `main`. Game
   metadata now lives in `contracts/games/`, and the PlayStation profiles in
   `avrana/providers/ps1.py` and `ps1/titles/`. The runbook names the registry, manifest and
@@ -129,9 +128,8 @@ native runtime type". The game-contract validator (`avrana/contracts/game.py`) a
 - The `avrana/party/core.py` docstring lists profiles and results as out of scope. Members now
   carry avatars, and sessions carry results.
 - A comment in `web/party/lib/party-client.js` describes the device cookie as `Path=/party/`.
-  The "What is true today" section of
-  [LIMITED-MODE](https://github.com/rcnechamkin/avrana-party/blob/main/docs/design/LIMITED-MODE.md)
-  and BROWSER-ORIGINS give the same old description. In LIMITED-MODE it is tagged as evidence
+  The "What is true today" section of `docs/design/LIMITED-MODE.md`, and `BROWSER-ORIGINS.md`,
+  give the same old description. In LIMITED-MODE it is tagged as evidence
   read from an earlier commit.
 
 ## 7. BLUFF's minimum player count

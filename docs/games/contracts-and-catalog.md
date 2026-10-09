@@ -33,10 +33,8 @@ documentation. They answer three different questions:
 
 <span class="avr-badge source">In source</span>, schema `avrana.game/v0`
 
-Each game has one JSON contract in the Party repository under `contracts/games/`. An excerpt of
-BLUFF's, with some fields omitted (the
-[full file](https://github.com/rcnechamkin/avrana-party/blob/main/contracts/games/bluff.json) is
-authoritative):
+Each game has one JSON contract in the Party repository under `contracts/games/`. Here is an excerpt of BLUFF's, with some fields omitted. The full file,
+`contracts/games/bluff.json`, is linked at the foot of this page:
 
 ```json
 {
@@ -109,9 +107,9 @@ are meant to come from the process and identity boundaries described in
 
 A build step (`npm run catalog`) compiles the game contracts and the appliance profile into the
 static catalog that Party Home reads. The compiled catalog is committed. CI fails if it is stale
-or if a contract is invalid. The project's
-[GENERATED](https://github.com/rcnechamkin/avrana-party/blob/main/docs/GENERATED.md) document
-lists which files are generated in this way and must not be edited by hand.
+or if a contract is invalid. Like the site's other
+[generated files](../developers/local-development.md#generated-files), it must never be edited
+by hand.
 
 ## The Party ↔ Games contract
 

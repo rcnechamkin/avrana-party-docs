@@ -22,7 +22,7 @@ verified: 2026-10-09
 # Running a game session
 
 A **game session** is one launch of one game inside the Party. The session protocol
-(`avrana.party-session/v0`, [ADR 0006](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0006-party-session-protocol.md))
+(`avrana.party-session/v0`, [ADR 0006](../decisions/0006-party-session-protocol.md))
 is the interface between Party Core and a game server. It deliberately covers very little:
 starting a session, admitting the right people, ending the session and learning the outcome.
 Everything that happens during play is the game's own business.
@@ -125,7 +125,7 @@ current state. Nothing in the game trusts a browser's own claim to be host.
 ## Results
 
 <span class="avr-badge source">In source</span> The **result envelope**
-([ADR 0015](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0015-game-result-envelope.md),
+([ADR 0015](../decisions/0015-game-result-envelope.md),
 `avrana.game-result/v1`) is an optional field of the `ended` message. It says how the session
 finished, each player's standing and, optionally, a rank for everyone. Participants are identified by their
 session participant ids. The envelope is versioned separately from the session protocol, so a
@@ -151,7 +151,7 @@ never counted as a win.**
 ## The arcade uses the same protocol
 
 The arcade is a game server too, even though it runs an emulator instead of game rules
-([ADR 0009](https://github.com/rcnechamkin/avrana-party/blob/main/docs/adr/0009-arcade-party-provider.md)).
+([ADR 0009](../decisions/0009-arcade-party-provider.md)).
 When the host starts *Gauntlet II*, Party Core sends the arcade's control service a signed
 `launch`. The arcade then starts RetroArch and the video encoder. It stops them again on `end`,
 so the emulator uses no CPU or power when nobody is playing.
