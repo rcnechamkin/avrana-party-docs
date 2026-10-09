@@ -212,4 +212,4 @@ recorded before any acceptance is claimed:
 Even the live-appliance browser tests do not establish human interaction on real phones. As of
 the guide's last reconciliation, real-phone acceptance of the console model, the arcade's
 controller reservations and four-player arcade play is still pending; see
-[Project status](../status/index.md#known-limitations).
+[What works today](../status/index.md#known-limitations).

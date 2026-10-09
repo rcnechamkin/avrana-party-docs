@@ -101,7 +101,7 @@ nav:
       - What Avrana Party is: introduction/index.md
       - Why phones, and only phones: introduction/phone-first.md
       - What exists, and what is planned: introduction/today-and-vision.md
-      - What works today, in detail: status/index.md
+      - What works today: status/index.md
   - Architecture:
       - architecture/index.md
       - The appliance and its network: architecture/appliance-and-network.md

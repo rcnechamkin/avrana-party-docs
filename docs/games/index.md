@@ -30,23 +30,11 @@ explains where that line runs and what a game has to do to sit on the right side
 ## Who owns what
 
 ```mermaid
-flowchart LR
-  subgraph PARTY["The Party (platform)"]
-    direction TB
-    P1["Who is here,<br/>who hosts"]
-    P2["Where every<br/>phone should be"]
-    P3["Catalog, setup,<br/>Play or Watch"]
-    P4["The record<br/>of results"]
-  end
-  subgraph GAME["A game"]
-    direction TB
-    G1["Rules and<br/>game state"]
-    G2["Screens on<br/>each phone"]
-    G3["Private views<br/>per player"]
-    G4["Deciding<br/>the outcome"]
-  end
-  PARTY -- "launch, end,<br/>single-use tickets" --> GAME
-  GAME -- "ended,<br/>with a result" --> PARTY
+flowchart TB
+  P["<b>The Party</b><br/>who is here, who hosts<br/>where every phone is<br/>catalog, setup, Play or Watch<br/>the record of results"]
+  G["<b>A game</b><br/>rules and game state<br/>screens on each phone<br/>private views per player<br/>deciding the outcome"]
+  P -- "launch, end,<br/>single-use tickets" --> G
+  G -- "ended,<br/>with a result" --> P
 ```
 <p class="avr-caption">The game never learns a phone's long-term identity: only a per-session participant id.</p>
 

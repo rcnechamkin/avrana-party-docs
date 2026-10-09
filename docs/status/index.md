@@ -1,5 +1,5 @@
 ---
-title: Project status
+title: What works today
 description: What Avrana Party has demonstrated, what is in progress, its known limitations and its planned development, as of October 2026.
 sources:
   - avrana-party:docs/SYSTEM.md
@@ -17,7 +17,7 @@ sources:
 verified: 2026-10-09
 ---
 
-# Project status
+# What works today
 
 !!! abstract "Snapshot: 9 October 2026"
 

@@ -21,7 +21,7 @@ is deliberately not a task list.
 
     Priorities, sequencing, blockers, acceptance criteria and the next task all live in the
     project's Linear workspace. Nothing here assigns work or approves a deployment. For a dated
-    view of work in progress, see [Project status](../status/index.md); for what is deployed,
+    view of work in progress, see [What works today](../status/index.md); for what is deployed,
     [Deployed system and history](system-map.md).
 
 ## Product direction

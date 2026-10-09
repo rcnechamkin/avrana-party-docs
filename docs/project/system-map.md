@@ -29,7 +29,7 @@ there.
     service (see [Deployment](deployment.md#the-status-endpoint)). The builds recorded on this
     page predate that endpoint, so whether the appliance serves it depends on a later
     deployment that has not been recorded. For what is in progress, see
-    [Project status](../status/index.md).
+    [What works today](../status/index.md).
 
 ## The machines involved
 
