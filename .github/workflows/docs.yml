@@ -1,0 +1,53 @@
+name: Docs
+
+# Build the site strictly and check that every page still traces to the engineering repositories.
+# This workflow never publishes.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Build (strict)
+        run: mkdocs build --strict
+
+      # Full history so the revisions recorded in sources.yml are present.
+      - uses: actions/checkout@v4
+        with:
+          repository: rcnechamkin/avrana-party
+          path: .sources/avrana-party
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: rcnechamkin/avrana-party-games
+          path: .sources/avrana-party-games
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: rcnechamkin/avrana-game
+          path: .sources/avrana-game
+          fetch-depth: 0
+
+      - name: Check sources and links into the engineering repositories
+        run: >-
+          python tools/check_sources.py --require-checkouts
+          --repo avrana-party=.sources/avrana-party
+          --repo avrana-party-games=.sources/avrana-party-games
+          --repo avrana-game=.sources/avrana-game

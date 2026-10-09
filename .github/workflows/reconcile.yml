@@ -1,0 +1,90 @@
+name: Reconciliation report
+
+# Weekly, report which pages may need updating because the engineering repositories changed.
+# Report-only: it uploads a Markdown artifact and writes the job summary. It never edits pages,
+# commits, opens pull requests or publishes. When something needs attention the run ends red,
+# so GitHub's normal failed-workflow notification reaches the maintainers.
+# See CONTRIBUTING.md for what to do with the report.
+#
+# All three engineering repositories are public. If one becomes private, give each checkout
+# below `token: ${{ secrets.SOURCES_READ_TOKEN }}` (a read-only, fine-grained token).
+
+on:
+  schedule:
+    - cron: "17 14 * * 1"   # Mondays 14:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - uses: actions/checkout@v4
+        with:
+          repository: rcnechamkin/avrana-party
+          path: .sources/avrana-party
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: rcnechamkin/avrana-party-games
+          path: .sources/avrana-party-games
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: rcnechamkin/avrana-game
+          path: .sources/avrana-game
+          fetch-depth: 0
+
+      - name: Reconciliation report
+        id: reconcile
+        continue-on-error: true
+        run: >-
+          python tools/reconcile.py --fail-on-drift --output reconcile-report.md
+          --repo avrana-party=.sources/avrana-party
+          --repo avrana-party-games=.sources/avrana-party-games
+          --repo avrana-game=.sources/avrana-game
+
+      - name: Source check against current upstream
+        id: sources
+        continue-on-error: true
+        run: |
+          set +e
+          python tools/check_sources.py --require-checkouts \
+            --repo avrana-party=.sources/avrana-party \
+            --repo avrana-party-games=.sources/avrana-party-games \
+            --repo avrana-game=.sources/avrana-game > source-check.txt 2>&1
+          status=$?
+          {
+            echo ""
+            echo "## Source check"
+            echo ""
+            echo '```text'
+            cat source-check.txt
+            echo '```'
+          } >> reconcile-report.md
+          # Warnings (sources gone upstream, stale snapshots) also need attention.
+          if [ "$status" -ne 0 ] || grep -q '^warning:' source-check.txt; then exit 1; fi
+
+      - run: cat reconcile-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reconcile-report
+          path: reconcile-report.md
+
+      - name: Needs attention
+        if: steps.reconcile.outcome == 'failure' || steps.sources.outcome == 'failure'
+        run: |
+          echo "::error::Documentation may be out of step with the engineering repositories. See the job summary or the reconcile-report artifact."
+          exit 1

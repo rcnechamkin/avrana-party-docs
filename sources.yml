@@ -1,0 +1,41 @@
+# The engineering repositories this documentation explains, and the exact
+# revisions it was last reconciled against.
+#
+# The engineering repositories are authoritative. This file is how the
+# documentation records which version of that truth it describes. Update a
+# `verified_revision` only in a pull request that has re-read every page whose
+# `sources` changed since the old revision (see tools/reconcile.py).
+
+repositories:
+  avrana-party:
+    url: https://github.com/rcnechamkin/avrana-party
+    branch: main
+    verified_revision: "5ae52d75c860d8a2d8b6f3de8309895147b7f9cc"
+    verified_on: 2026-10-09
+    role: >-
+      Party platform: Party Core, Party Home, arcade, contracts, operations,
+      ADRs and canonical design documents.
+  avrana-party-games:
+    url: https://github.com/rcnechamkin/avrana-party-games
+    branch: main
+    verified_revision: "c7688647e451c29d0a2b8b5d607d47063e814d10"
+    verified_on: 2026-10-09
+    role: >-
+      Games: the LAN Games fork that hosts BLUFF and EXPO today, and its side
+      of the Party-Games contract.
+  avrana-game:
+    url: https://github.com/rcnechamkin/avrana-game
+    branch: main
+    verified_revision: "5a583f567609b6996c7ab66a5f3388bebae9121b"
+    verified_on: 2026-10-09
+    role: >-
+      A standalone starship strategy game design (design documents only),
+      independent of the appliance.
+
+# Systems consulted that are not Git repositories. They are recorded so that
+# readers know where a claim came from; they are not machine-checked.
+other_sources:
+  linear:
+    url: https://linear.app/avranakern
+    consulted_on: 2026-10-09
+    note: Live work, sequencing and acceptance. Read-only; summarized on the status page.
