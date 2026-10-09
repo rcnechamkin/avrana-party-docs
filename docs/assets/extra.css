@@ -1,0 +1,58 @@
+/* Maturity badges. Vocabulary: about/this-documentation.md#maturity-labels */
+:root {
+  --avr-deployed: #2e7d32;
+  --avr-source: #1565c0;
+  --avr-reported: #00838f;
+  --avr-accepted: #6a1b9a;
+  --avr-experimental: #b26a00;
+  --avr-planned: #546e7a;
+  --avr-retiring: #b71c1c;
+}
+
+[data-md-color-scheme="slate"] {
+  --avr-deployed: #81c784;
+  --avr-source: #64b5f6;
+  --avr-reported: #4dd0e1;
+  --avr-accepted: #ce93d8;
+  --avr-experimental: #ffb74d;
+  --avr-planned: #b0bec5;
+  --avr-retiring: #ef9a9a;
+}
+
+.avr-badge {
+  display: inline-block;
+  padding: 0 0.45em;
+  border: 1px solid currentColor;
+  border-radius: 0.6em;
+  font-size: 0.72em;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  vertical-align: 0.1em;
+  white-space: nowrap;
+}
+
+.avr-badge.deployed { color: var(--avr-deployed); }
+.avr-badge.source { color: var(--avr-source); }
+.avr-badge.reported { color: var(--avr-reported); }
+.avr-badge.accepted { color: var(--avr-accepted); }
+.avr-badge.experimental { color: var(--avr-experimental); }
+.avr-badge.planned { color: var(--avr-planned); }
+.avr-badge.retiring { color: var(--avr-retiring); }
+
+/* Landing page */
+.avr-hero {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  max-width: 42rem;
+}
+
+@media screen and (max-width: 44.9375em) {
+  .avr-hero {
+    font-size: 1rem;
+  }
+}
+
+.mermaid {
+  text-align: center;
+}

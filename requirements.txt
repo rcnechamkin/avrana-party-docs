@@ -1,0 +1,5 @@
+# Pinned so that a build today and a build in six months render the same site.
+# Upgrade deliberately, in a pull request that rebuilds with --strict.
+mkdocs==1.6.1
+mkdocs-material==9.6.14
+PyYAML==6.0.2

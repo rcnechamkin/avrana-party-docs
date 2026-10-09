@@ -1,0 +1,120 @@
+site_name: Avrana Party Documentation
+site_description: >-
+  Human-readable documentation for Avrana Party, a portable, local-first
+  multiplayer appliance where phones are the screens and the controllers.
+# site_url is set when a publishing target is authorized (see README).
+# The header links to the engineering repository the site explains, not to this one.
+repo_name: avrana-party (engineering)
+repo_url: https://github.com/rcnechamkin/avrana-party
+edit_uri: ""
+
+hooks:
+  - hooks/sources.py
+copyright: >-
+  Explanatory documentation. The engineering repositories remain the
+  authority for every contract, guarantee and decision described here.
+
+theme:
+  name: material
+  language: en
+  icon:
+    logo: material/party-popper
+    repo: fontawesome/brands/github
+  favicon: assets/favicon.svg
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - navigation.path
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tooltips
+
+extra_css:
+  - assets/extra.css
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.snippets:
+      base_path: !relative $config_dir
+      check_paths: true
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+
+# Fail the strict build on broken internal links and anchors.
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+nav:
+  - Home: index.md
+  - Introduction:
+      - introduction/index.md
+      - Why phones, and only phones: introduction/phone-first.md
+      - Today versus the vision: introduction/today-and-vision.md
+  - Architecture:
+      - architecture/index.md
+      - The appliance and its network: architecture/appliance-and-network.md
+      - The Party: architecture/party.md
+      - Running a game session: architecture/game-sessions.md
+      - Trust boundaries: architecture/trust-boundaries.md
+      - Decision records in brief: architecture/decisions.md
+  - Game platform:
+      - games/index.md
+      - Execution models: games/execution-models.md
+      - Contracts, catalog and grants: games/contracts-and-catalog.md
+      - Native games and packaging: games/native-games.md
+      - Designing for phones: games/designing-for-phones.md
+  - Developers:
+      - developers/index.md
+      - Repository ecosystem: developers/ecosystem.md
+      - Local development: developers/local-development.md
+      - Contributing: developers/contributing.md
+      - Reading the specifications: developers/reading-the-specs.md
+      - Starting a game: developers/starting-a-game.md
+  - Project status:
+      - status/index.md
+      - Known discrepancies: status/discrepancies.md
+  - About:
+      - Glossary: about/glossary.md
+      - About this documentation: about/this-documentation.md
