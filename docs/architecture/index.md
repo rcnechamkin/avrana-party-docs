@@ -28,7 +28,7 @@ flowchart TB
   CORE["Party Core<br/>who is here, who hosts,<br/>where everyone is"]
   GAMES["Games server<br/>BLUFF and other titles"]
   ARC["Arcade<br/>streamed games"]
-  NAT["Native games<br/>one process each"]
+  NAT["Native game processes<br/>one per game"]
 
   PH --> NET --> NGX
   NGX --> HOME
@@ -50,7 +50,7 @@ flowchart TB
 | Party Core | Small Python service | `/party/api/`, forwarded to `127.0.0.1:8191` | <span class="avr-badge deployed">Deployed</span> |
 | Games server (LAN Games fork) | One Python process for every title | `/games/<title>/`, forwarded to `127.0.0.1:8096` | <span class="avr-badge deployed">Deployed</span> · <span class="avr-badge retiring">Retiring</span> |
 | Arcade | RetroArch, a video encoder and a control service | `/arcade/`, forwarded to `127.0.0.1:8097`; control on `8098`, never exposed | <span class="avr-badge deployed">Deployed</span> |
-| Native game | One process and one Unix socket per game | `/games/<slug>/` | <span class="avr-badge source">In source</span> |
+| Native game process | One process and one Unix socket per game | `/games/<slug>/` | <span class="avr-badge source">In source</span> |
 
 Some things the diagram makes visible:
 
@@ -64,6 +64,22 @@ Some things the diagram makes visible:
 - **The Party talks to games through a signed protocol.** Launching, ending and reporting
   results are small signed messages exchanged over local connections. They are described on
   [Game sessions](game-sessions.md).
+
+## The layers of responsibility
+
+The project divides responsibility in a way that stays the same however a game is
+implemented:
+
+| Layer | Owns | Never owns |
+|---|---|---|
+| **Appliance** (network, front door, operations) | Wi-Fi, DNS, the HTTPS certificate, routing, service supervision, deployment | Party state or game rules |
+| **Party** (Party Core and Party Home) | Device identity, membership and presence, the host role, the Party's single location, the catalog, navigation, the session lifecycle, and durable results and history in future | A game's rules, screens or private state |
+| **Game** | Rules, rendering, game networking, private per-player views, deciding the outcome | A player's long-term identity, the Party's record of results, navigation outside its round |
+
+A rule in the project's agent instructions puts it most directly: *Party owns cross-game
+identity, presence, chat, library, navigation and durable results; Games owns rules and game
+servers and never receives device identity.* The rest of this section explains how each
+layer meets that rule.
 
 ## How the architecture got here
 
@@ -95,22 +111,6 @@ browser origin separate from the Party's. Much of the groundwork for those decis
 source; very little of it is deployed. That gap between source and appliance is the main thing
 to keep in mind when reading the rest of this section.
 
-## The layers of responsibility
-
-The project divides responsibility in a way that stays the same however a game is
-implemented:
-
-| Layer | Owns | Never owns |
-|---|---|---|
-| **Appliance** (network, front door, operations) | Wi-Fi, DNS, the HTTPS certificate, routing, service supervision, deployment | Party state or game rules |
-| **Party** (Party Core and Party Home) | Device identity, membership and presence, the host role, the Party's single location, the catalog, navigation, the session lifecycle, and durable results and history in future | A game's rules, screens or private state |
-| **Game** | Rules, rendering, game networking, private per-player views, deciding the outcome | A player's long-term identity, the Party's record of results, navigation outside its round |
-
-A rule in the project's agent instructions puts it most directly: *Party owns cross-game
-identity, presence, chat, library, navigation and durable results; Games owns rules and game
-servers and never receives device identity.* The rest of this section explains how each
-layer meets that rule.
-
 ## Where each topic is covered
 
 <div class="grid cards" markdown>
@@ -131,11 +131,12 @@ layer meets that rule.
 
 -   [**Trust boundaries**](trust-boundaries.md)
 
-    What is protected from whom today, what is not, and the accepted plan to tighten it.
+    Three boundaries: phones versus the appliance, the Party versus game code in the browser,
+    and services versus each other. What holds today, and the plan to tighten each.
 
 -   [**Decision records**](../decisions/index.md)
 
-    All sixteen ADRs in plain language, with their real status.
+    Every ADR in plain language, with their real status.
 
 -   [**Design documents**](../design/index.md)
 

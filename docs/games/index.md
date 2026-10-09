@@ -84,7 +84,7 @@ Where work happens depends on the kind of game. The general principle in the arc
 documents is to **choose the cheapest viable place to run each part, per player**. They should
 be chosen by capability, not by a fixed "mode".
 
-| Responsibility | Browser-native game (BLUFF) | Streamed game (Gauntlet II) |
+| Responsibility | Browser game (BLUFF) | Streamed game (Gauntlet II) |
 |---|---|---|
 | Game rules and state | Appliance (authoritative game server) | Appliance (emulator) |
 | Rendering | Phone (HTML and JavaScript) | Appliance renders and encodes; phone decodes video |
@@ -93,7 +93,7 @@ be chosen by capability, not by a fixed "mode".
 | Audio | Phone | Appliance encodes; streamed to phones |
 | Load on the appliance | Light | Heavy: emulator plus hardware video encode |
 
-Browser-native games put most of the work on the phones and keep the appliance's job small:
+Browser games put most of the work on the phones and keep the appliance's job small:
 being the authority. That is why they are the main path for new Avrana games. Streaming exists
 for experiences that cannot run in a phone's browser, mainly emulated classics.
 

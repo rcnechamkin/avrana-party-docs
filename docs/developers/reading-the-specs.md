@@ -43,8 +43,8 @@ things.
 | Kind | Where in the Party repository | How to treat it | Plain-language edition here |
 |---|---|---|---|
 | **ADRs** | `docs/adr/` | Decisions. Read each one's status line *and* its dated amendments | [Decision records](../decisions/index.md) |
-| **Design documents** | `docs/design/` | Contracts and detailed designs. Many mix implemented, accepted and proposed parts, and label each | [Design](../design/party-platform.md) section, plus the [game platform](../games/index.md) pages |
-| **Direction documents** | `docs/GAME-PLATFORM-ARCHITECTURE.md`, `docs/OFFLINE-TRUST-AND-RECOVERY.md`, `docs/PERSONAL-VIEWPORT-AND-EMULATION.md`, `docs/AVRANA-EXPERIENCE.md` | Broad product and architecture direction. Mostly conceptual, and they say so | [Today versus the vision](../introduction/today-and-vision.md), [execution models](../games/execution-models.md), [Limited Mode](../design/limited-mode.md) |
+| **Design documents** | `docs/design/` | Contracts and detailed designs. Many mix implemented, accepted and proposed parts, and label each | [Design documents](../design/index.md), plus the [game platform](../games/index.md) pages |
+| **Direction documents** | `docs/GAME-PLATFORM-ARCHITECTURE.md`, `docs/OFFLINE-TRUST-AND-RECOVERY.md`, `docs/PERSONAL-VIEWPORT-AND-EMULATION.md`, `docs/AVRANA-EXPERIENCE.md` | Broad product and architecture direction. Mostly conceptual, and they say so | [What exists, and what is planned](../introduction/today-and-vision.md), [execution models](../games/execution-models.md), [Limited Mode](../design/limited-mode.md) |
 | **Runbooks** | `docs/runbooks/` | Procedures. Some are labelled "proposed, never run". **A command in a runbook is not permission to run it** | [Deployment](../project/deployment.md), [starting a game](starting-a-game.md) |
 | **Findings** | `docs/findings/YYYY-MM-DD-*.md` | Dated observations and measurements: evidence of what was true on that day, never instructions | [Deployed system and history](../project/system-map.md#deployment-history) |
 | **Research** | `docs/research/` | Candidate technologies and reference implementations. Context only | Not covered |

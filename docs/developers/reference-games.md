@@ -16,14 +16,14 @@ verified: 2026-10-09
 
 Two pieces of code show, better than any specification, what a game has to do to take part in a
 Party. **BLUFF** is a real game, with real rules, hidden information and bots. The
-**stand-in** is the smallest possible native game: it exists only to prove the native-game path
+**stand-in** is the smallest possible native game process: it exists only to prove the native-game path
 and has almost no rules at all. This page walks through both, so you know what to look for when
 you open the code.
 
 Both are referenced by file path in plain text. The **Canonical sources** block at the foot of
 this page links to each file.
 
-## The stand-in: the smallest native game
+## The stand-in: the smallest native game process {#the-stand-in-the-smallest-native-game}
 
 <span class="avr-badge source">In source</span>, test only. The stand-in lives in the Party
 repository at `avrana/games/standin/`. It is a single Python module of about 300 lines that uses

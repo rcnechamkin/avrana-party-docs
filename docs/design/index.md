@@ -28,7 +28,7 @@ of which parts are real, marked with the [maturity labels](../about/this-documen
 | [What Avrana Party is](../introduction/index.md) and [The Party](../architecture/party.md) | [Party platform design](party-platform.md) | The platform's principles, identity layers, admin versus host, and the proposed social and progression features |
 | [Full Mode and Limited Mode](../architecture/appliance-and-network.md#full-mode-and-limited-mode) | [Limited Mode](limited-mode.md) | How the Party keeps working when trusted HTTPS fails |
 | [Trust boundaries](../architecture/trust-boundaries.md#2-the-party-versus-game-code-in-the-browser), boundary 2 | [Browser origins](browser-origins.md) | Moving game pages to their own origin, the bridge frame and the rollout steps |
-| [Designing for phones](../games/designing-for-phones.md) | [Shared game UX contract](game-ux-contract.md) | Where the Party ends and a game begins on a player's screen |
+| [Designing for phones](../games/designing-for-phones.md) | [The game UX contract](game-ux-contract.md) | Where the Party ends and a game begins on a player's screen |
 | [Designing for phones](../games/designing-for-phones.md) | [Accessibility](accessibility.md) | The rules every player-facing page must meet, and how they are tested |
 
 The reasoning for *why* each design exists usually lives in a

@@ -75,7 +75,7 @@ a round offline. [What works today](status/index.md) has the full picture.
     What it is, why it insists on phones alone, and what is real today.
 
     [What Avrana Party is](introduction/index.md) ·
-    [Why phones only](introduction/phone-first.md)
+    [Why phones, and only phones](introduction/phone-first.md)
 
 -   :material-sitemap-outline: **Understanding the system**
 
@@ -90,7 +90,7 @@ a round offline. [What works today](status/index.md) has the full picture.
 
     ---
 
-    How games plug in, the working examples, and what the unfinished SDK means for you.
+    How games plug in, the working examples, and what having no SDK yet means for you.
 
     [How games integrate](games/index.md) ·
     [Building or porting a game today](developers/starting-a-game.md)

@@ -68,8 +68,8 @@ Those decisions set an **order of outcomes**, each depending on the ones before 
 comes deliberately late: it is frozen only after isolation, a canonical manifest, a result
 protocol and two real games (Checkers, then Spades) have come first.
 
-The engineering roadmap says none of the sequence is deployed. The state column repeats the
-[status page's snapshot](../status/index.md).
+The engineering roadmap says none of the sequence is deployed. This table is this site's home
+for the sequence; the state column is a snapshot as of the page's verified date.
 
 | # | Outcome | State |
 |---|---|---|

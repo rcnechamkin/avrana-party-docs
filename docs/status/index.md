@@ -32,7 +32,7 @@ verified: 2026-10-09
 ## The short version
 
 Avrana Party is a **working prototype on one appliance**. The core Party loop and two kinds of
-game (a native card game and a streamed arcade game) have been deployed and checked on the
+game (an Avrana-native card game and a streamed arcade game) have been deployed and checked on the
 appliance from the server side. The source code has moved well beyond the deployed build, with a
 console-style Party model, a redesigned shell, and the groundwork for isolated native games,
 separate browser origins, Limited Mode and separate service identities. The project's most
@@ -113,9 +113,10 @@ These are stated in the engineering documents themselves:
 ## Planned development
 
 The roadmap sets an order of twelve outcomes for the platform boundary, from single-use tickets
-through isolation, a Checkers proof and a Spades pressure test, and only then an SDK. Steps 2 to
-7 are <span class="avr-badge source">In source</span>, Checkers is in review, and nothing in the
-sequence is deployed. Alongside it run the party-night milestone, emulation research and
+through isolation, a Checkers proof and a Spades pressure test, and only then an SDK. Much of it is
+in source, and none of it is deployed. Alongside it run the party-night milestone, emulation research and
 appliance readiness (boot time, power-loss recovery, battery, cooling, the access point's real
 client ceiling). The [roadmap](../project/roadmap.md) has the full sequence with each step's
 state, the parallel tracks, and what is explicitly not planned.
+
+Next: the [architecture overview](../architecture/index.md).

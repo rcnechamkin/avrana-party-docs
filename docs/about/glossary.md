@@ -32,6 +32,10 @@ Appliance grant
 :   The appliance's decision about an installed game: its entry point, trust tier and granted
     permissions. A game requests; the appliance grants.
 
+Arcade
+:   The service that runs an emulator on the appliance and streams its video to phones, which
+    act as gamepads.
+
 Avrana-native game
 :   A game designed for Avrana rather than adapted to it: browser clients on each phone, an
     authoritative server on the appliance, Party integration from the start. BLUFF is one.
@@ -41,10 +45,6 @@ Avrana-native game
 AVR-N
 :   An issue identifier in the project's Linear workspace (team `AVR`), for example AVR-238.
     Branches and pull requests that implement an issue carry it in their names.
-
-Arcade
-:   The service that runs an emulator on the appliance and streams its video to phones, which
-    act as gamepads.
 
 BLUFF
 :   The first Avrana-native game: a server-authoritative, hidden-role bluffing card game for
@@ -139,7 +139,8 @@ Party Home
 
 Party shell
 :   The engineering documents' name for the Party's own interface around a game: Party Home,
-    the setup screen, the host controls and the rules sheet. A game draws inside it.
+    the setup screen, the host controls and the rules sheet. A game draws inside it. Party Home
+    is the shell's main page; the two terms often refer to the same web app at `/party/`.
 
 Personal Viewport
 :   A planned way of showing each phone its own player's part of a shared or split-screen game.

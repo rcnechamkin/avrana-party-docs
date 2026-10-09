@@ -126,21 +126,21 @@ nav:
       - reference/index.md
       - Decision records:
           - decisions/index.md
-          - "0001: Testing the arcade under load": decisions/0001-load-soak-fault-harness.md
-          - "0002: A party platform": decisions/0002-party-platform.md
+          - "0001: Load, soak and fault harness": decisions/0001-load-soak-fault-harness.md
+          - "0002: Avrana Party is a party platform": decisions/0002-party-platform.md
           - "0003: Identifiers and credentials": decisions/0003-ids-and-keys.md
-          - "0004: Full Mode, contracts and providers": decisions/0004-full-mode-contracts-and-providers.md
+          - "0004: Full Mode origin, contracts and providers": decisions/0004-full-mode-contracts-and-providers.md
           - "0005: LAN Games as a provider": decisions/0005-lan-games-provider-launch.md
-          - "0006: The session protocol": decisions/0006-party-session-protocol.md
-          - "0007: The host launches games": decisions/0007-host-authoritative-launch.md
+          - "0006: Party Core and the session protocol": decisions/0006-party-session-protocol.md
+          - "0007: The host starts the game": decisions/0007-host-authoritative-launch.md
           - "0008: Party navigation": decisions/0008-party-navigation.md
-          - "0009: The arcade as a provider": decisions/0009-arcade-party-provider.md
-          - "0010: The pregame: Play or Watch": decisions/0010-party-pregame.md
+          - "0009: The arcade is a Party-launched game": decisions/0009-arcade-party-provider.md
+          - "0010: The Party's pregame": decisions/0010-party-pregame.md
           - "0011: The console model": decisions/0011-party-console-model.md
-          - "0012: Full Mode and Limited Mode": decisions/0012-limited-mode-party-survives-https-loss.md
+          - "0012: Limited Mode": decisions/0012-limited-mode-party-survives-https-loss.md
           - "0013: Separate browser origins": decisions/0013-party-and-game-browser-origins.md
           - "0014: Isolated native games": decisions/0014-native-games-isolated-lan-games-retired.md
-          - "0015: The result envelope": decisions/0015-game-result-envelope.md
+          - "0015: Game result envelope": decisions/0015-game-result-envelope.md
           - "0016: Service identities": decisions/0016-service-identities-and-local-trust-boundary.md
       - Design documents:
           - design/index.md
@@ -148,7 +148,7 @@ nav:
           - Party lifecycle: design/party-lifecycle.md
           - Limited Mode: design/limited-mode.md
           - Browser origins: design/browser-origins.md
-          - Shared game UX contract: design/game-ux-contract.md
+          - The game UX contract: design/game-ux-contract.md
           - Accessibility: design/accessibility.md
       - Navigating the engineering docs: developers/reading-the-specs.md
       - Glossary: about/glossary.md

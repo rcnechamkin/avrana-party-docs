@@ -3,7 +3,6 @@ title: Technical reference
 description: The decision records, design documents and glossary, and when you need them.
 sources:
   - avrana-party:docs/README.md
-  - avrana-party:docs/adr
   - avrana-party:docs/design/README.md
 verified: 2026-10-09
 ---
@@ -25,7 +24,7 @@ the original wins whenever the two disagree.
 
     ---
 
-    All sixteen Architecture Decision Records: what was decided, why, what changed later and what
+    Every Architecture Decision Record: what was decided, why, what changed later and what
     is actually built. Start with the summary table.
 
 -   **[Design documents](../design/index.md)**

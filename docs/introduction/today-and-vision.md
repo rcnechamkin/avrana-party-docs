@@ -14,7 +14,7 @@ verified: 2026-10-09
 
 Avrana Party's engineering documents describe both what the code does and what the project
 intends to become, often in equal detail. This page separates the two for the product as a
-whole. Each item carries a [maturity label](#how-to-read-the-labels).
+whole. Each item carries a [maturity label](#how-maturity-is-labelled-on-this-site).
 
 ## What exists today
 
@@ -69,7 +69,7 @@ or not yet complete:
   battery runtime, cooling, power-loss recovery and the real number of phones the access
   point can serve.
 
-## How to read the labels
+## How to read the labels {#how-maturity-is-labelled-on-this-site}
 
 --8<-- "includes/maturity-labels.md"
 
@@ -86,4 +86,4 @@ test; a simulation is not a measurement. This site follows the same rules. If it
 something deployed, there is dated evidence behind that. If the evidence is missing, the site
 says so.
 
-Next: the [architecture overview](../architecture/index.md).
+Next: [what works today, in detail](../status/index.md).

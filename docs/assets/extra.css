@@ -8,6 +8,9 @@
   --md-primary-fg-color--light: #4a4180;
   --md-primary-fg-color--dark: #1d1838;
   --md-accent-fg-color: #c77700;           /* links on hover, focus: amber, AA on white */
+  --md-accent-fg-color--transparent: rgba(199, 119, 0, 0.1);
+  --md-accent-bg-color: #ffffff;
+  --md-accent-bg-color--light: rgba(255, 255, 255, 0.7);
   --md-typeset-a-color: #4b3fb0;           /* body links: readable violet */
 
   --avr-surface: #f6f5fb;                  /* quiet panels */
@@ -27,7 +30,11 @@
   --md-primary-fg-color: #1d1838;
   --md-primary-fg-color--light: #2d2654;
   --md-primary-fg-color--dark: #141027;
+  --md-hue: 252;                           /* Material derives slate surfaces from this */
   --md-accent-fg-color: #ffb547;
+  --md-accent-fg-color--transparent: rgba(255, 181, 71, 0.1);
+  --md-accent-bg-color: #16151c;
+  --md-accent-bg-color--light: rgba(22, 21, 28, 0.7);
   --md-typeset-a-color: #b4a9ff;
   --md-default-bg-color: #16151c;
 
