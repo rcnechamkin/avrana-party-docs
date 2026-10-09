@@ -96,7 +96,8 @@ All traffic from phones goes through **nginx**. On port 443 (`party.avrana.net`)
 |---|---|---|
 | `/party/` | The Party Home web app: static files from a versioned release directory | <span class="avr-badge deployed">Deployed</span> |
 | `/party/api/` | Party Core on `127.0.0.1:8191`, including 25-second long polls | <span class="avr-badge deployed">Deployed</span> |
-| `/games/bluff/`, `/games/expo/` | The games server (the LAN Games fork) on `127.0.0.1:8096` | <span class="avr-badge deployed">Deployed</span> |
+| `/games/bluff/` | The games server (the LAN Games fork) on `127.0.0.1:8096` | <span class="avr-badge deployed">Deployed</span> |
+| `/games/expo/` | The same games server, for EXPO | <span class="avr-badge source">In source</span>: EXPO's Party contract entered source after the verified deployment, and the appliance had no EXPO session key on 2026-10-03 |
 | `/arcade/` | The arcade stream service on `127.0.0.1:8097` | <span class="avr-badge deployed">Deployed</span> |
 | `/party/api/origin.json` | Answered by nginx itself, so a page can test whether the HTTPS Party is reachable | <span class="avr-badge deployed">Deployed</span> |
 | `/games/<slug>/` | A native game's own Unix socket, `/run/avrana-games/<slug>.sock` | <span class="avr-badge source">In source</span> |

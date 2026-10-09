@@ -45,10 +45,10 @@ flowchart TB
 | Component | Runs as | Reached at | Status |
 |---|---|---|---|
 | Wi-Fi access point, DHCP and DNS | NetworkManager on the Pi's own radio | `10.42.0.1` on the Party Wi-Fi | <span class="avr-badge deployed">Deployed</span> |
-| nginx front door | The only application service on the network | `https://party.avrana.net` (port 443), plus port 80 for probes and legacy HTTP | <span class="avr-badge deployed">Deployed</span> |
+| nginx front door | The application front door; in source, the only service reachable from the network | `https://party.avrana.net` (port 443), plus port 80 for probes and legacy HTTP | <span class="avr-badge deployed">Deployed</span> |
 | Party Home | Static web app | `/party/` | <span class="avr-badge deployed">Deployed</span> |
 | Party Core | Small Python service | `/party/api/`, forwarded to `127.0.0.1:8191` | <span class="avr-badge deployed">Deployed</span> |
-| Games server (LAN Games fork) | One Python process for every title | `/games/<title>/`, forwarded to `127.0.0.1:8096` | <span class="avr-badge deployed">Deployed</span> · <span class="avr-badge retiring">Retiring</span> |
+| Games server (LAN Games fork) | One Python process for every title | `/games/<title>/`, forwarded to `127.0.0.1:8096` (the deployed server also still listens on all interfaces) | <span class="avr-badge deployed">Deployed</span> · <span class="avr-badge retiring">Retiring</span> |
 | Arcade | RetroArch, a video encoder and a control service | `/arcade/`, forwarded to `127.0.0.1:8097`; control on `8098`, never exposed | <span class="avr-badge deployed">Deployed</span> |
 | Native game process | One process and one Unix socket per game | `/games/<slug>/` | <span class="avr-badge source">In source</span> |
 

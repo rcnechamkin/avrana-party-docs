@@ -43,7 +43,8 @@ flowchart TB
 
 The first phone in becomes the **host**. If the host's phone goes away, the role passes on
 automatically. Every step is implemented in source and tested with four simulated phones. The
-deployed build has an older version of joining, setup and results.
+last *verified* deployment (29 September 2026) has an older version of joining, setup and
+results; see [what is deployed](status/index.md#what-is-deployed).
 [What Avrana Party is](introduction/index.md#a-party-night-step-by-step) walks through each
 step.
 
@@ -59,7 +60,8 @@ agents. This site labels every capability by how far it has really got:
   interface and the groundwork for isolated native games. These are merged and tested, but not
   verified as deployed.
 - <span class="avr-badge accepted">Accepted direction</span> A degraded mode for when trusted
-  HTTPS fails, separate browser origins for games, and separate service identities.
+  HTTPS fails, separate browser origins for games, and separate service identities. Much of the
+  groundwork is in source; none of it is deployed.
 
 The next milestone is evidence rather than features: four people on four real phones finishing
 a round offline. [What works today](status/index.md) has the full picture.

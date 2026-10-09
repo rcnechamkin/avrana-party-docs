@@ -21,8 +21,8 @@ explains where that line runs and what a game has to do to sit on the right side
 
     <span class="avr-badge planned">Planned</span> No game SDK, package format or installer
     exists, and no outside game has been integrated. The working examples are the project's own:
-    **BLUFF** and **EXPO** (browser games whose server runs on the appliance), the **Gauntlet II**
-    arcade stream, and a test-only **stand-in** for the isolated native-game path.
+    **BLUFF** (deployed) and **EXPO** (in source), browser games whose server runs on the
+    appliance; the **Gauntlet II** arcade stream; and a test-only **stand-in** for the isolated native-game path.
     [Building or porting a game today](../developers/starting-a-game.md) says what is realistic
     now, and [The reference games, explained](../developers/reference-games.md) walks through
     BLUFF and the stand-in.
@@ -36,7 +36,7 @@ flowchart TB
   P -- "launch, end,<br/>single-use tickets" --> G
   G -- "ended,<br/>with a result" --> P
 ```
-<p class="avr-caption">The game never learns a phone's long-term identity: only a per-session participant id.</p>
+<p class="avr-caption">The design in source. The game never learns a phone's long-term identity, only a per-session participant id. Single-use tickets and the versioned result are not yet deployed, and a durable results history is undecided.</p>
 
 ## The integration points
 

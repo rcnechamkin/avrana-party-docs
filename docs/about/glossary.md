@@ -186,7 +186,9 @@ Standard Mode
 Ticket
 :   A short-lived (at most 120 s), single-use, signed capability saying that this connection is
     participant P, with role R, in session S of game G. Presented as the first WebSocket
-    message. "Party ticket" and "seat ticket" in other documents mean the same thing.
+    message. Other documents also call it the "Party ticket". The older "seat ticket" in ADR 0003
+    and the PlayStation experiment is a different, superseded design: reusable for a few minutes
+    and bound to a game rather than a session.
 
 Tier 1 / Tier 2 / Tier 3
 :   Evidence grades: pure tests, a simulated Party on localhost, and real hardware with real

@@ -27,7 +27,7 @@ the same Party contract, so that the Party flow is identical whatever runs under
 | Model | Example | Status |
 |---|---|---|
 | Isolated native game process (the target) | Stand-in test game; Checkers next | <span class="avr-badge source">In source</span>, no product game yet |
-| Browser game inside the LAN Games fork (today) | BLUFF, EXPO | <span class="avr-badge deployed">Deployed</span> · <span class="avr-badge retiring">Retiring</span> |
+| Browser game inside the LAN Games fork (today) | BLUFF (deployed); EXPO (in source) | <span class="avr-badge deployed">Deployed</span> · <span class="avr-badge retiring">Retiring</span> |
 | Streamed emulation (shared picture) | *Gauntlet II* | <span class="avr-badge deployed">Deployed</span> |
 | Emulation profiles for PlayStation titles | *Bomberman*, *Worms* | <span class="avr-badge experimental">Experimental</span> |
 | Personal Viewports | Per-player crops of a split-screen game | <span class="avr-badge experimental">Experimental</span> |
