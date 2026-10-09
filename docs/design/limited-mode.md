@@ -70,8 +70,8 @@ are fixed in the page itself (`https://party.avrana.net/party/` and `http://10.4
 and it takes nothing from its own address. The test request carries no credentials and gives up
 after 3.5 seconds. It is not yet served: that needs the nginx change, which also has to give the
 doorway its own content-security policy so its one cross-origin request is allowed. The Limited
-Mode notice links back to it as "Check for the full version". Today, port 80's `/` is an interim
-link page.
+Mode notice links back to it as "Check for the full version". In source, port 80's `/` is an
+interim link page; the deployed appliance still serves the LAN Games hub there.
 
 ## One canonical Limited Mode origin
 

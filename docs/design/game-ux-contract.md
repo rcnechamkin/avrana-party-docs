@@ -21,9 +21,9 @@ verified: 2026-10-09
     GAME-UX-CONTRACT answers one question: **where the line runs between Avrana and a game on a
     player's phone, and which behaviours are the same in every game.** It covers the phases of
     a round, the pre-round briefing, rules access, how unavailable actions are explained, shared
-    interaction floors, system sound and art slots. It was written for issue AVR-56 on
+    interaction floors, system sound and art slots. It was written for the shared-UX issue (AVR-56) on
     2026-10-04 and updated with owner decisions of 2026-10-05. **No part of it has been
-    validated on real phones**, and the first four-person BLUFF playtest it depends on (AVR-27)
+    validated on real phones**, and the first four-person offline BLUFF playtest on real phones that it depends on (AVR-27)
     has not happened. It changes no machine contract. Many of its rules are still proposals.
 
 ## How to read the labels
@@ -116,9 +116,10 @@ modelled on the screen before a Mario Party minigame. It is a state of the selec
 second joining ceremony. A game without a pregame has no briefing, and this is accepted; not
 every title needs one.
 
-**Accepted and implemented**, the briefing shows the game's title, art and premise, a "How to
+**Accepted**, and in source, the briefing shows the game's title, art and premise, a "How to
 play" sheet, the roster with each person's state (the word "Host", Playing, Watching, Choosing,
-or "Away" with a greyed avatar), the two choices **Play this round** and **Watch this round**, and
+or "Away" with a greyed avatar; these words are in source ahead of the owner's review of that
+rule), the two choices **Play this round** and **Watch this round**, and
 either the host's Start or everyone else's waiting line. The library, chat and "This phone"
 controls are hidden so it reads as the game's screen, not Party Home. Since a redesign decided on
 2026-10-05, the list of people here and, on a Limited Mode phone, the Limited explanation can
@@ -316,8 +317,9 @@ phone. No game ends a Party round or sends phones home by itself (**accepted** f
 **Accepted (AVR-56).** No emoji is implicitly required as production game art. **Proposed**: no
 platform slot assumes an emoji, because emoji render differently on every phone; a game may use
 symbols where they are notation, such as card suits. Platform slots today are a square cover, an
-accent colour and a summary line; example frames and wide hero art are proposed. Everything a page
-needs comes from the appliance, never a remote address.
+accent colour and a summary line; example frames and wide hero art are proposed. **Accepted** (the
+UI design system's offline rule): everything a page needs comes from the appliance, never a remote
+address.
 
 ## What is only specified
 

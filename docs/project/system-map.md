@@ -159,7 +159,7 @@ not.
 Each entry is a dated record from the engineering repository. Every verified deployment was
 checked **from the server side**: services running, ports, routes through the real HTTPS front
 door, and scripted Party flows using throwaway browser sessions. **None of them was checked on a
-real phone.** The three deployments of 2026-09-29 were carried out the same way: the agent
+real phone.** The three deployments of 2026-09-29 were carried out the same way: a development session (an AI coding agent)
 prepared the checkouts, which needs no administrator rights, and the owner ran a single
 administrator script.
 

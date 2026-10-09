@@ -98,7 +98,7 @@ A second set was added on 2026-10-02, each recorded in an ADR and labelled
 - the Party owns results and history, and games only report;
 - a person is only ever represented by an explicit, optional, server-side Profile, never by a
   browser-stored name;
-- tickets are single-use and signed with a shared secret (HMAC); public-key signatures are kept
+- tickets are single-use and signed with a secret key that both sides share (HMAC); public-key signatures are kept
   for package provenance;
 - native games are validated in order: BLUFF, then Checkers, then Spades, and no SDK or package
   format is frozen before that.
@@ -202,8 +202,9 @@ someone out.
 
 ## Party Home and synchronized navigation
 
-<span class="avr-badge deployed">Deployed</span> · console presentation
-<span class="avr-badge reported">Owner-reported</span>
+<span class="avr-badge source">In source</span> · <span class="avr-badge reported">Owner-reported</span>
+for the console model described here. What the last verified deployment (2026-09-29) has is
+host-moved navigation and a Play-or-Watch setup shown on the game's own page.
 
 Party Core exposes a single authoritative **location** (home, setup, game or results) that only
 the host moves, and every Party page, game page and the arcade page moves itself there on load,
@@ -285,7 +286,7 @@ The model's main commitments:
   open.
 - **Device token.** Random, server-issued, `HttpOnly`, stored only as a hash, revocable by
   deletion. It never grants admin.
-- **Requests.** Host names are allowlisted (which also defeats DNS rebinding), `Origin` is checked
+- **Requests.** Host names are allowlisted (which also defeats DNS rebinding, a trick that makes a malicious name point at the appliance), `Origin` is checked
   on every state-changing request, a GET never changes anything, and authorization comes only from
   identifiers the server resolved.
 - **Names** are display values only, normalized, limited to 1–16 characters and one alphabet, and
@@ -309,7 +310,7 @@ to `/party/` with nginx stripping cookies from game locations; in source the coo
 
 Untrusted community games would later get a stronger, sandboxed tier on top of the origin
 split. The document also lists what it deliberately does *not* do, including private certificate
-authorities on phones, JWTs, encrypted databases, device fingerprinting and CAPTCHAs.
+authorities on phones, JWTs (signed web login tokens), encrypted databases, device fingerprinting and CAPTCHAs.
 
 ## Open questions
 

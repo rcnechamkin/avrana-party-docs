@@ -20,7 +20,8 @@ verified: 2026-10-09
     BROWSER-ORIGINS describes the mechanisms behind
     [ADR 0013](../decisions/0013-party-and-game-browser-origins.md): moving game pages to a
     browser origin of their own, so that game code can never act as a Party member. The owner
-    accepted the mechanisms, decisions D1 to D5, on 2026-10-03. Steps 1 to 3 of its five-step
+    accepted the mechanisms, decisions D1 to D5, on 2026-10-03. D5 is about
+    timing: do this before Checkers, so the first clean native game is born on the game origin. Steps 1 to 3 of its five-step
     rollout (the Party side, the Games side and the arcade page) are
     <span class="avr-badge source">In source</span>. Step 4, the live configuration, has not
     happened, so **nothing is configured or deployed** and every game still runs on the Party's

@@ -151,8 +151,7 @@ or battery power. See [The appliance and its network](../architecture/appliance-
 The roadmap rules out a universal gameplay engine, required cloud accounts, a proprietary game
 store, one appliance hosting several Parties, simultaneous activities in the standard mode, and
 any commitment to spreading one display across several phones. Standalone LAN Games is kept only
-while the fork is the deployed runtime and retires with it. Classic map-based *Diplomacy* was
-abandoned on 2026-09-23 and is never to be continued.
+while the fork is the deployed runtime and retires with it.
 
 Throughout, development happens on reviewed branches; deployment, live configuration and
 restarts are separate owner-approved steps (see [Deployment](deployment.md)); and credentials,

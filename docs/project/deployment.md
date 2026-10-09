@@ -29,8 +29,8 @@ appliance, and how anyone can then tell what is running there.
 <span class="avr-badge source">In source</span> The deployment script (`ops/deploy.sh`), the
 deployment manifest, the status endpoint and the smoke checks were merged on 2026-10-02 and
 2026-10-03. As of the runbook's status line (2026-10-04) the script had **not yet been run in
-production**, and no later record says it has. Every recorded deployment used a one-off script
-written for that change and run by the owner (see the
+production**, and no later record says it has. The recorded deployments were done by the owner; those of 2026-09-29 used one-off scripts written
+for each change (see the
 [deployment history](system-map.md#deployment-history)). Those builds predate this tooling, so
 the appliance is not known to hold a manifest or serve the status endpoint yet.
 
@@ -96,7 +96,7 @@ flowchart TD
    itself: the new code is running, and the owner decides whether to fix forward or go back.
 
 The script never touches keys, certificates, nginx, NetworkManager or systemd unit files. One
-consequence is recorded explicitly: since a change merged on 2026-10-03, the nginx site file and
+consequence is recorded explicitly: since a change merged on 2026-10-04, the nginx site file and
 the Party shell must be deployed together, because the shell offers exactly the games the site
 routes. The script installs only the shell, so a deployment crossing that change needs the
 matching site file installed straight afterwards, and nothing checks this.

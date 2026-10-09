@@ -45,8 +45,9 @@ separate from both. See [The Party](../architecture/party.md#identity-is-layered
 
 ## Global rules
 
-Six rules, numbered R1 to R6 in the original, keep the Party consistent. All but the last are
-built into Party Core.
+Six rules, numbered R1 to R6 in the original, keep the Party consistent. R1, R2, R4 and R5 are
+built into Party Core. R3 is a requirement on games, which seat their own roster. R6 is a
+proposal.
 
 1. **One change at a time, with a version.** Party Core applies changes one after another and
    bumps a version number each time. Every host action carries the version the phone last saw,
@@ -66,6 +67,9 @@ built into Party Core.
 
 ## The Party's location
 
+<span class="avr-badge source">In source</span> · <span class="avr-badge reported">Owner-reported</span>
+(the console model, [ADR 0011](../decisions/0011-party-console-model.md)).
+
 There is one shared location: `home`, `setup`, `game` or `results`. Only the host moves it, and
 every member's phone renders it.
 
@@ -80,6 +84,7 @@ stateDiagram-v2
   game --> home: host ends the round, or the game is abandoned
   results --> setup: host Play again
   results --> home: host Party Home
+  results --> game: host relaunches a game without a briefing
 ```
 
 This location is the product view. Underneath, a game session runs through its own protocol
@@ -95,6 +100,9 @@ Completed results are held until the host moves on. There is no automatic timer 
 lobby. An abandoned round has no results to show, so the Party goes home.
 
 ## Presence
+
+<span class="avr-badge source">In source</span> · <span class="avr-badge reported">Owner-reported</span>
+(automatic presence arrived with the console model).
 
 A member is in one of three states, computed rather than declared:
 

@@ -34,19 +34,20 @@ appliance. Only a CI test fixture grants it.
 ### What it is handed
 
 A native game does not open network ports or read configuration files of its own. systemd starts
-it from the shared `avrana-game@<slug>` unit template and hands it exactly four things:
+it from the shared `avrana-game@<slug>` unit template and hands it four things that matter, and nothing it could use to reach the network:
 
 - **A listening Unix socket**, already open, as file descriptor 3. nginx connects to it to serve
   the game's pages, and Party Core connects to it to launch and end sessions. The unit forbids IP
   networking entirely, so the process could not open an IP socket even if it tried.
 - **Its own signing key**, in a credentials directory that only this running instance can read.
 - **The address of Party Core's internal socket**, where it reports the end of a session.
-- **The Party's browser origin**, so its pages can find the Party's bridge when game pages are
+- **The Party's browser origin**, written for each appliance by the provisioning step, so its pages can find the Party's bridge when game pages are
   served from their own origin.
 
 ### What it does
 
-The stand-in answers five kinds of request, all under `/games/standin/`:
+The stand-in serves six routes under `/games/standin/`: launch and end, its page, redeem, finish,
+and one that reports the Party origin it was given. They fall into three groups:
 
 ```mermaid
 sequenceDiagram
