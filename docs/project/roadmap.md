@@ -21,8 +21,8 @@ is deliberately not a task list.
 
     Priorities, sequencing, blockers, acceptance criteria and the next task all live in the
     project's Linear workspace. Nothing here assigns work or approves a deployment. For a dated
-    view of work in progress, see [Project status](../status/index.md); for what is deployed, the
-    [system map](system-map.md).
+    view of work in progress, see [What works today](../status/index.md); for what is deployed,
+    [Deployed system and history](system-map.md).
 
 ## Product direction
 
@@ -68,8 +68,8 @@ Those decisions set an **order of outcomes**, each depending on the ones before 
 comes deliberately late: it is frozen only after isolation, a canonical manifest, a result
 protocol and two real games (Checkers, then Spades) have come first.
 
-The engineering roadmap says none of the sequence is deployed. The state column repeats the
-[status page's snapshot](../status/index.md#planned-development).
+The engineering roadmap says none of the sequence is deployed. This table is this site's home
+for the sequence; the state column is a snapshot as of the page's verified date.
 
 | # | Outcome | State |
 |---|---|---|

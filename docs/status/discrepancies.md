@@ -88,7 +88,7 @@ not concluded.*
 
 ## 2. The system map predates most October work
 
-The engineering system map, `docs/SYSTEM.md` (plain-language edition: [System map](../project/system-map.md)),
+The engineering system map, `docs/SYSTEM.md` (plain-language edition: [Deployed system and history](../project/system-map.md)),
 was reconciled on 2026-10-01. It does not mention native-game provisioning, the generic game route, the
 Unix-socket game link, origin navigation, Limited Mode steps 1–2, the service-user unit or the
 `__Host-` cookie. That is correct for a document about *deployed* state, but the file is also

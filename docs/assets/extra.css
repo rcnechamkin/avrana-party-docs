@@ -1,34 +1,120 @@
-/* Maturity badges. Vocabulary: about/this-documentation.md#maturity-labels */
-:root {
-  --avr-deployed: #2e7d32;
-  --avr-source: #1565c0;
-  --avr-reported: #00838f;
-  --avr-accepted: #6a1b9a;
-  --avr-experimental: #b26a00;
-  --avr-planned: #546e7a;
-  --avr-retiring: #b71c1c;
+/* Avrana Party documentation: a small, restrained layer over Material's defaults.
+   Colours are tokens so light and dark schemes stay in step. */
+
+/* ---- Palette ------------------------------------------------------------------------------ */
+:root,
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #2d2654;          /* header: deep ink violet */
+  --md-primary-fg-color--light: #4a4180;
+  --md-primary-fg-color--dark: #1d1838;
+  --md-accent-fg-color: #a55f00;           /* links on hover, focus: amber, 4.9:1 on white */
+  --md-accent-fg-color--transparent: rgba(165, 95, 0, 0.1);
+  --md-mermaid-node-bg-color: rgba(75, 63, 176, 0.08);
+  --md-mermaid-node-fg-color: #a55f00;
+  --md-accent-bg-color: #ffffff;
+  --md-accent-bg-color--light: rgba(255, 255, 255, 0.7);
+  --md-typeset-a-color: #4b3fb0;           /* body links: readable violet */
+
+  --avr-surface: #f6f5fb;                  /* quiet panels */
+  --avr-border: #e3e0f0;
+
+  /* Maturity badges. Vocabulary: about/this-documentation.md#maturity-labels */
+  --avr-deployed: #1e6b33;
+  --avr-source: #1d5fa8;
+  --avr-reported: #00727c;
+  --avr-accepted: #6a2c91;
+  --avr-experimental: #8a5200;
+  --avr-planned: #4f5f68;
+  --avr-retiring: #a3241f;
 }
 
 [data-md-color-scheme="slate"] {
-  --avr-deployed: #81c784;
-  --avr-source: #64b5f6;
-  --avr-reported: #4dd0e1;
-  --avr-accepted: #ce93d8;
-  --avr-experimental: #ffb74d;
-  --avr-planned: #b0bec5;
-  --avr-retiring: #ef9a9a;
+  --md-primary-fg-color: #1d1838;
+  --md-primary-fg-color--light: #2d2654;
+  --md-primary-fg-color--dark: #141027;
+  --md-hue: 252;                           /* Material derives slate surfaces from this */
+  --md-accent-fg-color: #ffb547;
+  --md-accent-fg-color--transparent: rgba(255, 181, 71, 0.1);
+  --md-mermaid-node-bg-color: rgba(180, 169, 255, 0.12);
+  --md-mermaid-node-fg-color: #ffb547;
+  --md-accent-bg-color: #16151c;
+  --md-accent-bg-color--light: rgba(22, 21, 28, 0.7);
+  --md-typeset-a-color: #b4a9ff;
+  --md-default-bg-color: #16151c;
+
+  --avr-surface: #1f1d28;
+  --avr-border: #2f2c3d;
+
+  --avr-deployed: #86d49b;
+  --avr-source: #8ec3ff;
+  --avr-reported: #6fdbe4;
+  --avr-accepted: #d7a8f5;
+  --avr-experimental: #ffc46b;
+  --avr-planned: #b8c4cb;
+  --avr-retiring: #ff9e98;
 }
 
+/* ---- Typography -------------------------------------------------------------------------- */
+.md-typeset {
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.md-typeset h1 {
+  font-weight: 700;
+  color: var(--md-default-fg-color);
+  letter-spacing: -0.015em;
+  margin-bottom: 0.9em;
+}
+
+.md-typeset h2 {
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  margin-top: 2.2em;
+  padding-top: 0.6em;
+  border-top: 1px solid var(--avr-border);
+}
+
+.md-typeset h3 {
+  font-weight: 650;
+  margin-top: 1.8em;
+}
+
+/* Keep long lines readable on wide screens. */
+.md-typeset > p,
+.md-typeset > ul,
+.md-typeset > ol {
+  max-width: 46rem;
+}
+
+/* Tables: Material's default is small; reference tables are read, not scanned. */
+.md-typeset table:not([class]) {
+  font-size: 0.74rem;
+  line-height: 1.55;
+}
+
+/* Keep addresses, ports and revisions on one line. */
+.md-typeset table:not([class]) td code {
+  white-space: nowrap;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--avr-surface);
+  font-weight: 650;
+}
+
+/* ---- Maturity badges --------------------------------------------------------------------- */
 .avr-badge {
   display: inline-block;
-  padding: 0 0.45em;
+  padding: 0.05em 0.55em;
   border: 1px solid currentColor;
-  border-radius: 0.6em;
-  font-size: 0.72em;
-  font-weight: 600;
-  line-height: 1.5;
+  border-radius: 1em;
+  background: color-mix(in srgb, currentColor 9%, transparent);
+  font-size: max(0.7em, 0.6rem);
+  font-weight: 650;
+  line-height: 1.45;
   letter-spacing: 0.02em;
-  vertical-align: 0.1em;
+  vertical-align: 0.12em;
   white-space: nowrap;
 }
 
@@ -40,19 +126,56 @@
 .avr-badge.planned { color: var(--avr-planned); }
 .avr-badge.retiring { color: var(--avr-retiring); }
 
-/* Landing page */
-.avr-hero {
-  font-size: 1.15rem;
+/* ---- Diagrams ---------------------------------------------------------------------------- */
+.md-typeset .mermaid {
+  margin: 1.4em 0;
+  padding: 1em 0.6em;
+  border: 1px solid var(--avr-border);
+  border-radius: 0.4rem;
+  background: var(--avr-surface);
+  text-align: center;
+}
+
+.md-typeset .avr-caption {
+  margin-top: -0.8em;
+  font-size: 0.72rem;
+  color: var(--md-default-fg-color--light);
+  text-align: center;
+}
+
+/* ---- Landing page ------------------------------------------------------------------------ */
+.md-typeset .avr-hero {
+  max-width: 40rem;
+  margin: 0 0 1.6em;
+  font-size: 1.12rem;
   line-height: 1.6;
-  max-width: 42rem;
+}
+
+.md-typeset .avr-motto {
+  margin: 0 0 1.8em;
+  padding-left: 0.9em;
+  border-left: 3px solid var(--md-accent-fg-color);
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid.cards > ol > li {
+  border-color: var(--avr-border);
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: var(--md-typeset-a-color);
 }
 
 @media screen and (max-width: 44.9375em) {
-  .avr-hero {
+  .md-typeset .avr-hero {
     font-size: 1rem;
   }
-}
-
-.mermaid {
-  text-align: center;
+  .md-typeset .avr-motto {
+    font-size: 0.85rem;
+  }
+  .md-typeset h2 {
+    margin-top: 1.8em;
+  }
 }

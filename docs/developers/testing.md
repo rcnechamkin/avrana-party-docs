@@ -34,8 +34,8 @@ The engineering testing guide defines three tiers:
 
 Alongside the tiers sits a separate category: **deployed, server-side verification**. That is
 evidence that a specific release is installed on the appliance and its services answer
-correctly, recorded with exact revisions in the [system map](../project/system-map.md) and dated
-findings.
+correctly, recorded with exact revisions in dated findings and summarized in
+[Deployed system and history](../project/system-map.md).
 
 ### Why they are kept apart
 
@@ -53,7 +53,7 @@ acceptance (tier 3). The reasons follow from what each one cannot see:
 
 So results are always reported at the tier where they were collected, and the project's status
 documents say "server-side verified" or "not checked on a phone" explicitly. See
-[Reading the specifications](reading-the-specs.md#evidence-tiers) for how those labels appear in
+[Navigating the engineering docs](reading-the-specs.md#evidence-tiers) for how those labels appear in
 the engineering documents.
 
 ## What the test suites prove
@@ -212,4 +212,4 @@ recorded before any acceptance is claimed:
 Even the live-appliance browser tests do not establish human interaction on real phones. As of
 the guide's last reconciliation, real-phone acceptance of the console model, the arcade's
 controller reservations and four-player arcade play is still pending; see
-[Project status](../status/index.md#known-limitations).
+[What works today](../status/index.md#known-limitations).

@@ -1,5 +1,5 @@
 ---
-title: Decision records in brief
+title: Decision records
 description: Every Architecture Decision Record in plain language, with its real implementation status and how they amend each other.
 sources:
   - avrana-party:docs/adr/0001-load-soak-fault-harness.md
@@ -21,7 +21,7 @@ sources:
 verified: 2026-10-09
 ---
 
-# Decision records in brief
+# Decision records
 
 The project records significant architectural decisions as **Architecture Decision Records**
 (ADRs) in `docs/adr/` of the Party repository. Those originals are authoritative and are written

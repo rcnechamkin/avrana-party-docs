@@ -17,6 +17,27 @@ A game in Avrana Party is a guest of the Party. The platform provides the people
 the navigation and the lifecycle. The game provides the rules and the experience. This section
 explains where that line runs and what a game has to do to sit on the right side of it.
 
+!!! note "There is no SDK yet"
+
+    <span class="avr-badge planned">Planned</span> No game SDK, package format or installer
+    exists, and no outside game has been integrated. The working examples are the project's own:
+    **BLUFF** (deployed) and **EXPO** (in source), browser games whose server runs on the
+    appliance; the **Gauntlet II** arcade stream; and a test-only **stand-in** for the isolated native-game path.
+    [Building or porting a game today](../developers/starting-a-game.md) says what is realistic
+    now, and [The reference games, explained](../developers/reference-games.md) walks through
+    BLUFF and the stand-in.
+
+## Who owns what
+
+```mermaid
+flowchart TB
+  P["<b>The Party</b><br/>who is here, who hosts<br/>where every phone is<br/>catalog, setup, Play or Watch<br/>the record of results"]
+  G["<b>A game</b><br/>rules and game state<br/>screens on each phone<br/>private views per player<br/>deciding the outcome"]
+  P -- "launch, end,<br/>single-use tickets" --> G
+  G -- "ended,<br/>with a result" --> P
+```
+<p class="avr-caption">The design in source. The game never learns a phone's long-term identity, only a per-session participant id. Single-use tickets and the versioned result are not yet deployed, and a durable results history is undecided.</p>
+
 ## The integration points
 
 A Party-integrated game touches the platform in a small number of well-defined places:
@@ -35,9 +56,11 @@ These map onto the concrete mechanisms on the following pages:
 - [Execution models](execution-models.md): the different kinds of game the appliance can run.
 - [Contracts, catalog and grants](contracts-and-catalog.md): the declarations that tie games to
   the Party, and the CI that keeps them honest.
-- [Native games and packaging](native-games.md): the isolated native-game boundary, and the
+- [Native games and SDK status](native-games.md): the isolated native-game boundary, and the
   status of the SDK and the `.avrgame` package.
 - [Designing for phones](designing-for-phones.md): what makes a good Avrana-native game.
+- [Building or porting a game today](../developers/starting-a-game.md) and
+  [The reference games, explained](../developers/reference-games.md): the practical side.
 
 ## What a game must not do
 
@@ -61,7 +84,7 @@ Where work happens depends on the kind of game. The general principle in the arc
 documents is to **choose the cheapest viable place to run each part, per player**. They should
 be chosen by capability, not by a fixed "mode".
 
-| Responsibility | Browser-native game (BLUFF) | Streamed game (Gauntlet II) |
+| Responsibility | Browser game (BLUFF) | Streamed game (Gauntlet II) |
 |---|---|---|
 | Game rules and state | Appliance (authoritative game server) | Appliance (emulator) |
 | Rendering | Phone (HTML and JavaScript) | Appliance renders and encodes; phone decodes video |
@@ -70,7 +93,7 @@ be chosen by capability, not by a fixed "mode".
 | Audio | Phone | Appliance encodes; streamed to phones |
 | Load on the appliance | Light | Heavy: emulator plus hardware video encode |
 
-Browser-native games put most of the work on the phones and keep the appliance's job small:
+Browser games put most of the work on the phones and keep the appliance's job small:
 being the authority. That is why they are the main path for new Avrana games. Streaming exists
 for experiences that cannot run in a phone's browser, mainly emulated classics.
 
@@ -81,7 +104,6 @@ internally:
 
 ```mermaid
 stateDiagram-v2
-  direction LR
   [*] --> launching: Party sends launch
   launching --> active: game accepts
   launching --> ended: no answer in 60 s<br/>(launch_failed)
@@ -96,4 +118,4 @@ Home hides its own chrome entirely, apart from the host's controls, which appear
 game's interface. When a round completes, the game's own results screen stays up until the
 host moves on. The game then receives `end` and releases the room.
 
-[Running a game session](../architecture/game-sessions.md) has the full protocol view.
+[Game sessions](../architecture/game-sessions.md) has the full protocol view.

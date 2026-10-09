@@ -12,13 +12,16 @@ verified: 2026-10-09
 
 # Party lifecycle
 
-!!! abstract "What this document governs"
-    PARTY-LIFECYCLE describes how the Party behaves over time: the shared location, a member's
-    presence, the host role, and seats inside a game, plus the rules for awkward moments such as
-    a host vanishing mid-launch. It is the **canonical lifecycle narrative**. Membership,
-    liveness, host grace and succession, one session at a time, synchronized navigation and
-    Play-or-Watch setup are <span class="avr-badge deployed">Deployed</span>. The console model's
-    automatic presence is <span class="avr-badge source">In source</span> and
+!!! abstract "In short"
+    How the Party behaves over time: the shared location, a member's presence, the host role,
+    and seats inside a game, plus the rules for awkward moments such as a host vanishing
+    mid-launch. The engineering document (PARTY-LIFECYCLE) is the **canonical lifecycle
+    narrative**.
+
+    **Where it stands:** membership, liveness, host grace and succession, one session at a
+    time, synchronized navigation and Play-or-Watch setup are
+    <span class="avr-badge deployed">Deployed</span>. The console model's automatic presence is
+    <span class="avr-badge source">In source</span> and
     <span class="avr-badge reported">Owner-reported</span> as deployed. The seat rules are
     requirements for game integrations, not a built platform seat layer. The timer values on
     this page were checked against Party Core's code.
@@ -89,7 +92,7 @@ stateDiagram-v2
 
 This location is the product view. Underneath, a game session runs through its own protocol
 states (setup, launching, active, ending, ended; see
-[Running a game session](../architecture/game-sessions.md)). While a launch is pending, the
+[Game sessions](../architecture/game-sessions.md)). While a launch is pending, the
 location stays at setup; a failed launch sends everyone home. Switching games ends the current
 session before the next one exists, and if the old game does not confirm that it stopped, the
 switch stops there rather than start a game on top of one that may still be running. In source,

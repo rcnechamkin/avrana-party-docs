@@ -19,7 +19,7 @@ Abandoned
 
 ADR (Architecture Decision Record)
 :   A dated record of an architectural decision, in the Party repository's `docs/adr/`. See
-    [Decision records in brief](../decisions/index.md).
+    [Decision records](../decisions/index.md).
 
 Admin (System Admin)
 :   A planned, PIN-protected role that would administer the appliance itself. It is deliberately
@@ -32,13 +32,19 @@ Appliance grant
 :   The appliance's decision about an installed game: its entry point, trust tier and granted
     permissions. A game requests; the appliance grants.
 
-AVR-N
-:   An issue identifier in the project's Linear workspace (team `AVR`), for example AVR-238.
-    Branches and pull requests that implement an issue carry it in their names.
-
 Arcade
 :   The service that runs an emulator on the appliance and streams its video to phones, which
     act as gamepads.
+
+Avrana-native game
+:   A game designed for Avrana rather than adapted to it: browser clients on each phone, an
+    authoritative server on the appliance, Party integration from the start. BLUFF is one.
+    "Avrana-native" describes the design; it does not mean the game runs as a
+    *native game process*. BLUFF, for example, still runs inside the LAN Games fork.
+
+AVR-N
+:   An issue identifier in the project's Linear workspace (team `AVR`), for example AVR-238.
+    Branches and pull requests that implement an issue carry it in their names.
 
 BLUFF
 :   The first Avrana-native game: a server-authoritative, hidden-role bluffing card game for
@@ -110,9 +116,11 @@ Member
 :   A device's membership in the current Party, with a display name and avatar. The engineering
     documents also call this a *presence*.
 
-Native game
-:   A game written for Avrana: browser clients on each phone, an authoritative server on the
-    appliance, Party integration from the start.
+Native game process
+:   The isolated runtime that every new Avrana-native game is meant to use: one game, one
+    process, its own Unix user, key and socket, started from a shared systemd template. In
+    source; no product game uses it yet. See
+    [Execution models](../games/execution-models.md#isolated-native-game-processes).
 
 Participant
 :   A person's identity inside one game session: a random id issued for that session only. It is
@@ -128,6 +136,11 @@ Party Core
 
 Party Home
 :   The web app every phone opens at `/party/`.
+
+Party shell
+:   The engineering documents' name for the Party's own interface around a game: Party Home,
+    the setup screen, the host controls and the rules sheet. A game draws inside it. Party Home
+    is the shell's main page; the two terms often refer to the same web app at `/party/`.
 
 Personal Viewport
 :   A planned way of showing each phone its own player's part of a shared or split-screen game.
@@ -173,8 +186,10 @@ Standard Mode
 Ticket
 :   A short-lived (at most 120 s), single-use, signed capability saying that this connection is
     participant P, with role R, in session S of game G. Presented as the first WebSocket
-    message.
+    message. Other documents also call it the "Party ticket". The older "seat ticket" in ADR 0003
+    and the PlayStation experiment is a different, superseded design: reusable for a few minutes
+    and bound to a game rather than a session.
 
 Tier 1 / Tier 2 / Tier 3
 :   Evidence grades: pure tests, a simulated Party on localhost, and real hardware with real
-    phones. See [Reading the specifications](../developers/reading-the-specs.md#evidence-tiers).
+    phones. See [Navigating the engineering docs](../developers/reading-the-specs.md#evidence-tiers).

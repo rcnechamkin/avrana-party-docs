@@ -55,20 +55,16 @@ contexts: screen wake lock, service workers, some cryptography APIs, warning-fre
 installing a private certificate authority on every phone, and that would mean an app or a
 configuration profile.
 
-Avrana Party solves this with a real domain and a real certificate:
+Avrana Party solves this with a real domain and a real certificate. On the Party network, the
+appliance's own DNS answers `party.avrana.net` with the box's address, and the box holds a
+normal publicly trusted certificate for that name. Phones validate it offline, with no warning,
+no app and no configuration.
+[Trusted HTTPS with no internet](../architecture/appliance-and-network.md#trusted-https-with-no-internet)
+explains how this works.
 
-1. The project owns the public domain `avrana.net`. The appliance holds a normal Let's Encrypt
-   certificate for `party.avrana.net`. Its private key never leaves the appliance.
-2. Public DNS has no address for `party.avrana.net`. On the Party network, the appliance's own
-   DNS answers that name with its own address (`10.42.0.1`).
-3. A phone on the Party Wi-Fi therefore reaches the box at a name that matches a certificate
-   chaining to a root the phone already trusts. The browser validates it offline, with no
-   warning, no app and no configuration.
-
-The catch is renewal. Let's Encrypt certificates last 90 days, and renewing one requires the
-appliance to reach the internet briefly. In the current setup it does that through its wired
-port and a DNS API token. Automatic renewal is written but not enabled, so renewal is manual
-today. The project also accepted that losing the certificate must not end the Party: see
+The catch is renewal: the certificate lasts 90 days, renewing it needs a brief internet
+connection, and renewal is manual today. The project accepted that losing the certificate must
+not end the Party: see
 [Full Mode and Limited Mode](../architecture/appliance-and-network.md#full-mode-and-limited-mode).
 
 ## No app required
@@ -108,4 +104,4 @@ These choices have real costs, and the engineering documents spend a lot of effo
   [tier of evidence](../developers/reading-the-specs.md#evidence-tiers) and does not claim it
   from simulations.
 
-Next: [today versus the vision](today-and-vision.md).
+Next: [what exists, and what is planned](today-and-vision.md).

@@ -1,5 +1,5 @@
 ---
-title: The Party platform design
+title: Party platform design
 description: "The platform's thesis and principles, its identity layers, admin versus host, the social and progression layers, and its proportionate security model, with what is built separated from what is proposed."
 sources:
   - avrana-party:docs/design/PARTY-PLATFORM.md
@@ -13,17 +13,20 @@ sources:
 verified: 2026-10-09
 ---
 
-# The Party platform design
+# Party platform design
 
-!!! abstract "What this document governs"
-    PARTY-PLATFORM is the hub design document for Avrana Party. It states what the product is,
-    the principles every design must respect, the decisions the owner has locked, the concepts
-    behind "a player", the split between the appliance's administrator and a party's host, and a
-    security model sized to a party among friends. It is **canonical design direction**. Only
-    part of it is built: Party Core, Party Home, game sessions and synchronized navigation exist,
-    while profiles, teams, votes, progression, moderation and third-party installation are
-    still proposals. Its status line was last reconciled on 2026-10-01 and 2026-10-02, so it is
-    older than some of the October code. This page follows the code where they differ.
+!!! abstract "In short"
+    The hub design for Avrana Party: what the product is, the principles every design must
+    respect, the decisions the owner has locked, the concepts behind "a player", the split
+    between the appliance's administrator and a party's host, and a security model sized to a
+    party among friends. The engineering document (PARTY-PLATFORM) is **canonical design
+    direction**.
+
+    **Where it stands:** only part of it is built. Party Core, Party Home, game sessions and
+    synchronized navigation exist, while profiles, teams, votes, progression, moderation and
+    third-party installation are still proposals. Its status line was last reconciled on
+    2026-10-01 and 2026-10-02, so it is older than some of the October code. This page follows
+    the code where they differ.
 
 ## Built and proposed at a glance
 

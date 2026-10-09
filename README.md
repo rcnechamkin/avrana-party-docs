@@ -17,21 +17,26 @@ requirements.txt      pinned build dependencies
 sources.yml           engineering repositories and the revisions this site was reconciled against
 docs/                 the site's pages (Markdown)
   index.md            landing page
-  introduction/       what Avrana Party is, why phones only, today versus the vision
+  introduction/       what Avrana Party is, why phones only, what exists and what is planned
   architecture/       system overview, appliance and network, the Party, sessions, trust
+  reference/          landing page for the Reference section
   decisions/          a plain-language edition of every ADR, with an index
-  design/             plain-language editions of the main design documents
+  design/             plain-language editions of the main design documents, with an index
   games/              how games integrate, execution models, contracts, native games, design
-  developers/         ecosystem, local development, testing, contributing, reading the specs,
-                      starting a game, the reference games
-  project/            roadmap, system map and deployment
-  status/             project status snapshot and known upstream discrepancies
+  developers/         ecosystem, local development, testing, contributing, navigating the
+                      engineering docs, building or porting a game, the reference games
+  project/            roadmap, deployed system and history, deployment
+  status/             what works today (a dated snapshot) and known upstream discrepancies
   about/              glossary, how this documentation works
   assets/             stylesheet and icon
 includes/             snippets appended to every page (abbreviations)
 tools/                source-tracing checks and the reconciliation report
 .github/workflows/    CI (build and checks), scheduled reconciliation report, manual publishing
 ```
+
+Directories group files; the `nav:` in `mkdocs.yml` decides the site's sections. Some pages sit in
+a different section from their directory: for example `developers/starting-a-game.md` appears
+under Games and `about/glossary.md` under Reference.
 
 ## Preview locally
 
@@ -103,7 +108,9 @@ How it is set up, for reference:
   `site_url`. Do not enable HSTS on the `avrana.net` zone: the appliance's `party.avrana.net`
   must never receive HSTS (Party ADR 0004 and ADR 0012).
 
-Any static host works instead. `mkdocs build` writes a self-contained site to `site/`.
+Any static host works instead. `mkdocs build` writes the site to `site/`. Diagrams are drawn in
+the reader's browser by Mermaid, which Material loads from a CDN, and the theme's fonts come from
+Google Fonts, so a reader with no internet access sees diagram source and fallback fonts.
 
 ## Licensing
 

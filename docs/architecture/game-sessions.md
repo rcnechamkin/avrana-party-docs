@@ -1,5 +1,5 @@
 ---
-title: Running a game session
+title: Game sessions
 description: How the Party launches a game, admits players with single-use tickets, handles reconnects, ends a round and receives results.
 sources:
   - avrana-party:docs/adr/0006-party-session-protocol.md
@@ -19,7 +19,7 @@ sources:
 verified: 2026-10-09
 ---
 
-# Running a game session
+# Game sessions
 
 A **game session** is one launch of one game inside the Party. The session protocol
 (`avrana.party-session/v0`, [ADR 0006](../decisions/0006-party-session-protocol.md))
@@ -172,3 +172,9 @@ its test vectors, the routes, the result schema, the browser bridge script and t
 catalog. A checker in CI compares both declarations whenever either repository changes. Any
 drift fails the build with a message naming the component and the file to fix.
 [Contracts, catalog and grants](../games/contracts-and-catalog.md) covers this in more detail.
+
+## Where to read more
+
+- [ADR 0006](../decisions/0006-party-session-protocol.md): the session protocol decision.
+- [ADR 0015](../decisions/0015-game-result-envelope.md): the result envelope.
+- [Party lifecycle](../design/party-lifecycle.md): how sessions fit into the Party's timeline.

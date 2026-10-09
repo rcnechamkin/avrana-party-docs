@@ -6,6 +6,8 @@ sources:
   - avrana-party:docs/ROADMAP.md
   - avrana-party:docs/adr/0002-party-platform.md
   - avrana-party:docs/design/PARTY-PLATFORM.md
+  - avrana-party:docs/adr/0011-party-console-model.md
+  - avrana-party:docs/findings/2026-10-06-ux-redesign-slice-1-acceptance.md
 verified: 2026-10-09
 ---
 
@@ -19,6 +21,26 @@ running and which screen each phone should be showing.
 
 The intended experience takes about a minute to start. You switch the box on, your friends join
 the Wi-Fi, everyone opens a web address in the browser they already have, and you play.
+
+## A party night, step by step
+
+1. Someone switches on the appliance.
+2. Everyone joins the **Avrana Party** Wi-Fi network.
+3. Everyone opens `https://party.avrana.net/party/`. That address resolves only on the Party's
+   own network; it is not a public website.
+4. Each phone picks a display name and an avatar and is then in the Party automatically. The
+   first phone in becomes the **host**.
+5. The host picks a game. Every phone moves to the game's setup screen, where each person chooses
+   to **play** or **watch**.
+6. The round plays out across the phones. Each player sees only what they are allowed to see.
+7. When the round ends, the results stay up until the host takes everyone back to Party Home or
+   starts another round.
+
+Every step is implemented in source and exercised by automated tests that simulate four phones
+in a browser. The last *verified* deployment (29 September 2026) has an older version of steps 4,
+5 and 7. A phone pressed Join, the Play-or-Watch setup sat on the game's own page, and results
+went back to the game's lobby on a timer. A newer deployment is
+[owner-reported but not yet recorded](../status/index.md#what-is-deployed).
 
 ## The problem it addresses
 

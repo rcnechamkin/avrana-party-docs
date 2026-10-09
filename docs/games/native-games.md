@@ -1,5 +1,5 @@
 ---
-title: Native games and packaging
+title: Native games and SDK status
 description: The isolated native-game boundary, how a native game is provisioned, the validation sequence (BLUFF, Checkers, Spades), and the honest status of the SDK and the .avrgame package format.
 sources:
   - avrana-party:docs/adr/0014-native-games-isolated-lan-games-retired.md
@@ -17,19 +17,19 @@ sources:
 verified: 2026-10-09
 ---
 
-# Native games and packaging
+# Native games and SDK status
 
 An **Avrana-native game** is one written for this platform: browser clients on each phone, an
 authoritative server on the appliance, and Party integration from the start. BLUFF is the first
-in product terms. This page explains the boundary that native games are moving to, how far it
-has got, and why the SDK and the package format have deliberately been left unfrozen.
+in product terms. This page explains the isolated **native game process** boundary that such
+games are moving to, how far it has got, and why the SDK and the package format have deliberately been left unfrozen.
 
 ## The boundary
 
 <span class="avr-badge accepted">Accepted direction</span>
 ([ADR 0014](../decisions/0014-native-games-isolated-lan-games-retired.md))
 
-Each native game is an **independent platform consumer**:
+Each native game process is an **independent platform consumer**:
 
 - **Its own process**, with its own service identity, secrets and state directory. A game reads
   no other game's state or keys. "Built-in" describes how much the game is trusted. It is not
@@ -140,7 +140,7 @@ accepted:
 The archive format itself, dependency handling, the developer workflow and any community
 repository are explicitly deferred until after the validation sequence above.
 
-## If you want to build a native game today
+## If you want to build a game today
 
-[Starting a game](../developers/starting-a-game.md) gives practical guidance on what you can do
+[Building or porting a game today](../developers/starting-a-game.md) gives practical guidance on what you can do
 now, and what to wait for.

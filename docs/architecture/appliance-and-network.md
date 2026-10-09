@@ -42,7 +42,7 @@ removed on 2026-09-24, a baseline of 3 hours 26 minutes covering idle, CPU and r
 under-voltage at all. The engineering notes are careful about the limits of that result. It
 does not cover many active phones, long play sessions, the emulator streaming to several
 viewers, cold boots or battery power. Those measurements belong to the
-[appliance readiness](../status/index.md#planned-development) work.
+[appliance readiness](../project/roadmap.md#appliance-readiness) work.
 
 ## Joining the Wi-Fi
 
@@ -96,7 +96,8 @@ All traffic from phones goes through **nginx**. On port 443 (`party.avrana.net`)
 |---|---|---|
 | `/party/` | The Party Home web app: static files from a versioned release directory | <span class="avr-badge deployed">Deployed</span> |
 | `/party/api/` | Party Core on `127.0.0.1:8191`, including 25-second long polls | <span class="avr-badge deployed">Deployed</span> |
-| `/games/bluff/`, `/games/expo/` | The games server (the LAN Games fork) on `127.0.0.1:8096` | <span class="avr-badge deployed">Deployed</span> |
+| `/games/bluff/` | The games server (the LAN Games fork) on `127.0.0.1:8096` | <span class="avr-badge deployed">Deployed</span> |
+| `/games/expo/` | The same games server, for EXPO | <span class="avr-badge source">In source</span>: EXPO's Party contract entered source after the verified deployment, and the appliance had no EXPO session key on 2026-10-03 |
 | `/arcade/` | The arcade stream service on `127.0.0.1:8097` | <span class="avr-badge deployed">Deployed</span> |
 | `/party/api/origin.json` | Answered by nginx itself, so a page can test whether the HTTPS Party is reachable | <span class="avr-badge deployed">Deployed</span> |
 | `/games/<slug>/` | A native game's own Unix socket, `/run/avrana-games/<slug>.sock` | <span class="avr-badge source">In source</span> |
@@ -192,5 +193,12 @@ appliance. The current tooling is:
   describe how to build a fresh appliance. That procedure has been rehearsed only on a
   simulated host.
 
-See the [system map](../project/system-map.md) for the verified deployed topology, and
+See [Deployed system and history](../project/system-map.md) for the verified deployed topology, and
 [Deployment](../project/deployment.md) for how a release reaches the appliance.
+
+## Where to read more
+
+- [Limited Mode](../design/limited-mode.md): the full design for keeping the Party alive when
+  trusted HTTPS fails.
+- [ADR 0012](../decisions/0012-limited-mode-party-survives-https-loss.md): why Full Mode and
+  Limited Mode exist.

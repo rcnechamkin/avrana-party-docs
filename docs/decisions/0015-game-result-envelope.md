@@ -14,7 +14,7 @@ verified: 2026-10-09
 # ADR 0015: Game result envelope v1
 
 !!! abstract "At a glance"
-    **Decided:** 2026-10-03 · **Status:** <span class="avr-badge accepted">Accepted</span>; <span class="avr-badge source">In source</span> in both repositories, not deployed
+    **Decided:** 2026-10-03 · **Status:** Accepted; <span class="avr-badge source">In source</span> in both repositories, not deployed
     When a session ends, a game may attach a small, structured, separately versioned **result**:
     who won, lost or drew, plus a little game-specific data. The Party checks it strictly and
     keeps it in memory. History, stats and privacy are left to a later decision.

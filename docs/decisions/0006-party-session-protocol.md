@@ -157,7 +157,7 @@ PlayStation runtime and the SDK.
   than `/party/`; see [Known discrepancies](../status/discrepancies.md). Party state is still in
   memory, and only hashed device tokens persist.
 
-For a round end to end, see [Running a game session](../architecture/game-sessions.md); see also
+For a round end to end, see [Game sessions](../architecture/game-sessions.md); see also
 [The Party](../architecture/party.md) and
 [Contracts, catalog and grants](../games/contracts-and-catalog.md#the-party-games-contract).
 

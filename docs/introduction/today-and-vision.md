@@ -1,5 +1,5 @@
 ---
-title: Today versus the vision
+title: What exists, and what is planned
 description: What Avrana Party can do now, what it is designed to do, and how to tell the two apart.
 sources:
   - avrana-party:docs/ROADMAP.md
@@ -10,26 +10,17 @@ sources:
 verified: 2026-10-09
 ---
 
-# Today versus the vision
+# What exists, and what is planned
 
-The engineering repositories hold two kinds of writing side by side. Some documents describe
-what the code does. Others describe what the project intends to become, sometimes in detail.
-Both are valuable, but a newcomer can easily mistake a well-written design for a shipped
-feature. This page draws the line for the product as a whole. The
-[project status](../status/index.md) page goes into more detail.
-
-## How maturity is labelled on this site
-
---8<-- "includes/maturity-labels.md"
-
-An ADR is an *Architecture Decision Record*: the project's written record of a decision. See
-[Decision records in brief](../decisions/index.md).
+Avrana Party's engineering documents describe both what the code does and what the project
+intends to become, often in equal detail. This page separates the two for the product as a
+whole. Each item carries a [maturity label](#how-maturity-is-labelled-on-this-site).
 
 ## What exists today
 
-These are the headline capabilities as of October 2026. The last *verified* deployment dates
-from 29 September 2026. Source has moved well ahead of it since then. The
-[project status](../status/index.md) page has the full, dated picture and the evidence behind
+The headline capabilities as of October 2026. The last *verified* deployment dates from
+29 September 2026, and source has moved well ahead of it since.
+[What works today, in detail](../status/index.md) has the dated picture and the evidence behind
 each item.
 
 - <span class="avr-badge deployed">Deployed</span> **Broadcast its own Wi-Fi** and serve the
@@ -42,7 +33,7 @@ each item.
 - <span class="avr-badge deployed">Deployed</span> **Stream an arcade game.** *Gauntlet II*
   runs in an emulator on the appliance, its video is streamed to phones over WebRTC, and the
   phones act as gamepads. The Party starts and stops the emulator.
-- <span class="avr-badge reported">Owner-reported</span> **The console model.** Phones join the
+- <span class="avr-badge source">In source</span> · <span class="avr-badge reported">Owner-reported</span> **The console model.** Phones join the
   Party automatically, the Party has one authoritative location that the host moves, and
   results stay on screen until the host moves on. It is in source and the owner reports it as
   deployed, but there is no dated deployment record and no real-phone verification yet.
@@ -78,6 +69,13 @@ or not yet complete:
   battery runtime, cooling, power-loss recovery and the real number of phones the access
   point can serve.
 
+## How to read the labels {#how-maturity-is-labelled-on-this-site}
+
+--8<-- "includes/maturity-labels.md"
+
+An ADR is an *Architecture Decision Record*: the project's written record of a decision. See
+[Decision records](../decisions/index.md).
+
 ## Why the line is drawn so carefully
 
 The engineering repositories are maintained largely by coding agents directed by the project
@@ -88,4 +86,4 @@ test; a simulation is not a measurement. This site follows the same rules. If it
 something deployed, there is dated evidence behind that. If the evidence is missing, the site
 says so.
 
-Next: the [architecture overview](../architecture/index.md).
+Next: [what works today, in detail](../status/index.md).
