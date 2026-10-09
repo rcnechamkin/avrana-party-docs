@@ -2,7 +2,9 @@ site_name: Avrana Party Documentation
 site_description: >-
   Human-readable documentation for Avrana Party, a portable, local-first
   multiplayer appliance where phones are the screens and the controllers.
-# site_url is set when a publishing target is authorized (see README).
+# Published with GitHub Pages (see README, "Publishing"). Change this if the site moves,
+# for example to a custom domain such as https://docs.avrana.net/.
+site_url: https://rcnechamkin.github.io/avrana-party-docs/
 # The header links to the engineering repository the site explains, not to this one.
 repo_name: avrana-party (engineering)
 repo_url: https://github.com/rcnechamkin/avrana-party
