@@ -41,11 +41,11 @@ four people on four phones finishing a round of BLUFF offline, including a recon
 
 ## What is deployed
 
-| Date | Party | Games | Evidence | Status |
+| Date | Status | Party | Games | Evidence |
 |---|---|---|---|---|
-| 2026-09-29 | `956b968` | `c6d7b52` | Deployment finding, checked from the server side | <span class="avr-badge deployed">Deployed</span>, verified |
-| 2026-10-02 | `a32b7b4` | `0b4e9d2` | Read-only inspection; the Games revision includes the Games side of the console model. It also found a web release from about 2026-09-30, an unrecorded deployment, and its "already deployed" Games revision disagrees with the system map | Observed, not a recorded deployment |
-| By 2026-10-04 | `bb7364c` | `0b4e9d2` (unchanged by the staged script) | Staged for the owner to run; mentioned in the deploy runbook; owner reports the console model as deployed | <span class="avr-badge reported">Owner-reported</span> |
+| 2026-09-29 | <span class="avr-badge deployed">Deployed</span>, verified | `956b968` | `c6d7b52` | Deployment finding, checked from the server side |
+| 2026-10-02 | Observed, not a recorded deployment | `a32b7b4` | `0b4e9d2` | Read-only inspection; the Games revision includes the Games side of the console model. It also found a web release from about 2026-09-30, an unrecorded deployment, and its "already deployed" Games revision disagrees with the system map |
+| By 2026-10-04 | <span class="avr-badge reported">Owner-reported</span> | `bb7364c` | `0b4e9d2` (unchanged by the staged script) | Staged for the owner to run; mentioned in the deploy runbook; owner reports the console model as deployed |
 
 The latest **verified** deployment is the one from 2026-09-29. No dated finding records the
 later result, and capturing the exact deployed revisions is an open task in Linear. Until it is

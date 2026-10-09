@@ -7,8 +7,10 @@
   --md-primary-fg-color: #2d2654;          /* header: deep ink violet */
   --md-primary-fg-color--light: #4a4180;
   --md-primary-fg-color--dark: #1d1838;
-  --md-accent-fg-color: #c77700;           /* links on hover, focus: amber, AA on white */
-  --md-accent-fg-color--transparent: rgba(199, 119, 0, 0.1);
+  --md-accent-fg-color: #a55f00;           /* links on hover, focus: amber, 4.9:1 on white */
+  --md-accent-fg-color--transparent: rgba(165, 95, 0, 0.1);
+  --md-mermaid-node-bg-color: rgba(75, 63, 176, 0.08);
+  --md-mermaid-node-fg-color: #a55f00;
   --md-accent-bg-color: #ffffff;
   --md-accent-bg-color--light: rgba(255, 255, 255, 0.7);
   --md-typeset-a-color: #4b3fb0;           /* body links: readable violet */
@@ -33,6 +35,8 @@
   --md-hue: 252;                           /* Material derives slate surfaces from this */
   --md-accent-fg-color: #ffb547;
   --md-accent-fg-color--transparent: rgba(255, 181, 71, 0.1);
+  --md-mermaid-node-bg-color: rgba(180, 169, 255, 0.12);
+  --md-mermaid-node-fg-color: #ffb547;
   --md-accent-bg-color: #16151c;
   --md-accent-bg-color--light: rgba(22, 21, 28, 0.7);
   --md-typeset-a-color: #b4a9ff;
@@ -89,6 +93,11 @@
   line-height: 1.55;
 }
 
+/* Keep addresses, ports and revisions on one line. */
+.md-typeset table:not([class]) td code {
+  white-space: nowrap;
+}
+
 .md-typeset table:not([class]) th {
   background: var(--avr-surface);
   font-weight: 650;
@@ -101,7 +110,7 @@
   border: 1px solid currentColor;
   border-radius: 1em;
   background: color-mix(in srgb, currentColor 9%, transparent);
-  font-size: 0.7em;
+  font-size: max(0.7em, 0.6rem);
   font-weight: 650;
   line-height: 1.45;
   letter-spacing: 0.02em;
@@ -156,12 +165,15 @@
 }
 
 .md-typeset .grid.cards > ul > li:hover {
-  border-color: var(--md-primary-fg-color--light);
+  border-color: var(--md-typeset-a-color);
 }
 
 @media screen and (max-width: 44.9375em) {
   .md-typeset .avr-hero {
     font-size: 1rem;
+  }
+  .md-typeset .avr-motto {
+    font-size: 0.85rem;
   }
   .md-typeset h2 {
     margin-top: 1.8em;
