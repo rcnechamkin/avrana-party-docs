@@ -17,14 +17,15 @@ verified: 2026-10-09
 
 # Limited Mode
 
-!!! abstract "What this document governs"
-    LIMITED-MODE sets out the mechanisms by which the Party keeps working when a phone cannot
-    reach it over trusted HTTPS, the direction accepted in
-    [ADR 0012](../decisions/0012-limited-mode-party-survives-https-loss.md). The owner accepted
-    the mechanisms, decisions D1 to D6, on 2026-10-03. Of its four rollout steps, the first two
-    (Party Core and the shell) are <span class="avr-badge source">In source</span>; the nginx
-    change and real-phone tests have not happened, so **nothing is deployed**. This page also
-    draws on OFFLINE-TRUST-AND-RECOVERY, a broader and older design-direction document about
+!!! abstract "In short"
+    How the Party is meant to keep working when a phone cannot reach it over trusted HTTPS: the
+    mechanism behind [ADR 0012](../decisions/0012-limited-mode-party-survives-https-loss.md).
+
+    **Where it stands:** the owner accepted the design (decisions D1 to D6 of the engineering
+    document LIMITED-MODE) on 2026-10-03. Of its four rollout steps, the first two (Party Core
+    and the shell) are <span class="avr-badge source">In source</span>; the nginx change and
+    real-phone tests have not happened, so **nothing is deployed**. This page also draws on
+    OFFLINE-TRUST-AND-RECOVERY, a broader and older design-direction document about
     certificates, offline operation and recovery, most of which is unbuilt.
 
 ## Why a Party needs a fallback

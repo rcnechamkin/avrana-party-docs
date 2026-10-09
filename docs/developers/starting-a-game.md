@@ -1,5 +1,5 @@
 ---
-title: Starting a game
+title: Building or porting a game today
 description: What you can realistically do today if you want to develop or port a game for Avrana Party, and what to wait for.
 sources:
   - avrana-party:docs/runbooks/add-a-game.md
@@ -13,7 +13,7 @@ sources:
 verified: 2026-10-09
 ---
 
-# Starting a game
+# Building or porting a game today
 
 The honest answer first: **there is not yet a supported path for an outside developer to build
 and install a new Avrana game.** No SDK exists, and no package format, installer or developer

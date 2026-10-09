@@ -142,5 +142,5 @@ repository are explicitly deferred until after the validation sequence above.
 
 ## If you want to build a native game today
 
-[Starting a game](../developers/starting-a-game.md) gives practical guidance on what you can do
+[Building or porting a game today](../developers/starting-a-game.md) gives practical guidance on what you can do
 now, and what to wait for.

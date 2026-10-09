@@ -137,8 +137,8 @@ curl -s https://party.avrana.net/party/api/status
 
     The endpoint was merged on 2026-10-02. Every build recorded on the appliance predates it, and
     `ops/deploy.sh` has not yet been run there. Until a deployment that includes it is recorded,
-    expect the appliance not to answer this request, and use the
-    [system map](system-map.md) instead.
+    expect the appliance not to answer this request, and use
+    [Deployed system and history](system-map.md) instead.
 
 It reports:
 
@@ -189,7 +189,7 @@ something noteworthy happened.
 
 Deployments before this script were rolled back by hand. The owner rehearsed a full rollback and
 roll-forward of Party Core on 2026-09-29, and every check passed (see
-[the system map](system-map.md#2026-09-29-morning-party-core-v0)).
+[Deployed system and history](system-map.md#2026-09-29-morning-party-core-v0)).
 
 ## Game covers
 

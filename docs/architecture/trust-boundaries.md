@@ -19,9 +19,9 @@ verified: 2026-10-09
 
 # Trust boundaries
 
-Security documentation easily turns into a list of reassurances. The engineering documents for
-Avrana Party are blunter than that. They separate what holds today from what is designed, and
-they list what is explicitly *not* promised. This page follows the same approach.
+What is protected from whom on an Avrana Party appliance today, what is designed but not yet in
+place, and what is explicitly *not* promised. The engineering documents keep those three apart,
+and so does this page.
 
 The threat model is modest. An Avrana Party appliance is a box at a party. The people on its
 Wi-Fi are mostly friends, but anyone with the Wi-Fi password can join. Games are written by the
@@ -154,6 +154,14 @@ result.
 If you are evaluating Avrana Party, treat the appliance today as a **trusted-friends device**.
 The network-facing surface is small and deliberately designed. Inside the box, the separation
 between components is a plan with good groundwork in source, not yet a property of the deployed
-system. The [project status](../status/index.md) page tracks that work. The
+system. [What works today, in detail](../status/index.md) tracks that work. The
 [known discrepancies](../status/discrepancies.md) page records an open question about the device
 cookie's scope while game pages still share the Party's origin.
+
+## Where to read more
+
+- [Browser origins](../design/browser-origins.md): the design for moving game pages to their own
+  origin.
+- [ADR 0013](../decisions/0013-party-and-game-browser-origins.md) and
+  [ADR 0016](../decisions/0016-service-identities-and-local-trust-boundary.md): the decisions on
+  browser origins and service identities.

@@ -1,5 +1,5 @@
 ---
-title: System map
+title: Deployed system and history
 description: What runs on the Avrana appliance, how the deployed build relates to the source code, who the services run as, and a dated history of deployments.
 sources:
   - avrana-party:docs/SYSTEM.md
@@ -14,7 +14,7 @@ sources:
 verified: 2026-10-09
 ---
 
-# System map
+# Deployed system and history
 
 This page describes the appliance as it was last **verified**: which services run on it, which
 ports they use, how the deployed build relates to the code in the repositories, and how it got

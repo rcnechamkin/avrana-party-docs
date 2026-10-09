@@ -15,11 +15,13 @@ verified: 2026-10-09
 
 # Accessibility
 
-!!! abstract "What this document governs"
-    ACCESSIBILITY sets the expectations that the platform and every game must meet on any page a
-    player uses: twelve MUST rules, a few SHOULDs, an honest accessibility block in each game's
-    contract, a proposal for per-player preferences, and how to test. Its status line, dated
-    2026-09-24, says **expectations, partly implemented**. The Party's own pages have automated
+!!! abstract "In short"
+    The rules that the platform and every game must meet on any page a player uses: twelve
+    MUST rules, a few SHOULDs, an honest accessibility block in each game's contract, a proposal
+    for per-player preferences, and how to test.
+
+    **Where it stands:** the engineering document (ACCESSIBILITY, status line dated 2026-09-24)
+    calls itself "expectations, partly implemented". The Party's own pages have automated
     accessibility checks <span class="avr-badge source">In source</span>; the audited fixes for
     BLUFF and the old LAN Games hub were proposed but **not applied**; per-player preferences are
     <span class="avr-badge planned">Planned</span>. Some file locations in the original's status

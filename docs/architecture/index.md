@@ -19,51 +19,81 @@ its own page.
 
 ## The system at a glance
 
-The diagram is simplified. Solid lines are paths with deployment evidence. Dashed lines exist
-only in source.
-
 ```mermaid
 flowchart TB
-  subgraph phones["Phones (any modern browser)"]
-    P1["Party Home<br/>web app"]
-    P2["Game page<br/>(e.g. BLUFF)"]
-    P3["Arcade controller<br/>page"]
-  end
+  PH["Phones<br/>(any modern browser)"]
+  NET["Wi-Fi and local DNS"]
+  NGX["nginx<br/>the one front door"]
+  HOME["Party Home<br/>web app"]
+  CORE["Party Core<br/>who is here, who hosts,<br/>where everyone is"]
+  GAMES["Games server<br/>BLUFF and other titles"]
+  ARC["Arcade<br/>streamed games"]
+  NAT["Native games<br/>one process each"]
 
-  subgraph pi["Avrana Party appliance (Raspberry Pi 4)"]
-    AP["Wi-Fi access point<br/>DHCP + local DNS<br/>10.42.0.1"]
-    NGX["nginx front door<br/>:443 party.avrana.net<br/>:80 probes + legacy HTTP"]
-    CORE["Party Core<br/>127.0.0.1:8191"]
-    GAMES["Games server<br/>(LAN Games fork)<br/>127.0.0.1:8096"]
-    ARC["Arcade<br/>RetroArch + encoder<br/>127.0.0.1:8097 / 8098"]
-    NATIVE["Native game process<br/>unix socket"]
-  end
-
-  phones -- "Wi-Fi" --> AP --> NGX
-  NGX -- "/party/ (static shell)" --> P1
-  NGX -- "/party/api/" --> CORE
-  NGX -- "/games/… (BLUFF, EXPO)" --> GAMES
-  NGX -- "/arcade/" --> ARC
-  NGX -. "/games/&lt;slug&gt;/ (in source)" .-> NATIVE
-  CORE -- "signed launch / end" --> GAMES
-  GAMES -- "signed ended + result" --> CORE
-  CORE -- "signed launch / end" --> ARC
-  CORE -. "signed launch / end (in source)" .-> NATIVE
+  PH --> NET --> NGX
+  NGX --> HOME
+  NGX --> CORE
+  NGX --> GAMES
+  NGX --> ARC
+  NGX -.-> NAT
+  CORE <-- "signed session<br/>messages" --> GAMES
+  CORE <--> ARC
+  CORE <-.-> NAT
 ```
+<p class="avr-caption">Solid lines have deployment evidence; dashed lines exist only in source.</p>
+
+| Component | Runs as | Reached at | Status |
+|---|---|---|---|
+| Wi-Fi access point, DHCP and DNS | NetworkManager on the Pi's own radio | `10.42.0.1` on the Party Wi-Fi | <span class="avr-badge deployed">Deployed</span> |
+| nginx front door | The only application service on the network | `https://party.avrana.net` (port 443), plus port 80 for probes and legacy HTTP | <span class="avr-badge deployed">Deployed</span> |
+| Party Home | Static web app | `/party/` | <span class="avr-badge deployed">Deployed</span> |
+| Party Core | Small Python service | `/party/api/`, forwarded to `127.0.0.1:8191` | <span class="avr-badge deployed">Deployed</span> |
+| Games server (LAN Games fork) | One Python process for every title | `/games/<title>/`, forwarded to `127.0.0.1:8096` | <span class="avr-badge deployed">Deployed</span> · <span class="avr-badge retiring">Retiring</span> |
+| Arcade | RetroArch, a video encoder and a control service | `/arcade/`, forwarded to `127.0.0.1:8097`; control on `8098`, never exposed | <span class="avr-badge deployed">Deployed</span> |
+| Native game | One process and one Unix socket per game | `/games/<slug>/` | <span class="avr-badge source">In source</span> |
 
 Some things the diagram makes visible:
 
 - **There is one front door.** By design, phones only talk to nginx on the appliance. In
   source, every service behind it listens only on loopback (`127.0.0.1`) or on a Unix socket,
-  so it cannot be reached from the network. The appliance has not caught up yet: on
-  2026-10-03 its games server was still listening on all interfaces, because that fix had
-  been merged but not deployed.
+  so it cannot be reached from the network. The deployed appliance has not fully caught up;
+  [Trust boundaries](trust-boundaries.md) has the details.
 - **Party Core is not in the gameplay path.** Game traffic, including WebSockets, goes from the
   phone through nginx to the game server. Party Core handles who is in the Party and the
   lifecycle of a game session. It does not relay moves.
 - **The Party talks to games through a signed protocol.** Launching, ending and reporting
   results are small signed messages exchanged over local connections. They are described on
-  [Running a game session](game-sessions.md).
+  [Game sessions](game-sessions.md).
+
+## How the architecture got here
+
+The architecture makes more sense with its history. In September 2026 the appliance ran
+several independent systems:
+
+1. A fork of **LAN Games**, an MIT-licensed self-hosted game hub with roughly thirty browser
+   party games. Its upstream project was retired that month. The fork gave the project a working
+   library and a chat for very little effort, and it is where BLUFF was built.
+2. An **arcade** stream for *Gauntlet II*.
+3. An experimental **PlayStation** stream.
+
+Each of these had its own notion of a player. LAN Games identified a player by a token that the
+browser generated for itself, which served at once as device, person, seat and reconnect
+credential. The arcade had no identity at all: the first free controller slot went to whoever
+connected.
+
+The [party-platform decision](../decisions/0002-party-platform.md) replaced that with one Party layered over every game.
+Party Core arrived as a small separate service. A signed session protocol bridged it to the
+LAN Games fork, so that BLUFF could be played as a Party round. Later decisions made the host
+authoritative over navigation, gave the Party a single location and made the arcade a
+Party-launched provider.
+
+At the start of October 2026 an architecture review concluded that the LAN Games fork had
+become the de facto platform. It was one process holding every game's keys, and it relied on
+a token any browser could forge. Three decisions followed. The LAN Games runtime is retiring.
+Each native game becomes an isolated process with its own identity. Game pages move to a
+browser origin separate from the Party's. Much of the groundwork for those decisions is now in
+source; very little of it is deployed. That gap between source and appliance is the main thing
+to keep in mind when reading the rest of this section.
 
 ## The layers of responsibility
 
@@ -95,7 +125,7 @@ layer meets that rule.
     Device identity, membership and presence, the host and host succession, the Party's single
     location and the setup flow.
 
--   [**Running a game session**](game-sessions.md)
+-   [**Game sessions**](game-sessions.md)
 
     Launch, tickets, admission, reconnect, end and results, with sequence diagrams.
 
@@ -103,38 +133,12 @@ layer meets that rule.
 
     What is protected from whom today, what is not, and the accepted plan to tighten it.
 
--   [**Decision records in brief**](../decisions/index.md)
+-   [**Decision records**](../decisions/index.md)
 
     All sixteen ADRs in plain language, with their real status.
 
+-   [**Design documents**](../design/index.md)
+
+    The detailed designs behind these pages, and which one answers which question.
+
 </div>
-
-## How the architecture got here
-
-The architecture makes more sense with its history. In September 2026 the appliance ran
-several independent systems:
-
-1. A fork of **LAN Games**, an MIT-licensed self-hosted game hub with roughly thirty browser
-   party games. Its upstream project was retired that month. The fork gave the project a working
-   library and a chat for very little effort, and it is where BLUFF was built.
-2. An **arcade** stream for *Gauntlet II*.
-3. An experimental **PlayStation** stream.
-
-Each of these had its own notion of a player. LAN Games identified a player by a token that the
-browser generated for itself, which served at once as device, person, seat and reconnect
-credential. The arcade had no identity at all: the first free controller slot went to whoever
-connected.
-
-The [party-platform decision](../decisions/index.md) replaced that with one Party layered over every game.
-Party Core arrived as a small separate service. A signed session protocol bridged it to the
-LAN Games fork, so that BLUFF could be played as a Party round. Later decisions made the host
-authoritative over navigation, gave the Party a single location and made the arcade a
-Party-launched provider.
-
-At the start of October 2026 an architecture review concluded that the LAN Games fork had
-become the de facto platform. It was one process holding every game's keys, and it relied on
-a token any browser could forge. Three decisions followed. The LAN Games runtime is retiring.
-Each native game becomes an isolated process with its own identity. Game pages move to a
-browser origin separate from the Party's. Much of the groundwork for those decisions is now in
-source; very little of it is deployed. That gap between source and appliance is the main thing
-to keep in mind when reading the rest of this section.

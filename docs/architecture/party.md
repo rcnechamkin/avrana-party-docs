@@ -71,13 +71,12 @@ for later. It will have to exist before the Party stores any history about a per
 
 ## Membership and presence
 
-<span class="avr-badge reported">Owner-reported</span> The console model
-([ADR 0011](../decisions/0011-party-console-model.md))
-made presence automatic. A phone with a name and avatar **is in the Party**: Party Home and
-every game page join on their own when they load. There is no Join button and no Leave button
-in normal use. The last verified deployment still had an explicit Join step. The console model
-is in source, and the owner reports it as deployed since then. Neither a dated deployment
-record nor a real-phone check exists yet.
+<span class="avr-badge source">In source</span> · <span class="avr-badge reported">Owner-reported</span>
+as deployed. The console model ([ADR 0011](../decisions/0011-party-console-model.md)) made
+presence automatic. A phone with a name and avatar **is in the Party**: Party Home and every
+game page join on their own when they load. There is no Join button and no Leave button in
+normal use. The last verified deployment still had a Join button
+([what is deployed](../status/index.md#what-is-deployed)).
 
 Presence is computed, not declared. A member counts as **here** if Party Core has heard from
 that phone in the last 45 seconds, and as **away** otherwise. While a round is on, a member can
@@ -177,7 +176,7 @@ an accidental power cut loses who was hosting.
 
 ## Where to read more
 
-- [The Party platform design](../design/party-platform.md):
+- [Party platform design](../design/party-platform.md):
   the full platform design, including parts that are still proposals.
 - [Party lifecycle](../design/party-lifecycle.md):
   the lifecycle rules in detail.

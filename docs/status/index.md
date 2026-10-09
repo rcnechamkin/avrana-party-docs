@@ -24,7 +24,7 @@ verified: 2026-10-09
     This page is a dated summary. It goes out of date quickly. The live sources are
     [Linear](https://linear.app/avranakern) for work in progress, the
     [roadmap](../project/roadmap.md) for
-    direction, the [system map](../project/system-map.md)
+    direction, and [Deployed system and history](../project/system-map.md)
     for verified deployment. Once a build that includes it is deployed, `/party/api/status` on
     the appliance will report what is running. Every recorded build predates that endpoint (see
     [Deployment](../project/deployment.md#the-status-endpoint)).
@@ -41,16 +41,17 @@ four people on four phones finishing a round of BLUFF offline, including a recon
 
 ## What is deployed
 
-The most recent deployment that the system map records as **verified** is from 2026-09-29:
-Party `956b968`, Games `c6d7b52`, checked from the server side. Later evidence is partial and
-does not fully agree. On 2026-10-02 a read-only inspection recorded Party `a32b7b4` and Games
-`0b4e9d2`; that Games revision includes the Games side of the console model. A deployment of
-Party `bb7364c` was then staged for the owner to run. The deploy runbook mentions the appliance
-at `bb7364c` on 2026-10-04, and the owner reports the console model as deployed. No dated
-finding records the result, and capturing the exact deployed revisions is an open task in
-Linear. Until it is done, treat anything after 2026-09-29 as **owner-reported, not verified**.
-The [known discrepancies](discrepancies.md#2-the-system-map-predates-most-october-work) page
-sets out the conflicting records.
+| Date | Party | Games | Evidence | Status |
+|---|---|---|---|---|
+| 2026-09-29 | `956b968` | `c6d7b52` | Deployment finding, checked from the server side | <span class="avr-badge deployed">Deployed</span>, verified |
+| 2026-10-02 | `a32b7b4` | `0b4e9d2` | Read-only inspection; the Games revision includes the Games side of the console model | Observed, not a recorded deployment |
+| 2026-10-04 (approx.) | `bb7364c` | not recorded | Staged for the owner to run; mentioned in the deploy runbook; owner reports the console model as deployed | <span class="avr-badge reported">Owner-reported</span> |
+
+The latest **verified** deployment is the one from 2026-09-29. No dated finding records the
+later result, and capturing the exact deployed revisions is an open task in Linear. Until it is
+done, treat anything after 2026-09-29 as owner-reported, not verified. The
+[known discrepancies](discrepancies.md#2-the-system-map-predates-most-october-work) page sets out
+the conflicting records.
 
 None of the October 2026 platform work (native-game machinery, origin separation, Limited Mode,
 service users, the new deployment script) has been recorded as deployed. The new deployment
@@ -111,42 +112,10 @@ These are stated in the engineering documents themselves:
 
 ## Planned development
 
-The roadmap sets an **order of outcomes** for the platform boundary, each depending on the ones
-before it. Their state as of the snapshot:
-
-| # | Outcome | State |
-|---|---|---|
-| 1 | Decision records and design documents agree with the October decisions | Done in documents |
-| 2 | Single-use session tickets | <span class="avr-badge source">In source</span> |
-| 3 | Party/game browser origin boundary | <span class="avr-badge source">In source</span>, not configured |
-| 4 | Service and process isolation | <span class="avr-badge source">In source</span>, migration not recorded |
-| 5 | One canonical per-game manifest | <span class="avr-badge source">In source</span> (game contracts) |
-| 6 | Generic registry, routing and provisioning | <span class="avr-badge source">In source</span> |
-| 7 | Versioned results from games | <span class="avr-badge source">In source</span>; durable history undecided |
-| 8 | Retire the LAN Games operational dependency | In source, nginx no longer routes the hub or other titles; the Games server can switch off standalone admission but still allows it by default; BLUFF, EXPO and chat still depend on it |
-| 9 | Checkers platform proof | In review |
-| 10 | Spades pressure test | Readiness work only |
-| 11 | Then freeze and build the SDK, package format and provider abstractions | <span class="avr-badge planned">Planned</span> |
-| 12 | Community, package signing, productization | <span class="avr-badge planned">Planned</span> |
-
-Alongside that sequence, the roadmap keeps three other tracks:
-
-- **The party-night milestone**: a coherent evening on real phones, including sleeping,
-  reloading and reopening phones and truly offline play. This must not regress while the
-  platform work proceeds.
-- **Emulation and Personal Viewports research**: prove readability and preference against a
-  full shared frame on real phones before any automation.
-- **Appliance readiness**: boot-to-joinable time, power-loss recovery, battery runtime,
-  cooling, phone battery drain, the access point's real client ceiling, noisy-venue usability,
-  maintainable certificate renewal and release rollback.
-
-Longer term, the roadmap describes profiles and local history, social features built on Party
-Chat, progression with honest provenance, more native games that use each phone as a private
-surface, open installation with appliance-owned grants, and optional TV or companion surfaces.
-None of these is scheduled.
-
-## What is explicitly not planned
-
-The roadmap rules these out: a universal gameplay engine, cloud accounts, a proprietary game
-store, a multi-party appliance, simultaneous activities in the standard mode, and any commitment
-to spreading one display across several phones.
+The roadmap sets an order of twelve outcomes for the platform boundary, from single-use tickets
+through isolation, a Checkers proof and a Spades pressure test, and only then an SDK. Steps 2 to
+7 are <span class="avr-badge source">In source</span>, Checkers is in review, and nothing in the
+sequence is deployed. Alongside it run the party-night milestone, emulation research and
+appliance readiness (boot time, power-loss recovery, battery, cooling, the access point's real
+client ceiling). The [roadmap](../project/roadmap.md) has the full sequence with each step's
+state, the parallel tracks, and what is explicitly not planned.

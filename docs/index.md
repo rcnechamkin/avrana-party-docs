@@ -3,10 +3,12 @@ title: Avrana Party
 description: A portable, local-first multiplayer appliance. Phones are the screens and the controllers; the Pi is the console.
 hide:
   - navigation
+  - toc
 sources:
   - avrana-party:README.md
   - avrana-party:docs/ROADMAP.md
   - avrana-party:docs/SYSTEM.md
+  - avrana-party:docs/adr/0011-party-console-model.md
 verified: 2026-10-09
 ---
 
@@ -15,108 +17,93 @@ verified: 2026-10-09
 <p class="avr-hero">
 Avrana Party turns a Raspberry Pi into a self-contained multiplayer game system. Players join
 its Wi-Fi, open a browser on their phones and play together. Nobody installs an app, signs up
-for an account or needs a television. The appliance does not need the internet.
+for an account or needs a television, and the box does not need the internet.
 </p>
 
-The project's motto is **"The game may change; the party does not."** One Party (the people in
-the room, who is hosting, and where everyone should be) lasts across many games. Games come and
-go inside it. Most of the architecture follows from taking that sentence seriously.
+<p class="avr-motto">"The game may change; the party does not."</p>
 
-This site explains the project to engineers who have never seen it. It covers what Avrana Party
-is, how its parts fit together, how games plug in, how mature each piece really is and how to
-start contributing. It is a guided tour, not the specification. Every page links to the
-canonical documents and code in the engineering repositories, and those remain the authority.
+That motto is the design. One **Party** (the people in the room, who is hosting and where
+everyone should be) lasts all evening. Games come and go inside it, and every phone follows the
+Party from one to the next.
 
-!!! note "Active development"
+## A party night
 
-    Avrana Party is a working prototype that one person is developing quickly, with help from
-    coding agents. Some parts run on the physical appliance today. Some exist only as merged
-    source that has not been deployed. Others are accepted designs that are not built yet. This
-    documentation marks each claim with a [maturity label](about/this-documentation.md#maturity-labels)
-    such as <span class="avr-badge deployed">Deployed</span>, <span class="avr-badge source">In source</span>
-    or <span class="avr-badge accepted">Accepted direction</span>, and the
-    [project status](status/index.md) page collects them in one place.
+```mermaid
+flowchart TB
+  A["Switch on the box"] --> B["Phones join the<br/>Avrana Party Wi-Fi"]
+  B --> C["Open party.avrana.net<br/>in the browser"]
+  C --> D["Pick a name and avatar:<br/>you're in the Party"]
+  D --> E["The host picks a game"]
+  E --> F["Each phone chooses<br/>Play or Watch"]
+  F --> G["The round plays out,<br/>each phone showing only<br/>what its player may see"]
+  G --> H["Results stay up until<br/>the host moves on"]
+  H -- "Play again" --> F
+  H -- "Party Home" --> E
+```
 
-## A party night, in seven steps
+The first phone in becomes the **host**. If the host's phone goes away, the role passes on
+automatically. Every step is implemented in source and tested with four simulated phones. The
+deployed build has an older version of joining, setup and results.
+[What Avrana Party is](introduction/index.md#a-party-night-step-by-step) walks through each
+step.
 
-The product is built around the flow below. Every step is implemented in source and exercised
-by automated tests that simulate four phones in a browser. The last *verified* deployment
-(29 September 2026) has an older version of steps 4 and 5. A newer deployment is
-[owner-reported but not yet recorded](status/index.md#what-is-deployed). The project's next
-evidence gate is running the whole loop on four real phones, offline.
+## What works today
 
-1. Someone switches on the appliance.
-2. Everyone joins the **Avrana Party** Wi-Fi network.
-3. Everyone opens `https://party.avrana.net/party/`. That address only resolves on the Party's
-   own network and is not a public website.
-4. Each phone picks a display name and an avatar and is in the Party automatically. The first
-   person in becomes the **host**.
-5. The host picks a game. Every phone moves to the game's setup screen, where each person
-   chooses to **play** or **watch**.
-6. The round plays out across the phones. Each player sees only what they are allowed to see.
-7. When the round ends, the results stay up until the host takes everyone back to Party Home
-   or starts another round.
+Avrana Party is a working prototype on one appliance, developed quickly by its owner with coding
+agents. This site labels every capability by how far it has really got:
 
-## Where to start
+- <span class="avr-badge deployed">Deployed</span> The Party itself, BLUFF (a hidden-role card
+  game) with Play or Watch, and an arcade game streamed to phones, all on the appliance and
+  checked from the server side.
+- <span class="avr-badge source">In source</span> A console-style Party model, a redesigned
+  interface and the groundwork for isolated native games. These are merged and tested, but not
+  verified as deployed.
+- <span class="avr-badge accepted">Accepted direction</span> A degraded mode for when trusted
+  HTTPS fails, separate browser origins for games, and separate service identities.
+
+The next milestone is evidence rather than features: four people on four real phones finishing
+a round offline. [What works today](status/index.md) has the full picture.
+
+## Choose your path
 
 <div class="grid cards" markdown>
 
--   **New to the project?**
+-   :material-compass-outline: **New to Avrana Party**
 
     ---
 
-    Start with [What Avrana Party is](introduction/index.md), then
-    [why it is built around phones](introduction/phone-first.md).
+    What it is, why it insists on phones alone, and what is real today.
 
--   **Want the system design?**
+    [What Avrana Party is](introduction/index.md) ·
+    [Why phones only](introduction/phone-first.md)
 
-    ---
-
-    The [architecture overview](architecture/index.md) has the main diagram and links to
-    each subsystem.
-
--   **Why is it built this way?**
+-   :material-sitemap-outline: **Understanding the system**
 
     ---
 
-    [Decision records in brief](decisions/index.md) summarizes every architectural
-    decision, with its reasoning and real status.
+    The components, their boundaries and the reasoning behind them.
 
--   **Thinking about games?**
+    [Architecture overview](architecture/index.md) ·
+    [The Party](architecture/party.md)
 
-    ---
-
-    [How games integrate](games/index.md) explains the Party ↔ Games boundary and the
-    execution models.
-
--   **Ready to contribute?**
+-   :material-gamepad-variant-outline: **Thinking about a game**
 
     ---
 
-    Read [Developers](developers/index.md) for the repository map, local setup and the
-    contribution workflow.
+    How games plug in, the working examples, and what the unfinished SDK means for you.
 
--   **Need to know what actually works?**
-
-    ---
-
-    [Project status](status/index.md) separates what is demonstrated, in progress and
-    planned.
-
--   **Looking for a term?**
-
-    ---
-
-    The [glossary](about/glossary.md) defines Party, Member, Host, Participant, ticket,
-    Full Mode and the rest.
+    [How games integrate](games/index.md) ·
+    [Building or porting a game today](developers/starting-a-game.md)
 
 </div>
 
-## What this site is not
+Going further: [Developers](developers/index.md) covers setup and contributing,
+[Reference](reference/index.md) holds every decision record and design document, and
+[Project](project/roadmap.md) has the roadmap and deployment history.
 
-This site does not grant permission to deploy, change a contract or act on a roadmap item. It
-does not replace the [Architecture Decision Records](decisions/index.md),
-the [Party ↔ Games contract](games/contracts-and-catalog.md#the-party-games-contract)
-or [Linear](https://linear.app/avranakern), where live work is tracked. When this site and the
-engineering repositories disagree, the repositories are right and this site has a bug.
-[About this documentation](about/this-documentation.md) explains how the two are kept in step.
+!!! info "This site explains; the engineering repositories decide"
+
+    This is a guided tour, not the specification. Every page ends with links to the canonical
+    documents it explains. When this site and the engineering repositories disagree, the
+    repositories are right. Nothing here grants permission to deploy or change a contract.
+    [About this documentation](about/this-documentation.md) explains how the two stay in step.

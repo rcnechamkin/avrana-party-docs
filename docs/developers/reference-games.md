@@ -126,6 +126,6 @@ itself, the way the stand-in does.
 
 ## Where to go next
 
-- [Starting a game](starting-a-game.md): what you can realistically build today.
-- [Running a game session](../architecture/game-sessions.md): the protocol both games speak.
+- [Building or porting a game today](starting-a-game.md): what you can realistically build today.
+- [Game sessions](../architecture/game-sessions.md): the protocol both games speak.
 - [Designing for phones](../games/designing-for-phones.md): the design checklist BLUFF follows.

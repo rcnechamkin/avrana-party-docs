@@ -17,6 +17,39 @@ A game in Avrana Party is a guest of the Party. The platform provides the people
 the navigation and the lifecycle. The game provides the rules and the experience. This section
 explains where that line runs and what a game has to do to sit on the right side of it.
 
+!!! note "There is no SDK yet"
+
+    <span class="avr-badge planned">Planned</span> No game SDK, package format or installer
+    exists, and no outside game has been integrated. The working examples are the project's own:
+    **BLUFF** and **EXPO** (browser games whose server runs on the appliance), the **Gauntlet II**
+    arcade stream, and a test-only **stand-in** for the isolated native-game path.
+    [Building or porting a game today](../developers/starting-a-game.md) says what is realistic
+    now, and [The reference games, explained](../developers/reference-games.md) walks through
+    BLUFF and the stand-in.
+
+## Who owns what
+
+```mermaid
+flowchart LR
+  subgraph PARTY["The Party (platform)"]
+    direction TB
+    P1["Who is here,<br/>who hosts"]
+    P2["Where every<br/>phone should be"]
+    P3["Catalog, setup,<br/>Play or Watch"]
+    P4["The record<br/>of results"]
+  end
+  subgraph GAME["A game"]
+    direction TB
+    G1["Rules and<br/>game state"]
+    G2["Screens on<br/>each phone"]
+    G3["Private views<br/>per player"]
+    G4["Deciding<br/>the outcome"]
+  end
+  PARTY -- "launch, end,<br/>single-use tickets" --> GAME
+  GAME -- "ended,<br/>with a result" --> PARTY
+```
+<p class="avr-caption">The game never learns a phone's long-term identity: only a per-session participant id.</p>
+
 ## The integration points
 
 A Party-integrated game touches the platform in a small number of well-defined places:
@@ -35,9 +68,11 @@ These map onto the concrete mechanisms on the following pages:
 - [Execution models](execution-models.md): the different kinds of game the appliance can run.
 - [Contracts, catalog and grants](contracts-and-catalog.md): the declarations that tie games to
   the Party, and the CI that keeps them honest.
-- [Native games and packaging](native-games.md): the isolated native-game boundary, and the
+- [Native games and SDK status](native-games.md): the isolated native-game boundary, and the
   status of the SDK and the `.avrgame` package.
 - [Designing for phones](designing-for-phones.md): what makes a good Avrana-native game.
+- [Building or porting a game today](../developers/starting-a-game.md) and
+  [The reference games, explained](../developers/reference-games.md): the practical side.
 
 ## What a game must not do
 
@@ -81,7 +116,6 @@ internally:
 
 ```mermaid
 stateDiagram-v2
-  direction LR
   [*] --> launching: Party sends launch
   launching --> active: game accepts
   launching --> ended: no answer in 60 s<br/>(launch_failed)
@@ -96,4 +130,4 @@ Home hides its own chrome entirely, apart from the host's controls, which appear
 game's interface. When a round completes, the game's own results screen stays up until the
 host moves on. The game then receives `end` and releases the room.
 
-[Running a game session](../architecture/game-sessions.md) has the full protocol view.
+[Game sessions](../architecture/game-sessions.md) has the full protocol view.

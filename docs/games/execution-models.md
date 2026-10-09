@@ -26,14 +26,35 @@ the same Party contract, so that the Party flow is identical whatever runs under
 
 | Model | Example | Status |
 |---|---|---|
-| Browser game inside the LAN Games fork | BLUFF, EXPO | <span class="avr-badge deployed">Deployed</span> · <span class="avr-badge retiring">Retiring</span> |
-| Isolated native game process | Stand-in test game; Checkers next | <span class="avr-badge source">In source</span>, no product game yet |
+| Isolated native game process (the target) | Stand-in test game; Checkers next | <span class="avr-badge source">In source</span>, no product game yet |
+| Browser game inside the LAN Games fork (today) | BLUFF, EXPO | <span class="avr-badge deployed">Deployed</span> · <span class="avr-badge retiring">Retiring</span> |
 | Streamed emulation (shared picture) | *Gauntlet II* | <span class="avr-badge deployed">Deployed</span> |
 | Emulation profiles for PlayStation titles | *Bomberman*, *Worms* | <span class="avr-badge experimental">Experimental</span> |
 | Personal Viewports | Per-player crops of a split-screen game | <span class="avr-badge experimental">Experimental</span> |
 | App-native or TV-rendered games | — | <span class="avr-badge planned">Planned</span> as concepts only |
 
-## The LAN Games fork
+## Isolated native game processes: the target {#isolated-native-game-processes}
+
+<span class="avr-badge source">In source</span> · not deployed · no product game yet
+
+This is the model every new Avrana-native game is meant to use. Each game is **its own process**, run
+from a shared systemd unit template (`avrana-game@<slug>`) with its own dynamically allocated
+Unix user. It receives its own signing key from systemd and has its own state directory. It
+serves HTTP and WebSockets on its own Unix socket. A generic nginx rule routes
+`/games/<slug>/` to that socket. Party Core finds the game through a registry directory that it
+reloads without restarting. A single provisioning command creates the key, the registry entry
+and the unit configuration from the appliance's grant for that game.
+
+The machinery is in the Party repository and has been exercised end to end on a CI runner with
+real systemd, using a **test-only stand-in game**. The stand-in's own description says it must
+never be installed on a product appliance. No product game uses this path yet, and the
+provisioning runbook is labelled as a proposed procedure that has not been run on the
+appliance. **Checkers** is being built as the first real game on this boundary, and is in
+review as of October 2026. [Native games and SDK status](native-games.md) explains the plan in detail.
+
+Today's games still run the older way, described next.
+
+## The LAN Games fork: where today's games run {#the-lan-games-fork}
 
 <span class="avr-badge deployed">Deployed</span> · <span class="avr-badge retiring">Retiring</span>
 
@@ -52,35 +73,16 @@ In October 2026 the project decided
 ([ADR 0014](../decisions/0014-native-games-isolated-lan-games-retired.md))
 that this runtime must not become the platform by default. One process held every game and
 every game's keys. Its standalone mode trusted a token any browser could forge. Game-specific
-logic had crept into its shared core. So the fork is now **legacy and donor code**:
+logic had crept into its shared core. So the fork is now **legacy and donor code**, and the
+move away from it is part-way through:
 
-- In the Party repository's source, nginx routes only BLUFF and EXPO to the fork and no longer
-  serves the hub page or the other titles. The fork itself still has its hub and still admits
-  standalone players by default. It now has a switch that turns standalone admission off, which
-  the owner has not yet flipped.
-- New native games must not be built as LAN Games modules.
-- The other titles remain as reference material for possible future "Classics" adaptations
-  onto the native boundary.
-- BLUFF still runs inside the fork, and will until it moves.
-
-## Isolated native game processes
-
-<span class="avr-badge source">In source</span> · not deployed · no product game yet
-
-This is the target model for every Avrana-native game. Each game is **its own process**, run
-from a shared systemd unit template (`avrana-game@<slug>`) with its own dynamically allocated
-Unix user. It receives its own signing key from systemd and has its own state directory. It
-serves HTTP and WebSockets on its own Unix socket. A generic nginx rule routes
-`/games/<slug>/` to that socket. Party Core finds the game through a registry directory that it
-reloads without restarting. A single provisioning command creates the key, the registry entry
-and the unit configuration from the appliance's grant for that game.
-
-The machinery is in the Party repository and has been exercised end to end on a CI runner with
-real systemd, using a **test-only stand-in game**. The stand-in's own description says it must
-never be installed on a product appliance. No product game uses this path yet, and the
-provisioning runbook is labelled as a proposed procedure that has not been run on the
-appliance. **Checkers** is being built as the first real game on this boundary, and is in
-review as of October 2026. The [native games page](native-games.md) explains the plan in detail.
+| | Where it stands in source |
+|---|---|
+| **BLUFF and EXPO** | Still run inside the fork, and will until they move to the native boundary |
+| **Routing** | The Party's nginx sends only BLUFF and EXPO to the fork; the hub page and the other titles are no longer served |
+| **The hub and standalone play** | Still present inside the fork, which still admits standalone players by default. A switch to turn that off exists; the owner has not flipped it |
+| **New games** | Must not be built as LAN Games modules |
+| **The other titles** | Kept as reference material for possible future "Classics" adaptations onto the native boundary |
 
 ## Streamed emulation: the arcade
 

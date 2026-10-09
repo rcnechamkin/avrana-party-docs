@@ -17,14 +17,17 @@ verified: 2026-10-09
 
 # The game UX contract
 
-!!! abstract "What this document governs"
-    GAME-UX-CONTRACT answers one question: **where the line runs between Avrana and a game on a
-    player's phone, and which behaviours are the same in every game.** It covers the phases of
-    a round, the pre-round briefing, rules access, how unavailable actions are explained, shared
-    interaction floors, system sound and art slots. It was written for the shared-UX issue (AVR-56) on
-    2026-10-04 and updated with owner decisions of 2026-10-05. **No part of it has been
-    validated on real phones**, and the first four-person offline BLUFF playtest on real phones that it depends on (AVR-27)
-    has not happened. It changes no machine contract. Many of its rules are still proposals.
+!!! abstract "In short"
+    **Where the line runs between Avrana and a game on a player's phone, and which behaviours
+    are the same in every game:** the phases of a round, the pre-round briefing, rules access,
+    how unavailable actions are explained, shared interaction floors, system sound and art
+    slots.
+
+    **Where it stands:** the engineering document (GAME-UX-CONTRACT) was written for the
+    shared-UX issue (AVR-56) on 2026-10-04 and updated with owner decisions of 2026-10-05. **No
+    part of it has been validated on real phones**, and the first four-person offline BLUFF
+    playtest on real phones that it depends on (AVR-27) has not happened. It changes no machine
+    contract. Many of its rules are still proposals.
 
 ## How to read the labels
 

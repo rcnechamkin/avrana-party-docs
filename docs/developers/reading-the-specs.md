@@ -1,5 +1,5 @@
 ---
-title: Reading the specifications
+title: Navigating the engineering docs
 description: How the engineering documentation is organized, which source answers which question, how to read document status, and how evidence is graded.
 sources:
   - avrana-party:AGENTS.md
@@ -12,7 +12,7 @@ sources:
 verified: 2026-10-09
 ---
 
-# Reading the specifications
+# Navigating the engineering docs
 
 The Party repository's `docs/` directory holds a large body of written engineering knowledge:
 ADRs, design documents, runbooks, dated findings and several long direction documents. It is written mainly for coding agents and the engineer
@@ -29,7 +29,7 @@ its own source:
 | What does the code do? | The code and tests on `main` of each repository |
 | What is the system meant to be? | Canonical documents and accepted ADRs |
 | What should change next, and how will we know it is done? | The Linear issue |
-| What is running on the appliance? | `/party/api/status` and the deployment manifest, once deployed (every recorded build predates them); until then the [system map](../project/system-map.md) summarizes verified state |
+| What is running on the appliance? | `/party/api/status` and the deployment manifest, once deployed (every recorded build predates them); until then [Deployed system and history](../project/system-map.md) summarizes verified state |
 | How do the Party and the Games server talk? | The [Party ↔ Games contract](../games/contracts-and-catalog.md#the-party-games-contract) and its JSON declarations |
 | What does a test prove? | The testing guide (plain-language edition: [Testing](testing.md)) |
 | Where is the project going? | The [roadmap](../project/roadmap.md), which is never a task queue |
@@ -46,7 +46,7 @@ things.
 | **Design documents** | `docs/design/` | Contracts and detailed designs. Many mix implemented, accepted and proposed parts, and label each | [Design](../design/party-platform.md) section, plus the [game platform](../games/index.md) pages |
 | **Direction documents** | `docs/GAME-PLATFORM-ARCHITECTURE.md`, `docs/OFFLINE-TRUST-AND-RECOVERY.md`, `docs/PERSONAL-VIEWPORT-AND-EMULATION.md`, `docs/AVRANA-EXPERIENCE.md` | Broad product and architecture direction. Mostly conceptual, and they say so | [Today versus the vision](../introduction/today-and-vision.md), [execution models](../games/execution-models.md), [Limited Mode](../design/limited-mode.md) |
 | **Runbooks** | `docs/runbooks/` | Procedures. Some are labelled "proposed, never run". **A command in a runbook is not permission to run it** | [Deployment](../project/deployment.md), [starting a game](starting-a-game.md) |
-| **Findings** | `docs/findings/YYYY-MM-DD-*.md` | Dated observations and measurements: evidence of what was true on that day, never instructions | [System map](../project/system-map.md#deployment-history) |
+| **Findings** | `docs/findings/YYYY-MM-DD-*.md` | Dated observations and measurements: evidence of what was true on that day, never instructions | [Deployed system and history](../project/system-map.md#deployment-history) |
 | **Research** | `docs/research/` | Candidate technologies and reference implementations. Context only | Not covered |
 | **Archive** | `docs/archive/` | Old handoffs and drafts. History | Not covered |
 

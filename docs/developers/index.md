@@ -21,12 +21,14 @@ This section is in reading order:
 1. **[Repository ecosystem](ecosystem.md)**: which repository holds what, and how they relate.
 2. **[Local development](local-development.md)**: running the Party UI and the test suites
    on your machine.
-3. **[Contributing](contributing.md)**: how work is chosen, branched, reviewed, merged and
+3. **[Testing](testing.md)**: the test tiers, what each proves, and how evidence is graded.
+4. **[Contributing](contributing.md)**: how work is chosen, branched, reviewed, merged and
    deployed, and where humans and coding agents fit in.
-4. **[Reading the specifications](reading-the-specs.md)**: how the engineering documentation
-   is organized, which document answers which question, and how to read evidence.
-5. **[Starting a game](starting-a-game.md)**: what you can realistically do today if you want
-   to build or port a game.
+
+Building a game? The [Games](../games/index.md) section covers the integration model, and
+[Building or porting a game today](starting-a-game.md) says what is realistic before an SDK
+exists. To find your way around the engineering repositories' own documents, see
+[Navigating the engineering docs](reading-the-specs.md).
 
 !!! warning "The project is moving quickly"
 

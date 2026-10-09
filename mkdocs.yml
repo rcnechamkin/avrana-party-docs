@@ -1,4 +1,4 @@
-site_name: Avrana Party Documentation
+site_name: Avrana Party Docs
 site_description: >-
   Human-readable documentation for Avrana Party, a portable, local-first
   multiplayer appliance where phones are the screens and the controllers.
@@ -19,27 +19,31 @@ copyright: >-
 theme:
   name: material
   language: en
+  logo: assets/favicon.svg
   icon:
-    logo: material/party-popper
     repo: fontawesome/brands/github
   favicon: assets/favicon.svg
+  font:
+    text: Inter
+    code: JetBrains Mono
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: deep purple
-      accent: amber
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: deep purple
-      accent: amber
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - navigation.indexes
     - navigation.top
@@ -73,6 +77,9 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -90,62 +97,64 @@ validation:
 
 nav:
   - Home: index.md
-  - Introduction:
-      - introduction/index.md
+  - Overview:
+      - What Avrana Party is: introduction/index.md
       - Why phones, and only phones: introduction/phone-first.md
-      - Today versus the vision: introduction/today-and-vision.md
+      - What exists, and what is planned: introduction/today-and-vision.md
+      - What works today, in detail: status/index.md
   - Architecture:
       - architecture/index.md
       - The appliance and its network: architecture/appliance-and-network.md
       - The Party: architecture/party.md
-      - Running a game session: architecture/game-sessions.md
+      - Game sessions: architecture/game-sessions.md
       - Trust boundaries: architecture/trust-boundaries.md
-  - Decisions:
-      - decisions/index.md
-      - "0001: Testing the arcade under load": decisions/0001-load-soak-fault-harness.md
-      - "0002: A party platform": decisions/0002-party-platform.md
-      - "0003: Identifiers and credentials": decisions/0003-ids-and-keys.md
-      - "0004: Full Mode, contracts and providers": decisions/0004-full-mode-contracts-and-providers.md
-      - "0005: LAN Games as a provider": decisions/0005-lan-games-provider-launch.md
-      - "0006: The session protocol": decisions/0006-party-session-protocol.md
-      - "0007: The host launches games": decisions/0007-host-authoritative-launch.md
-      - "0008: Party navigation": decisions/0008-party-navigation.md
-      - "0009: The arcade as a provider": decisions/0009-arcade-party-provider.md
-      - "0010: Play or Watch": decisions/0010-party-pregame.md
-      - "0011: The console model": decisions/0011-party-console-model.md
-      - "0012: Full Mode and Limited Mode": decisions/0012-limited-mode-party-survives-https-loss.md
-      - "0013: Separate browser origins": decisions/0013-party-and-game-browser-origins.md
-      - "0014: Isolated native games": decisions/0014-native-games-isolated-lan-games-retired.md
-      - "0015: The result envelope": decisions/0015-game-result-envelope.md
-      - "0016: Service identities": decisions/0016-service-identities-and-local-trust-boundary.md
-  - Design:
-      - The Party platform: design/party-platform.md
-      - Party lifecycle: design/party-lifecycle.md
-      - Limited Mode: design/limited-mode.md
-      - Browser origins: design/browser-origins.md
-      - Shared game UX contract: design/game-ux-contract.md
-      - Accessibility: design/accessibility.md
-  - Game platform:
+  - Games:
       - games/index.md
       - Execution models: games/execution-models.md
       - Contracts, catalog and grants: games/contracts-and-catalog.md
-      - Native games and packaging: games/native-games.md
+      - Native games and SDK status: games/native-games.md
       - Designing for phones: games/designing-for-phones.md
+      - Building or porting a game today: developers/starting-a-game.md
+      - The reference games, explained: developers/reference-games.md
   - Developers:
       - developers/index.md
       - Repository ecosystem: developers/ecosystem.md
       - Local development: developers/local-development.md
       - Testing: developers/testing.md
       - Contributing: developers/contributing.md
-      - Reading the specifications: developers/reading-the-specs.md
-      - Starting a game: developers/starting-a-game.md
-      - The reference games, explained: developers/reference-games.md
+  - Reference:
+      - reference/index.md
+      - Decision records:
+          - decisions/index.md
+          - "0001: Testing the arcade under load": decisions/0001-load-soak-fault-harness.md
+          - "0002: A party platform": decisions/0002-party-platform.md
+          - "0003: Identifiers and credentials": decisions/0003-ids-and-keys.md
+          - "0004: Full Mode, contracts and providers": decisions/0004-full-mode-contracts-and-providers.md
+          - "0005: LAN Games as a provider": decisions/0005-lan-games-provider-launch.md
+          - "0006: The session protocol": decisions/0006-party-session-protocol.md
+          - "0007: The host launches games": decisions/0007-host-authoritative-launch.md
+          - "0008: Party navigation": decisions/0008-party-navigation.md
+          - "0009: The arcade as a provider": decisions/0009-arcade-party-provider.md
+          - "0010: The pregame: Play or Watch": decisions/0010-party-pregame.md
+          - "0011: The console model": decisions/0011-party-console-model.md
+          - "0012: Full Mode and Limited Mode": decisions/0012-limited-mode-party-survives-https-loss.md
+          - "0013: Separate browser origins": decisions/0013-party-and-game-browser-origins.md
+          - "0014: Isolated native games": decisions/0014-native-games-isolated-lan-games-retired.md
+          - "0015: The result envelope": decisions/0015-game-result-envelope.md
+          - "0016: Service identities": decisions/0016-service-identities-and-local-trust-boundary.md
+      - Design documents:
+          - design/index.md
+          - Party platform design: design/party-platform.md
+          - Party lifecycle: design/party-lifecycle.md
+          - Limited Mode: design/limited-mode.md
+          - Browser origins: design/browser-origins.md
+          - Shared game UX contract: design/game-ux-contract.md
+          - Accessibility: design/accessibility.md
+      - Navigating the engineering docs: developers/reading-the-specs.md
+      - Glossary: about/glossary.md
   - Project:
-      - Project status: status/index.md
       - Roadmap: project/roadmap.md
-      - System map: project/system-map.md
+      - Deployed system and history: project/system-map.md
       - Deployment: project/deployment.md
       - Known discrepancies: status/discrepancies.md
-  - About:
-      - Glossary: about/glossary.md
       - About this documentation: about/this-documentation.md

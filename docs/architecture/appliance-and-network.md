@@ -42,7 +42,7 @@ removed on 2026-09-24, a baseline of 3 hours 26 minutes covering idle, CPU and r
 under-voltage at all. The engineering notes are careful about the limits of that result. It
 does not cover many active phones, long play sessions, the emulator streaming to several
 viewers, cold boots or battery power. Those measurements belong to the
-[appliance readiness](../status/index.md#planned-development) work.
+[appliance readiness](../project/roadmap.md#appliance-readiness) work.
 
 ## Joining the Wi-Fi
 
@@ -192,5 +192,12 @@ appliance. The current tooling is:
   describe how to build a fresh appliance. That procedure has been rehearsed only on a
   simulated host.
 
-See the [system map](../project/system-map.md) for the verified deployed topology, and
+See [Deployed system and history](../project/system-map.md) for the verified deployed topology, and
 [Deployment](../project/deployment.md) for how a release reaches the appliance.
+
+## Where to read more
+
+- [Limited Mode](../design/limited-mode.md): the full design for keeping the Party alive when
+  trusted HTTPS fails.
+- [ADR 0012](../decisions/0012-limited-mode-party-survives-https-loss.md): why Full Mode and
+  Limited Mode exist.
