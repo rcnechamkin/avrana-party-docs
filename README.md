@@ -79,19 +79,27 @@ acting on it, including a prompt for an AI agent, is in [CONTRIBUTING](CONTRIBUT
 
 ## Publishing
 
-Nothing in this repository publishes automatically. When publishing is authorized:
+The site is published with GitHub Pages at
+<https://rcnechamkin.github.io/avrana-party-docs/>. Nothing publishes automatically: merging to
+`main` changes the repository, not the live site.
 
-1. Choose a host. GitHub Pages is the simplest. For a private repository it requires a GitHub
-   plan that supports Pages on private repositories.
-2. Set `site_url` in `mkdocs.yml`.
-3. In the repository settings, set Pages to deploy from GitHub Actions, and protect the
-   `github-pages` environment with required reviewers and a deployment-branch rule allowing
-   only `main`.
-4. Run the **Publish** workflow manually on `main` (`.github/workflows/publish.yml`). It refuses
-   to run without `site_url` or from another branch, builds with `--strict`, and deploys. It has
-   no automatic trigger.
+To publish the current `main`, run the **Publish** workflow manually from the Actions tab
+(`.github/workflows/publish.yml`). It refuses to run without `site_url` or from a branch other
+than `main`, builds with `--strict`, and deploys.
 
-Any static host works. `mkdocs build` writes a self-contained site to `site/`.
+How it is set up, for reference:
+
+- Settings → Pages → Build and deployment → Source is **GitHub Actions**. On a personal account,
+  a Pages site is public even when the repository is private.
+- `site_url` in `mkdocs.yml` is the published address.
+- Recommended: Settings → Environments → `github-pages` allows deployments only from `main`,
+  optionally with required reviewers.
+- To move to a custom domain such as `docs.avrana.net`, add a DNS-only `CNAME` to
+  `rcnechamkin.github.io`, set the domain in Settings → Pages, enforce HTTPS, and update
+  `site_url`. Do not enable HSTS on the `avrana.net` zone: the appliance's `party.avrana.net`
+  must never receive HSTS (Party ADR 0004 and ADR 0012).
+
+Any static host works instead. `mkdocs build` writes a self-contained site to `site/`.
 
 ## Licensing
 
