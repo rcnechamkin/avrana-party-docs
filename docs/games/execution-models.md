@@ -31,6 +31,7 @@ the same Party contract, so that the Party flow is identical whatever runs under
 | Streamed emulation (shared picture) | *Gauntlet II* | <span class="avr-badge deployed">Deployed</span> |
 | Emulation profiles for PlayStation titles | *Bomberman*, *Worms* | <span class="avr-badge experimental">Experimental</span> |
 | Personal Viewports | Per-player crops of a split-screen game | <span class="avr-badge experimental">Experimental</span> |
+| Portable browser clients, optionally shown in an app | — | <span class="avr-badge planned">Planned</span> direction only; not built |
 | App-native or TV-rendered games | — | <span class="avr-badge planned">Planned</span> as concepts only |
 
 ## Isolated native game processes: the target {#isolated-native-game-processes}
@@ -148,6 +149,30 @@ The game contract can already *describe* an `app_native` presentation, and the a
 documents discuss a future companion app and an optional HDMI "TV mode". Neither exists. The
 roadmap is explicit that an app or a TV must never become a requirement for the platform as a
 whole.
+
+## Portable web clients and an optional app viewport {#portable-web-clients}
+
+<span class="avr-badge planned">Planned</span> as owner direction (as of 2026-10-10). The engineering
+design is explicitly *proposed*, and most of it is not built.
+
+Today a native game's phone page is an ordinary web page that the appliance serves, and phones
+open it in their normal browser. The direction is to keep exactly that, and to describe the
+page as a **portable client**: HTML, JavaScript, assets and, optionally, WebAssembly (a compiled
+format browsers can run). The game's rules still run on the appliance, which stays the
+authority. JavaScript and WebAssembly are allowed technologies, not required ones, and
+WebAssembly does not make a Unity or Unreal build of a game run on a phone as it is. Bringing an
+existing game across means a port, and only where the porter has the rights.
+
+A trusted Avrana app might also show the same page in its own viewport over the local Wi-Fi.
+That is a possible extra, not a requirement, and the app would not be a second place packages
+are managed. A package cannot carry a phone app or native phone code. Browser play with no app
+stays the guarantee for guests.
+
+Whether Apple and Google would allow an app to show such downloaded game pages is **unresolved**.
+The engineering design lists the store rules that need checking and does not conclude
+that it is allowed. How phones should cache a downloaded client, and how they would know the
+copy is current, is also undesigned; the appliance's copy is always the one that counts.
+The engineering notes keep these points in one place (see the canonical sources below).
 
 ## How the platform chooses
 

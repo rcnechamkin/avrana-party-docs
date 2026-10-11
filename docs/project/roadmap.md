@@ -143,6 +143,10 @@ or battery power. See [The appliance and its network](../architecture/appliance-
 - **Open installation** with appliance-owned grants, trust tiers and sandboxed community code. The
   [`.avrgame` package](../games/native-games.md#the-avrgame-package-concept) and package signing
   come after the platform-boundary milestone.
+- **Portable web game clients**, with an optional app viewport as one more way to show them. The
+  direction is recorded as a proposal, with its conflicts against accepted decisions and the
+  app-store questions left open; see
+  [Portable web clients](../games/execution-models.md#portable-web-clients). Not scheduled.
 - **Optional TV and companion surfaces**, which never show private hands, never become required and
   never make an app the baseline.
 

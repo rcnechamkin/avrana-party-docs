@@ -76,6 +76,11 @@ The routes depend on what you are porting:
 - **A browser party game with an authoritative server** is the natural fit. It would become a
   native game process once that path is open. Until then, the useful work is separating its
   rules from its networking and identity code, and making private state server-filtered.
+- **A game with a compiled engine (C or C++, for example)** might be built for the browser as
+  WebAssembly. That is a port, not a way to run an existing Unity or Unreal build on a phone, and
+  it needs clear rights to the code and assets. A reference experiment is planned and has not
+  been done, and nothing is promised about app stores. See
+  [Portable web clients](../games/execution-models.md#portable-web-clients).
 - **An emulated game** goes through the arcade's emulation path. The PlayStation title profiles
   show the experimental direction. Game files are never committed to any repository, and
   running emulators on the appliance is supervised and needs the owner's approval.
