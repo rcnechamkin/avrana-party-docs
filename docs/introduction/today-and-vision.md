@@ -7,7 +7,7 @@ sources:
   - avrana-party:docs/GAME-PLATFORM-ARCHITECTURE.md
   - avrana-party:docs/AVRANA-EXPERIENCE.md
   - avrana-party:docs/adr/0014-native-games-isolated-lan-games-retired.md
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # What exists, and what is planned
@@ -58,9 +58,9 @@ or not yet complete:
 - <span class="avr-badge accepted">Accepted direction</span> **Party-owned results and
   history.** Games already report results in a versioned envelope. Storing a durable history,
   with profiles to attach it to, is still to be designed.
-- <span class="avr-badge planned">Planned</span> **A game SDK and the `.avrgame` package
-  format.** These are deliberately left open until two more games (Checkers, then Spades)
-  have proven the native boundary.
+- <span class="avr-badge planned">Planned</span> **A game SDK and a frozen `.avrgame` package
+  format.** An experimental package format and installer are in source, but nothing is frozen
+  until more games (Checkers, then Spades) have proven the native boundary.
 - <span class="avr-badge experimental">Experimental</span> **Emulated multiplayer with Personal
   Viewports**, where each phone shows its own player's part of a split-screen game.
 - <span class="avr-badge planned">Planned</span> **Open game installation and a community

@@ -12,7 +12,7 @@ sources:
   - avrana-party:web/party/sw.js
   - avrana-party:.github/workflows/offline-checks.yml
   - avrana-party:docs/SYSTEM.md
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # ADR 0004: The Full Mode origin, platform contracts and provider boundaries

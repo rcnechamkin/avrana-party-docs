@@ -13,7 +13,7 @@ sources:
   - avrana-party:docs/design/PARTY-PLATFORM.md
   - avrana-party:docs/design/PARTY-LIFECYCLE.md
   - avrana-party:docs/design/COMMUNICATION.md
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # The Party
@@ -150,6 +150,10 @@ until the host chooses **Play again** or **Party Home**. Nobody is bounced back 
 timer, and the host's controls appear inside the game's own interface. If a game is
 **abandoned** (it gave up, or a managed runtime failed), there is nothing worth showing, so the
 Party goes straight home.
+
+<span class="avr-badge source">In source</span> Party Home shows members of the session a short
+line with each player's name and standing for a completed round, kept only while the session
+object lives. It carries nothing the game owns and is not a stored history.
 
 ## Chat
 

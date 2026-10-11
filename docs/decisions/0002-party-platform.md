@@ -7,7 +7,7 @@ sources:
   - avrana-party:avrana/party/identity.py
   - avrana-party:avrana/contracts/game.py
   - avrana-party:docs/SYSTEM.md
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # ADR 0002: Avrana Party is a party platform, and games consume its services

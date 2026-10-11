@@ -10,7 +10,7 @@ sources:
   - avrana-party:web/party/doorway/index.html
   - avrana-party:avrana-party.nginx
   - avrana-party:deploy/party-core/party-core.example.json
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # ADR 0012: The Party survives the loss of trusted HTTPS

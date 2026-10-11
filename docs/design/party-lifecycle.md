@@ -7,7 +7,7 @@ sources:
   - avrana-party:docs/adr/0010-party-pregame.md
   - avrana-party:docs/adr/0011-party-console-model.md
   - avrana-party:docs/adr/0012-limited-mode-party-survives-https-loss.md
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # Party lifecycle

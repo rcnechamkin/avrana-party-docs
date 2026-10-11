@@ -7,7 +7,7 @@ sources:
   - avrana-party:avrana/party/core.py
   - avrana-party:avrana/party/protocol.py
   - avrana-party:docs/SYSTEM.md
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # ADR 0003: Identifiers, credentials and what each one authorizes
@@ -131,9 +131,10 @@ identities are in place.
 - In code the names differ: a *presence* is a **member**, the per-session identity is a
   **participant**, the seat ticket is a **ticket** and the game key is the **game token**.
 - <span class="avr-badge source">In source</span> Single-use tickets, and a device cookie renamed
-  `__Host-avrana_device` and scoped to the whole host rather than the Party path. While game pages
-  still share the Party's host, that sits uneasily with "never reaches a game server"; see
-  [Known discrepancies](../status/discrepancies.md).
+  `__Host-avrana_device` and scoped to the whole host rather than the Party path. Because the path no
+  longer keeps it from game servers, nginx now drops the `Cookie` header on every game and arcade
+  location in the committed site file (AVR-314, AVR-318), so games still never receive it. That
+  holds on the appliance only after the owner deploys the site file.
 - <span class="avr-badge planned">Planned</span> Profiles, PINs, pairing codes and the admin
   session; none exists in code. The party lives in memory, so a restart starts a new one; device
   identities survive because their hashes are stored.

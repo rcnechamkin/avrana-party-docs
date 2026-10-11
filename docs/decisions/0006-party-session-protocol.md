@@ -11,7 +11,7 @@ sources:
   - avrana-party:contracts/vectors/party-session.v0.json
   - avrana-party:docs/findings/2026-09-29-party-core-deploy.md
   - avrana-party:docs/SYSTEM.md
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # ADR 0006: Party Core v0 and the Party–game session protocol
@@ -154,7 +154,7 @@ PlayStation runtime and the SDK.
   2026-10-04 section calls the host claim "not merged", but it is on the main branch. None of
   these is recorded as deployed.
 - In current source the device cookie is `__Host-avrana_device`, scoped to the whole host rather
-  than `/party/`; see [Known discrepancies](../status/discrepancies.md). Party state is still in
+  than `/party/`, and nginx clears the `Cookie` header on game locations (in source, not deployed). Party state is still in
   memory, and only hashed device tokens persist.
 
 For a round end to end, see [Game sessions](../architecture/game-sessions.md); see also

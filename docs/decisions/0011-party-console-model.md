@@ -10,7 +10,7 @@ sources:
   - avrana-party:arcade/index.html
   - avrana-party-games:games/bluff/game.py
   - avrana-party-games:games/bluff/web/onboarding.json
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # ADR 0011: The console model (one party, one place, the host moves it)

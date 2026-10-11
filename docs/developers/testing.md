@@ -9,7 +9,7 @@ sources:
   - avrana-party:.github/workflows/reconcile.yml
   - avrana-party:.github/workflows/graphify.yml
   - avrana-party:docs/CROSS-REPO.md
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # Testing
@@ -136,8 +136,10 @@ component that drifted. See
 
 ### Proofs on disposable machines
 
-Two jobs need root and systemd, so they run only on throwaway CI machines and **never on the
-Pi**. One proves that the systemd features the service-identity design relies on (dynamic users,
+Several jobs need root and systemd, so they run only on throwaway CI machines and **never on the
+Pi**. Beyond the two described next, later jobs prepare an appliance-like host for native games
+and prove real Checkers and an experimental `.avrgame` package the same way; they are equally
+tier 2 evidence about systemd, not about the appliance. One proves that the systemd features the service-identity design relies on (dynamic users,
 credential loading, state directories, socket permissions) behave as the ADR assumes. The other
 provisions the stand-in native game, has a real Party Core launch and end a full session with it
 over socket activation, and checks that rotating or removing the game is refused mid-session.
@@ -150,7 +152,9 @@ server from a checkout of the Games repository, on localhost: protocol join and 
 tickets and End with real BLUFF; reloads and lost ticket requests keeping a player's identity and
 hand; forged or stale tickets never taking another seat or seeing private state; and the
 full-screen setup with players' private hands versus the spectator view. The Games repository's
-own cross-repository tests drive its server from a real Party service. These are still Chromium
+own cross-repository tests drive its server from a real Party service. The cross-repository
+workflow also requires a test in which a real native game child is launched over Unix sockets and
+real Party Core receives its signed results; it may not skip. These are still Chromium
 at phone sizes, not real phones.
 
 ### Experimental branches
@@ -167,7 +171,7 @@ The Party repository runs these GitHub Actions workflows:
 |---|---|---|
 | **Offline checks** | Every pull request, every push to `main`, on demand | Repository integrity and generated-file freshness; on pull requests, a gate that fails if historical documents are edited without a label; the Party side of the contract check; the two committed nginx site files being identical; all Python unit tests with a real nginx and logrotate; Node module tests; offline browser tests; multi-client Party browser tests |
 | **Cross-repo contract** | Every pull request, every push to `main`, on demand | Checks out the Games repository at the branch with the same issue number (otherwise `main`), then runs the contract checker on both, the Games cross-repository tests against the real Party service (not allowed to skip) and the provider browser suite |
-| **Service trust proof** | Pull requests that touch the service code, contracts, deployment files or experiments; on demand | The two disposable-machine proofs described above |
+| **Service trust proof** | Pull requests that touch the service code, contracts, deployment files or experiments; on demand | The disposable-machine proofs described above, including Checkers and the experimental package |
 | **Drift reconciliation** | Weekly and on demand | Compares Linear, GitHub and both repositories and publishes a report. It never fails the build and never writes anywhere. The appliance is reachable only on the Party network, so deployed-version checks run from a laptop instead |
 
 A further scheduled workflow regenerates derived code-context files for agents; it tests nothing

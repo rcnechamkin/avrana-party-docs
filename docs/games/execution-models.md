@@ -7,6 +7,8 @@ sources:
   - avrana-party:docs/adr/0014-native-games-isolated-lan-games-retired.md
   - avrana-party:docs/design/PERSONAL-VIEWPORTS.md
   - avrana-party:docs/GAME-PLATFORM-ARCHITECTURE.md
+  - avrana-party:docs/design/PORTABLE-GAME-CLIENT-DELIVERY.md
+  - avrana-party:docs/design/AVRGAME-PACKAGE.md
   - avrana-party:avrana/contracts/game.py
   - avrana-party:contracts/appliances/avrana-pi4.json
   - avrana-party:arcade/README.md
@@ -14,7 +16,7 @@ sources:
   - avrana-party:avrana/games/standin
   - avrana-party-games:README.md
   - avrana-party-games:games/registry.py
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # Execution models
@@ -26,11 +28,12 @@ the same Party contract, so that the Party flow is identical whatever runs under
 
 | Model | Example | Status |
 |---|---|---|
-| Isolated native game process (the target) | Stand-in test game; Checkers next | <span class="avr-badge source">In source</span>, no product game yet |
+| Isolated native game process (the target) | Stand-in test game; Checkers (Party side merged) | <span class="avr-badge source">In source</span>, nothing provisioned on the appliance |
 | Browser game inside the LAN Games fork (today) | BLUFF (deployed); EXPO (in source) | <span class="avr-badge deployed">Deployed</span> · <span class="avr-badge retiring">Retiring</span> |
 | Streamed emulation (shared picture) | *Gauntlet II* | <span class="avr-badge deployed">Deployed</span> |
 | Emulation profiles for PlayStation titles | *Bomberman*, *Worms* | <span class="avr-badge experimental">Experimental</span> |
 | Personal Viewports | Per-player crops of a split-screen game | <span class="avr-badge experimental">Experimental</span> |
+| Portable browser clients, optionally shown in an app | — | <span class="avr-badge planned">Planned</span> direction only; not built |
 | App-native or TV-rendered games | — | <span class="avr-badge planned">Planned</span> as concepts only |
 
 ## Isolated native game processes: the target {#isolated-native-game-processes}
@@ -46,11 +49,12 @@ reloads without restarting. A single provisioning command creates the key, the r
 and the unit configuration from the appliance's grant for that game.
 
 The machinery is in the Party repository and has been exercised end to end on a CI runner with
-real systemd, using a **test-only stand-in game**. The stand-in's own description says it must
-never be installed on a product appliance. No product game uses this path yet, and the
-provisioning runbook is labelled as a proposed procedure that has not been run on the
-appliance. **Checkers** is being built as the first real game on this boundary, and is in
-review as of October 2026. [Native games and SDK status](native-games.md) explains the plan in detail.
+real systemd, first with a **test-only stand-in game** (which must never be installed on a product
+appliance) and then with **Checkers**, the first real game on this boundary. Party's side of the
+Checkers integration is merged: its game contract, its entry in the appliance profile and the
+tests and runner proof. The provisioning runbook is still labelled as a proposed procedure that has
+not been run on the appliance, so no game is provisioned there and nothing here is deployed.
+[Native games and SDK status](native-games.md) explains the plan in detail.
 
 Today's games still run the older way, described next.
 
@@ -148,6 +152,30 @@ The game contract can already *describe* an `app_native` presentation, and the a
 documents discuss a future companion app and an optional HDMI "TV mode". Neither exists. The
 roadmap is explicit that an app or a TV must never become a requirement for the platform as a
 whole.
+
+## Portable web clients and an optional app viewport {#portable-web-clients}
+
+<span class="avr-badge planned">Planned</span> as owner direction (as of 2026-10-10). The engineering
+design is explicitly *proposed*, and most of it is not built.
+
+Today a native game's phone page is an ordinary web page that the appliance serves, and phones
+open it in their normal browser. The direction is to keep exactly that, and to describe the
+page as a **portable client**: HTML, JavaScript, assets and, optionally, WebAssembly (a compiled
+format browsers can run). The game's rules still run on the appliance, which stays the
+authority. JavaScript and WebAssembly are allowed technologies, not required ones, and
+WebAssembly does not make a Unity or Unreal build of a game run on a phone as it is. Bringing an
+existing game across means a port, and only where the porter has the rights.
+
+A trusted Avrana app might also show the same page in its own viewport over the local Wi-Fi.
+That is a possible extra, not a requirement, and the app would not be a second place packages
+are managed. A package cannot carry a phone app or native phone code. Browser play with no app
+stays the guarantee for guests.
+
+Whether Apple and Google would allow an app to show such downloaded game pages is **unresolved**.
+The engineering design lists the store rules that need checking and does not conclude
+that it is allowed. How phones should cache a downloaded client, and how they would know the
+copy is current, is also undesigned; the appliance's copy is always the one that counts.
+The engineering notes keep these points in one place (see the canonical sources below).
 
 ## How the platform chooses
 

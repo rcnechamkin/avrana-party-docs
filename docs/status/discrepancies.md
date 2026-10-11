@@ -41,7 +41,7 @@ sources:
   - avrana-party:.github/workflows/cross-repo.yml
   - avrana-party-games:server.py
   - avrana-party-games:deploy/avrana-party-session.conf
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # Known discrepancies
@@ -58,35 +58,7 @@ relevant page.
 
 Items are ordered roughly by how much they could mislead a reader.
 
-## 1. The device cookie and same-origin game servers
-
-**Observed.** ADR 0003 says the device token never reaches a game server, because "its cookie
-is scoped to the party path and nginx strips cookies on game locations". ADR 0013 repeats that
-nginx strips it. In current source:
-
-- Party Core now issues the device cookie as `__Host-avrana_device` with `Path=/`, as part of
-  the browser-origin work (`avrana/party/identity.py`). That change was merged on 2026-10-03,
-  after any revision recorded on the appliance.
-- The committed nginx site contains no directive that removes the `Cookie` header on any
-  location. The repository's available history shows no such directive ever having been
-  committed. Until now, the protection came from the old cookie's `Path=/party/` scope.
-- Game pages are still served from the same host as the Party, because no separate game origin
-  is configured yet. Besides `/games/` and `/arcade/`, the HTTPS server's catch-all location
-  forwards every other path to the games server.
-- The module docstring of `identity.py` itself says `Path=/` "is safe because game servers do
-  not share the Party's host name". That is the target state of ADR 0013, not the current
-  configuration.
-
-**Why it matters.** Taken together, these suggest that once this source is deployed, browsers
-would send the device cookie with requests to same-origin game servers. The design document
-`docs/design/BROWSER-ORIGINS.md` (plain-language edition: [Browser origins](../design/browser-origins.md))
-calls `Path=/` "safe once game servers no longer share the host", which implies an ordering
-that the current source does not enforce. The practical risk today is limited: every service
-already runs as one Unix user, and the games are first-party code. But the stated invariant and
-the code disagree. *This needs confirmation from the project's engineers. It is reported here,
-not concluded.*
-
-## 2. The system map predates most October work
+## 1. The system map predates most October work
 
 The engineering system map, `docs/SYSTEM.md` (plain-language edition: [Deployed system and history](../project/system-map.md)),
 was reconciled on 2026-10-01. It does not mention native-game provisioning, the generic game route, the
@@ -108,7 +80,7 @@ The deployed revisions are also inconsistent between sources:
 No dated finding records a deployment after 2026-09-29. The project's Linear workspace tracks
 capturing the exact deployed revisions as an open task.
 
-## 3. Status lines and amendments older than the code
+## 2. Status lines and amendments older than the code
 
 The ADRs are amended by adding dated notes rather than rewriting them. Several notes have not
 kept up with the code.
@@ -174,14 +146,14 @@ deployed" remains true; only "not implemented" is stale.
 - **The example Party Core configuration** points its status checkout paths at the operator's
   home directory. The Party Core unit in source now runs code from `/opt/avrana-party/current`.
 
-## 4. The native runtime type
+## 3. The native runtime type
 
 ADR 0014's supersession section says `lan_games_module` becomes legacy and "`process` is the
 native runtime type". The game-contract validator (`avrana/contracts/game.py`) accepts only
 `lan_games_module`, `emulator_profile` and `external`. The native stand-in game declares
 `external`.
 
-## 5. Stale guidance for adding a game
+## 4. Stale guidance for adding a game
 
 - The Party's [add-a-game runbook](../developers/starting-a-game.md)
   points to `experiments/manifests/` and `ps1/profiles.py`, which are not on `main`. Game
@@ -195,7 +167,7 @@ native runtime type". The game-contract validator (`avrana/contracts/game.py`) a
   the hub, and standalone admission stays on until the owner sets
   `AVRANA_STANDALONE_ADMISSION=0`.
 
-## 6. Stale code comments
+## 5. Stale code comments
 
 - The `avrana/party/service.py` module docstring says the nginx `/party/api/` step "is NOT
   done", but the committed site and the deployment evidence show it is done. The same docstring
@@ -203,16 +175,16 @@ native runtime type". The game-contract validator (`avrana/contracts/game.py`) a
 - The `avrana/party/core.py` docstring lists profiles and results as out of scope. Members now
   carry avatars, and sessions carry results.
 - A comment in `web/party/lib/party-client.js` describes the device cookie as `Path=/party/`.
-  The "What is true today" section of `docs/design/LIMITED-MODE.md`, and `BROWSER-ORIGINS.md`,
-  give the same old description. In LIMITED-MODE it is tagged as evidence
-  read from an earlier commit.
+  The "What is true today" section of `docs/design/LIMITED-MODE.md` gives the same old
+  description, tagged as evidence read from an earlier commit. `BROWSER-ORIGINS.md` was
+  corrected on 2026-10-10.
 
-## 7. BLUFF's minimum player count
+## 6. BLUFF's minimum player count
 
 The Games registry entry for BLUFF allows one player in solo mode. BLUFF's Party game contract
 says a minimum of two, and the compiled Party catalog uses two. In a Party, the contract governs.
 
-## 8. The "live authority" is probably not live
+## 7. The "live authority" is probably not live
 
 AGENTS, SYSTEM and the status-endpoint design all name `/party/api/status` on the appliance as
 the answer to "what is running". The endpoint was merged on 2026-10-02. Every build recorded or
@@ -221,13 +193,13 @@ script that would install it has never been run there. So the appliance most lik
 serve it yet. This site's [Deployment](../project/deployment.md#the-status-endpoint) page says
 so.
 
-## 9. An unrecorded deployment around 2026-09-30
+## 8. An unrecorded deployment around 2026-09-30
 
 The inspection in the 2026-10-02 AVR-130 deployment record found the appliance's Party checkout
 at `a32b7b4`, with a web release built on 2026-09-30. No finding records that deployment. The
 system map still names `956b968` as both the checkout and the current web release.
 
-## 10. Is the Games repository private?
+## 9. Is the Games repository private?
 
 SYSTEM and TESTING describe `avrana-party-games` as private. The cross-repository CI workflow
 says "Both repositories are public, so no token is needed", and checks the Games repository out

@@ -3,13 +3,14 @@ title: Roadmap
 description: Where Avrana Party is going, in what order the platform work is meant to happen, and what the project has ruled out.
 sources:
   - avrana-party:docs/ROADMAP.md
+  - avrana-party:docs/design/PORTABLE-GAME-CLIENT-DELIVERY.md
   - avrana-party:docs/SYSTEM.md
   - avrana-party:docs/adr/0012-limited-mode-party-survives-https-loss.md
   - avrana-party:docs/adr/0013-party-and-game-browser-origins.md
   - avrana-party:docs/adr/0014-native-games-isolated-lan-games-retired.md
   - avrana-party:docs/findings/2026-09-24-ps1-bomberman-party-slice.md
   - avrana-party:arcade/stream.py
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # Roadmap
@@ -81,9 +82,9 @@ for the sequence; the state column is a snapshot as of the page's verified date.
 | 6 | Generic registry, routing and provisioning, with no per-title front-door setup | <span class="avr-badge source">In source</span> |
 | 7 | Versioned results from games; the Party owns the durable record | <span class="avr-badge source">In source</span>; durable history undecided |
 | 8 | Retire the LAN Games operational dependency, keeping its code as reference | In source, nginx no longer routes the hub or other titles; the Games server can switch off standalone admission but still allows it by default; BLUFF, EXPO and chat still depend on it |
-| 9 | Checkers platform proof: a simple game outside the LAN Games runtime | In review |
+| 9 | Checkers platform proof: a simple game outside the LAN Games runtime | Party's side merged, with a runner proof; not deployed; Games side not re-read here |
 | 10 | Spades pressure test: teams, private hands, reconnect, scoring | Readiness work only |
-| 11 | Only then freeze and build the SDK, package format and provider abstractions | <span class="avr-badge planned">Planned</span> |
+| 11 | Only then freeze and build the SDK, package format and provider abstractions | <span class="avr-badge planned">Planned</span>; an experimental, unfrozen package format and installer are in source |
 | 12 | Community, package signing and productization | <span class="avr-badge planned">Planned</span> |
 
 [Limited Mode](../design/limited-mode.md) is accepted direction that runs alongside the sequence
@@ -143,6 +144,10 @@ or battery power. See [The appliance and its network](../architecture/appliance-
 - **Open installation** with appliance-owned grants, trust tiers and sandboxed community code. The
   [`.avrgame` package](../games/native-games.md#the-avrgame-package-concept) and package signing
   come after the platform-boundary milestone.
+- **Portable web game clients**, with an optional app viewport as one more way to show them. The
+  direction is recorded as a proposal, with its conflicts against accepted decisions and the
+  app-store questions left open; see
+  [Portable web clients](../games/execution-models.md#portable-web-clients). Not scheduled.
 - **Optional TV and companion surfaces**, which never show private hands, never become required and
   never make an app the baseline.
 

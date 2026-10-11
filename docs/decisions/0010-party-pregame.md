@@ -9,7 +9,7 @@ sources:
   - avrana-party:contracts/games/bluff.json
   - avrana-party:web/party/lib/party-mode.js
   - avrana-party-games:core/session.py
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # ADR 0010: The pregame belongs to the Party (Play or Watch, host starts)

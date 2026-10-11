@@ -20,7 +20,7 @@ sources:
   - avrana-party:docs/runbooks/deploy.md
   - avrana-party:docs/runbooks/rebuild.md
   - avrana-party:avrana/ops/status.py
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # The appliance and its network
@@ -114,6 +114,14 @@ HTTPS, because a redirect would break the captive probes and Limited Mode.
 In source, nginx no longer exposes the other LAN Games titles or the old LAN Games hub page,
 because that runtime is [retiring](../games/execution-models.md#the-lan-games-fork). The
 deployed appliance predates that change and still serves them, with the hub at `/` on port 80.
+
+nginx also drops the `Cookie` header on every location that proxies to a game or the arcade, so
+those processes never see the Party's device cookie (<span class="avr-badge source">In source</span>,
+effective on the appliance only once the owner deploys the file). The file also carries a second
+server block for the separate game origin, `games.avrana.net`, which serves native games and
+nothing else, and the repository holds a matching DNS record and certificate step. These are
+<span class="avr-badge source">In source</span> and written up as an owner-run procedure; none of
+it is installed and no phone has tried it.
 
 The two nginx configuration files in the repository (`avrana-party.nginx` and `arcade/nginx-site`)
 must stay byte-identical. CI checks this, and CI also runs real nginx against the committed

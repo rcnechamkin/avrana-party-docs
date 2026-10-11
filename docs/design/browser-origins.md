@@ -11,7 +11,7 @@ sources:
   - avrana-party:web/party/lib/bridge.js
   - avrana-party:contracts/vectors/party-bridge.v1.json
   - avrana-party:avrana-party.nginx
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # Browser origins
@@ -140,10 +140,13 @@ Three alternatives were considered and rejected:
 release, so phones already in the room keep their membership.
 <span class="avr-badge source">In source</span>.
 
-The `__Host-` prefix requires `Path=/`, which the design calls safe once game servers no longer
-share the Party's host. In current source the rename has landed while games still share the host,
-which is recorded as an open question on
-[Known discrepancies](../status/discrepancies.md#1-the-device-cookie-and-same-origin-game-servers).
+The `__Host-` prefix requires `Path=/`, so the cookie's path no longer keeps it from game
+servers on the Party's host. In source, nginx now removes the whole `Cookie` header from every
+game-server location (and the arcade), so a game process receives no device cookie
+(<span class="avr-badge source">In source</span>, AVR-314; it holds on the appliance only after the
+owner deploys the site file). Once the separate game origin exists the browser itself never sends
+the Party's cookie there, and the nginx rule stays as a second layer. Game pages on the shared
+host can still call the Party API as the viewer until the split.
 
 ## Returning to the Party
 
@@ -181,9 +184,12 @@ page and games server against the real Party Core: seating by ticket, keeping th
 reload, only the host ending, a stranger getting no seat, and the page holding no cookie and
 sending the Party API nothing. It does not cover Safari, HTTPS, the `__Host-` cookie or nginx.
 
-Step 4 has to be applied as a whole or not at all. The committed nginx site has no
-`games.avrana.net` server, and the strict content-security policy on `/party/` still forbids
-framing entirely.
+Step 4 has to be applied as a whole or not at all. The repository now holds its pieces: the
+two-name certificate command, the DNS record, an nginx `games.avrana.net` server block that serves
+native games and nothing else, the bridge page's framing exception, and a check of the
+`game_origins` setting. An owner-run runbook gives the order and the reverse of each step. All of
+it is <span class="avr-badge source">In source</span>, none of it is installed, and the strict
+content-security policy on `/party/` itself still forbids framing.
 
 ## The real-phone test
 

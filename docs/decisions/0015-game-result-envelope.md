@@ -8,7 +8,7 @@ sources:
   - avrana-party:contracts/vectors/game-result.v1.json
   - avrana-party-games:core/party_session.py
   - avrana-party-games:games/bluff/game.py
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # ADR 0015: Game result envelope v1

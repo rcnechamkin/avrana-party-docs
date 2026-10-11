@@ -14,7 +14,7 @@ sources:
   - avrana-party:deploy/games/avrana-game@.socket
   - avrana-party:avrana/games/standin
   - avrana-party:docs/ROADMAP.md
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # Native games and SDK status
@@ -76,13 +76,17 @@ All of these pieces are merged in the Party repository:
 - **`ops/provision-game`**, which creates or rotates a game's key, writes its registry entry and
   unit configuration from the appliance grant, enables its socket and reloads Party Core. It
   can also remove a game;
-- support for sending phones to a game's **own browser origin** when one is configured;
-- a **test-only stand-in game** and a proof script that exercises the whole path on a CI runner
-  with real systemd.
+- support for sending phones to a game's **own browser origin** when one is configured, with the
+  repository's nginx server block, DNS record and certificate steps for that origin written down
+  as an owner-run procedure that has not been run;
+- **`ops/prepare-native-games`**, a single owner-run command that readies an appliance for the
+  path (it replaces a list of hand edits), tested on a CI runner;
+- a **test-only stand-in game**, **Checkers** (Party's side: contract, appliance-profile grant and
+  tests) and proof scripts that exercise the whole path on a CI runner with real systemd.
 
-What is not done: no product game uses this path, the appliance has not been prepared for it,
-and the provisioning runbook is labelled as a proposed procedure that has never run on the
-appliance. Idle self-stop and resource ceilings are deferred to the Checkers work.
+What is not done: no game is provisioned on the appliance, the appliance has not been prepared
+for it, and the provisioning runbooks are labelled as proposed procedures that have never run
+there. Idle self-stop and resource ceilings are still deferred.
 
 ## The validation sequence
 
@@ -92,8 +96,9 @@ roadmap sets the order:
 1. **BLUFF**: the first Avrana-native vertical slice. It proved the Party, tickets, host
    navigation and the console model, while running inside the LAN Games fork.
 2. **Checkers**: deliberately simple. It is the first game to live entirely outside the LAN
-   Games runtime, launched and ended by Party Core as its own process. In review as of
-   October 2026. Playing it on real phones on the appliance is a separate, later step.
+   Games runtime, launched and ended by Party Core as its own process. Party's side of the
+   integration is merged and has a real-systemd proof on a CI runner. Playing it on real phones on the appliance is a separate,
+   later step.
 3. **Spades**: the pressure test, covering teams, private hands, reconnect, scoring and richer
    results. A readiness packet and rule characterization tests exist. A Spades module already lives in the
    LAN Games donor library, and Checkers does too. The native versions that run outside it do not
@@ -119,8 +124,22 @@ actually repeats.
 
 ## The `.avrgame` package concept
 
-<span class="avr-badge planned">Planned</span>. **No implementation exists** in any repository,
-not even a parser or a schema. `.avrgame` appears only in design documents and backlog issues.
+<span class="avr-badge experimental">Experimental</span> · <span class="avr-badge source">In source</span>
+· not deployed. **The format is not frozen and is not a specification.** The Party repository
+now has an experimental package format, `avrana.avrgame/experimental.1`: one archive holding a
+game's server code and its browser client, a validator and packer, and a minimal installer
+(`ops/install-game`) that stages a package on the appliance and registers it through the same
+provisioning path first-party native games use. A package is treated as untrusted even when it
+validates: it can request, never grant, and the appliance decides what it gets. The installer
+has been run only on CI runners and scratch directories, never on the appliance, and upgrades,
+rollback, signing and a package repository do not exist. The format cannot be called stable
+until the Checkers integration, a review of the four-human BLUFF playtest evidence and the Spades
+validation have happened and the owner accepts it.
+
+Two limits of the installer at this revision matter to a reader. Permissions a package requests
+and the operator grants are recorded and shown, but are **not enforced** when the game launches.
+And an installed package gets **no tile in Party Home**: the phone catalog is a static file, so a
+package game has no entry for a phone to tap, even though Party Core can offer and launch it.
 
 The concept, from the project's open game installation design, is an installable package for
 an Avrana game. Some principles around it are already
@@ -137,8 +156,10 @@ accepted:
 - **Trust tiers.** Built-in, trusted and community games are distinguished. Community code is
   expected to need a stronger sandbox tier, which has not been designed yet.
 
-The archive format itself, dependency handling, the developer workflow and any community
-repository are explicitly deferred until after the validation sequence above.
+Signing, a community repository, dependency handling, upgrade and rollback and the developer
+workflow remain deferred. The design for delivering a package's phone client (portable
+HTML, JavaScript and optionally WebAssembly, with an app viewport only as an option) is
+described in [Execution models](execution-models.md#portable-web-clients).
 
 ## If you want to build a game today
 

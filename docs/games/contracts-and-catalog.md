@@ -14,7 +14,7 @@ sources:
   - avrana-party:docs/GENERATED.md
   - avrana-party:tools/contract_check.py
   - avrana-party-games:provider/avrana-contract.json
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # Contracts, catalog and grants
@@ -94,8 +94,12 @@ An appliance profile (`contracts/appliances/avrana-pi4.json` for the current Pi)
 - the **installed games**, each with its entry path, trust tier (`builtin`, `trusted` or
   `community`), granted permissions and, for native games, how to run it.
 
-The current Pi profile grants BLUFF, EXPO and *Gauntlet II*. The experimental PlayStation titles
-appear in the catalog as experimental, with no entry point.
+The current Pi profile grants BLUFF, EXPO and *Gauntlet II*, and in source also a built-in grant
+for the native game Checkers (not provisioned on the appliance). The experimental PlayStation
+titles appear in the catalog as experimental, with no entry point. A catalog can also be
+generated to include games installed as experimental `.avrgame` packages; it must be written to a
+separate file and is never the committed catalog. The catalog that phones load is a static file,
+so an installed package gets no tile in Party Home.
 
 The grant is checked when the catalog is built: an appliance cannot grant a permission the game
 did not request (ADR 0004). In current source, granted permissions are read only by those

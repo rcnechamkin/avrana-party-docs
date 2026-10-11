@@ -9,7 +9,7 @@ sources:
   - avrana-party:docs/runbooks/party-https.md
   - avrana-party:docs/runbooks/network.md
   - avrana-party:avrana-captive.conf
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # Why phones, and only phones

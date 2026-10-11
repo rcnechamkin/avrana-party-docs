@@ -9,7 +9,7 @@ sources:
   - avrana-party:docs/TESTING.md
   - avrana-party:docs/design/README.md
   - avrana-party:docs/GRAPHIFY.md
-verified: 2026-10-09
+verified: 2026-10-10
 ---
 
 # Navigating the engineering docs
