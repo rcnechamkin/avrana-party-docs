@@ -9,7 +9,7 @@ sources:
   - avrana-party:avrana/web/devserver.py
   - avrana-party-games:CONTRIBUTING.md
   - avrana-party:docs/GENERATED.md
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # Local development

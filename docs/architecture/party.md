@@ -13,7 +13,7 @@ sources:
   - avrana-party:docs/design/PARTY-PLATFORM.md
   - avrana-party:docs/design/PARTY-LIFECYCLE.md
   - avrana-party:docs/design/COMMUNICATION.md
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # The Party

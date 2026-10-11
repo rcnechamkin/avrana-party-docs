@@ -11,7 +11,7 @@ sources:
   - avrana-party:avrana-party.nginx
   - avrana-party:avrana/ops/status.py
   - avrana-party:avrana/ops/boundary.py
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # Deployed system and history

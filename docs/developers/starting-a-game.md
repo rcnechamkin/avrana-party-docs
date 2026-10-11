@@ -8,20 +8,26 @@ sources:
   - avrana-party:avrana/games/standin
   - avrana-party:contracts/games/standin.json
   - avrana-party:docs/runbooks/provision-game.md
+  - avrana-party:docs/design/PORTABLE-GAME-CLIENT-DELIVERY.md
+  - avrana-party:docs/design/AVRGAME-PACKAGE.md
+  - avrana-party:docs/runbooks/install-game.md
   - avrana-party-games:ADDING_A_GAME.md
   - avrana-party-games:games/bluff/game.py
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # Building or porting a game today
 
 The honest answer first: **there is not yet a supported path for an outside developer to build
-and install a new Avrana game.** No SDK exists, and no package format, installer or developer
-guide for native games either. These are deliberately waiting until Checkers and Spades have
-proven the native-game boundary
-([ADR 0014](../decisions/0014-native-games-isolated-lan-games-retired.md)).
-The Party repository's own add-a-game runbook says the same: for a new native game there is "no
-procedure to follow here". This page is the plain-language edition of that runbook.
+and install a new Avrana game.** No SDK exists. An **experimental** `.avrgame` package format and
+a minimal installer exist in source, and an experimental kit and a reference game
+(*Hello Party*) are in the Games repository, but all of it is unfrozen, may change, and has never
+been run on the appliance. A freeze is deliberately waiting until Checkers and Spades have proven
+the native-game boundary
+([ADR 0014](../decisions/0014-native-games-isolated-lan-games-retired.md)). The Party repository's
+add-a-game runbook now lists the real steps and which of them an outsider cannot do alone: the
+game's contract and appliance grant are pull requests to the Party repository, and putting code on
+the appliance is an owner action. This page is the plain-language edition of that runbook.
 
 This site will not invent a tutorial for a path that does not exist. What follows is what you
 *can* usefully do now, ordered by how close it is to the project's direction.
@@ -62,6 +68,11 @@ in another language would need to reproduce them against the vectors. The vector
 possible, but nobody has done it yet.
 
 ## 3. Experiment locally
+
+An experimental package can be validated, packed and inspected offline with the Party
+repository's tooling (`python -m avrana.avrgame`), and a package can be tried against the real
+Party service in tests. Installing one is an owner action on the appliance and has not been
+done. Treat every name and limit as provisional.
 
 You can run a Party with Party Core on your own machine
 (`python3 -m avrana.web.devserver --party`, see [Local development](local-development.md)). You

@@ -14,7 +14,7 @@ sources:
   - avrana-party:arcade/README.md
   - avrana-party:docs/runbooks/provision-game.md
   - avrana-party:docs/TESTING.md
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # What works today
@@ -69,15 +69,16 @@ Each entry notes the strongest evidence behind it.
 | Stable power without the USB Wi-Fi adapter | 3 h 26 min baseline with no under-voltage under CPU and radio load (2026-09-24) | Measured, limited workloads |
 | Full Party journey with real BLUFF, four simulated phones | Automated test: home, library, briefing, Play or Watch, a round, held results, Play again, home (2026-10-06) | Simulated, Chromium at phone size |
 | Party ↔ Games compatibility | The contract checker and cross-repository tests in both CIs | Automated |
-| Native-game path (systemd units, dynamic users, socket activation, a full session) | Proof job on a disposable CI runner with the stand-in game | Automated, not the appliance |
+| Native-game path (systemd units, dynamic users, socket activation, a full session) | Proof jobs on a disposable CI runner with the stand-in game, with Checkers and with an experimental package | Automated, not the appliance |
 
 ## Work in progress
 
 From Linear, as of the snapshot date:
 
-- **Checkers as the first native game process**, launched and ended by Party Core
-  (AVR-238, in review). A companion task prepares an appliance for native games with one
-  owner-run step (AVR-304, in review).
+- **Checkers as the first native game process**, launched and ended by Party Core. Party's side
+  (AVR-238) and the one owner-run step that prepares an appliance for native games (AVR-304) are
+  merged in source with runner proofs; neither is deployed. The experimental `.avrgame` package
+  and installer (AVR-39) are also merged in source and unfrozen.
 - **Real-phone verification** of the deployed console model (AVR-212) and of the repaired
   *Gauntlet II* launch (AVR-92).
 - **Appliance reliability**: a Wi-Fi qualification harness and pre-event network gate

@@ -10,7 +10,7 @@ sources:
   - avrana-party:tests/party/a11y.spec.ts
   - avrana-party:tests/offline/party.spec.ts
   - avrana-party:web/party/app.js
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # Accessibility

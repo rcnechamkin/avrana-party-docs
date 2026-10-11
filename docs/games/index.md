@@ -19,8 +19,9 @@ explains where that line runs and what a game has to do to sit on the right side
 
 !!! note "There is no SDK yet"
 
-    <span class="avr-badge planned">Planned</span> No game SDK, package format or installer
-    exists, and no outside game has been integrated. The working examples are the project's own:
+    <span class="avr-badge planned">Planned</span> No game SDK exists. An experimental `.avrgame`
+    package format and a minimal installer are in source but not frozen and never run on the
+    appliance, and no outside game has been integrated. The working examples are the project's own:
     **BLUFF** (deployed) and **EXPO** (in source), browser games whose server runs on the
     appliance; the **Gauntlet II** arcade stream; and a test-only **stand-in** for the isolated native-game path.
     [Building or porting a game today](../developers/starting-a-game.md) says what is realistic

@@ -11,7 +11,7 @@ sources:
   - avrana-party:contracts/vectors/party-session.v0.json
   - avrana-party:docs/findings/2026-09-29-party-core-deploy.md
   - avrana-party:docs/SYSTEM.md
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # ADR 0006: Party Core v0 and the Party–game session protocol

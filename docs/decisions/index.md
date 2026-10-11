@@ -18,7 +18,7 @@ sources:
   - avrana-party:docs/adr/0014-native-games-isolated-lan-games-retired.md
   - avrana-party:docs/adr/0015-game-result-envelope.md
   - avrana-party:docs/adr/0016-service-identities-and-local-trust-boundary.md
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # Decision records

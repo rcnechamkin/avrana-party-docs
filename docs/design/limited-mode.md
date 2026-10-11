@@ -12,7 +12,7 @@ sources:
   - avrana-party:web/party/lib/doorway.js
   - avrana-party:web/party/lib/limited.js
   - avrana-party:web/party/app.js
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # Limited Mode

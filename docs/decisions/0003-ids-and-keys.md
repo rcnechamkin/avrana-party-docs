@@ -7,7 +7,7 @@ sources:
   - avrana-party:avrana/party/core.py
   - avrana-party:avrana/party/protocol.py
   - avrana-party:docs/SYSTEM.md
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # ADR 0003: Identifiers, credentials and what each one authorizes

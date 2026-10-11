@@ -11,7 +11,7 @@ sources:
   - avrana-party:avrana/party/identity.py
   - avrana-party:avrana/party/service.py
   - avrana-party-games:web/avrana-party-bridge.js
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # ADR 0013: The Party shell and game pages have separate browser origins
@@ -118,7 +118,7 @@ Missing are the owner-only live changes (certificate name, DNS record, nginx ser
 `frame-ancestors` header) and real-phone validation. Until then every page is still served from
 `https://party.avrana.net` and the bridge is not relied on for field testing. The site's
 [known discrepancies](../status/discrepancies.md#1-the-device-cookie-and-same-origin-game-servers)
-page raises an open question about the new cookie's `Path=/` while games still share the host.
+page records how that question was resolved in source: nginx now clears the cookie header for game servers.
 Limited Mode settled its own case: games use the Party's origin there
 ([ADR 0012](0012-limited-mode-party-survives-https-loss.md) D5). The community sandbox tier
 remains open.

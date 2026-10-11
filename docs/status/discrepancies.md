@@ -41,7 +41,7 @@ sources:
   - avrana-party:.github/workflows/cross-repo.yml
   - avrana-party-games:server.py
   - avrana-party-games:deploy/avrana-party-session.conf
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # Known discrepancies
@@ -60,31 +60,18 @@ Items are ordered roughly by how much they could mislead a reader.
 
 ## 1. The device cookie and same-origin game servers
 
-**Observed.** ADR 0003 says the device token never reaches a game server, because "its cookie
-is scoped to the party path and nginx strips cookies on game locations". ADR 0013 repeats that
-nginx strips it. In current source:
-
-- Party Core now issues the device cookie as `__Host-avrana_device` with `Path=/`, as part of
-  the browser-origin work (`avrana/party/identity.py`). That change was merged on 2026-10-03,
-  after any revision recorded on the appliance.
-- The committed nginx site contains no directive that removes the `Cookie` header on any
-  location. The repository's available history shows no such directive ever having been
-  committed. Until now, the protection came from the old cookie's `Path=/party/` scope.
-- Game pages are still served from the same host as the Party, because no separate game origin
-  is configured yet. Besides `/games/` and `/arcade/`, the HTTPS server's catch-all location
-  forwards every other path to the games server.
-- The module docstring of `identity.py` itself says `Path=/` "is safe because game servers do
-  not share the Party's host name". That is the target state of ADR 0013, not the current
-  configuration.
-
-**Why it matters.** Taken together, these suggest that once this source is deployed, browsers
-would send the device cookie with requests to same-origin game servers. The design document
-`docs/design/BROWSER-ORIGINS.md` (plain-language edition: [Browser origins](../design/browser-origins.md))
-calls `Path=/` "safe once game servers no longer share the host", which implies an ordering
-that the current source does not enforce. The practical risk today is limited: every service
-already runs as one Unix user, and the games are first-party code. But the stated invariant and
-the code disagree. *This needs confirmation from the project's engineers. It is reported here,
-not concluded.*
+**Resolved in source (2026-10-10); not deployed.** This entry was raised because ADR 0003 said
+the device token never reaches a game server, "its cookie is scoped to the party path and nginx
+strips cookies on game locations", while the new `__Host-avrana_device` cookie has `Path=/` and the
+committed nginx site had no directive that removed the `Cookie` header. The upstream
+repository has since added `proxy_set_header Cookie "";` to every game-server location (and the
+arcade) in the committed site file (AVR-314, AVR-318) and amended ADR 0003, ADR 0013 and the
+browser-origins design to say that nginx, not the cookie's path, now keeps the token from game
+servers, and that the separate game origin takes over that job once it exists. The directive
+takes effect on the appliance only when the owner deploys the site file. Game pages still share
+the Party's host until then, and game *JavaScript* on that origin can still call the Party API as
+the viewer. This entry stays so that existing links keep working, and goes at the next
+reconciliation.
 
 ## 2. The system map predates most October work
 
@@ -203,9 +190,9 @@ native runtime type". The game-contract validator (`avrana/contracts/game.py`) a
 - The `avrana/party/core.py` docstring lists profiles and results as out of scope. Members now
   carry avatars, and sessions carry results.
 - A comment in `web/party/lib/party-client.js` describes the device cookie as `Path=/party/`.
-  The "What is true today" section of `docs/design/LIMITED-MODE.md`, and `BROWSER-ORIGINS.md`,
-  give the same old description. In LIMITED-MODE it is tagged as evidence
-  read from an earlier commit.
+  The "What is true today" section of `docs/design/LIMITED-MODE.md` gives the same old
+  description, tagged as evidence read from an earlier commit. `BROWSER-ORIGINS.md` was
+  corrected on 2026-10-10.
 
 ## 7. BLUFF's minimum player count
 

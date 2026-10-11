@@ -7,6 +7,8 @@ sources:
   - avrana-party:docs/adr/0014-native-games-isolated-lan-games-retired.md
   - avrana-party:docs/design/PERSONAL-VIEWPORTS.md
   - avrana-party:docs/GAME-PLATFORM-ARCHITECTURE.md
+  - avrana-party:docs/design/PORTABLE-GAME-CLIENT-DELIVERY.md
+  - avrana-party:docs/design/AVRGAME-PACKAGE.md
   - avrana-party:avrana/contracts/game.py
   - avrana-party:contracts/appliances/avrana-pi4.json
   - avrana-party:arcade/README.md
@@ -14,7 +16,7 @@ sources:
   - avrana-party:avrana/games/standin
   - avrana-party-games:README.md
   - avrana-party-games:games/registry.py
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # Execution models
@@ -26,7 +28,7 @@ the same Party contract, so that the Party flow is identical whatever runs under
 
 | Model | Example | Status |
 |---|---|---|
-| Isolated native game process (the target) | Stand-in test game; Checkers next | <span class="avr-badge source">In source</span>, no product game yet |
+| Isolated native game process (the target) | Stand-in test game; Checkers (Party side merged) | <span class="avr-badge source">In source</span>, nothing provisioned on the appliance |
 | Browser game inside the LAN Games fork (today) | BLUFF (deployed); EXPO (in source) | <span class="avr-badge deployed">Deployed</span> · <span class="avr-badge retiring">Retiring</span> |
 | Streamed emulation (shared picture) | *Gauntlet II* | <span class="avr-badge deployed">Deployed</span> |
 | Emulation profiles for PlayStation titles | *Bomberman*, *Worms* | <span class="avr-badge experimental">Experimental</span> |
@@ -47,11 +49,13 @@ reloads without restarting. A single provisioning command creates the key, the r
 and the unit configuration from the appliance's grant for that game.
 
 The machinery is in the Party repository and has been exercised end to end on a CI runner with
-real systemd, using a **test-only stand-in game**. The stand-in's own description says it must
-never be installed on a product appliance. No product game uses this path yet, and the
-provisioning runbook is labelled as a proposed procedure that has not been run on the
-appliance. **Checkers** is being built as the first real game on this boundary, and is in
-review as of October 2026. [Native games and SDK status](native-games.md) explains the plan in detail.
+real systemd, first with a **test-only stand-in game** (which must never be installed on a product
+appliance) and then with **Checkers**, the first real game on this boundary. Party's side of the
+Checkers integration is merged: its game contract, its entry in the appliance profile and the
+tests and runner proof. The provisioning runbook is still labelled as a proposed procedure that has
+not been run on the appliance, so no game is provisioned there and nothing here is deployed. This
+page does not re-read the Games repository's Checkers code.
+[Native games and SDK status](native-games.md) explains the plan in detail.
 
 Today's games still run the older way, described next.
 

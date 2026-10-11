@@ -10,8 +10,8 @@ repositories:
   avrana-party:
     url: https://github.com/rcnechamkin/avrana-party
     branch: main
-    verified_revision: "5ae52d75c860d8a2d8b6f3de8309895147b7f9cc"
-    verified_on: 2026-10-09
+    verified_revision: "254fcaac787fb9ff69c9c4f5da5f0e04ba418c8e"
+    verified_on: 2026-10-11
     role: >-
       Party platform: Party Core, Party Home, arcade, contracts, operations,
       ADRs and canonical design documents.

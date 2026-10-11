@@ -16,7 +16,7 @@ sources:
   - avrana-party:avrana/party/result.py
   - avrana-party:contracts/party-games.v0.json
   - avrana-party-games:core/party_session.py
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # Game sessions
@@ -137,8 +137,9 @@ problems. A session can never be over without its result, and a game can never r
 for a session that is still running.
 
 Today BLUFF emits a result for completed rounds. Party Core validates it and attaches it to the
-session, mapping participants back to members. It does not store it beyond the current session
-and does not show it anywhere. What the Party should keep (history, statistics, retention and
+session, mapping participants back to members. It does not store it beyond the current session.
+<span class="avr-badge source">In source</span> Party Home shows members of the session a short
+line with each player's name and standing for a completed result, and nothing game-owned. What the Party should keep (history, statistics, retention and
 privacy) is a separate design question that has not been decided.
 
 The engineering notes are strict about **provenance**. Every future statistic will record

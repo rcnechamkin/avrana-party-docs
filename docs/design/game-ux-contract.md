@@ -12,7 +12,7 @@ sources:
   - avrana-party:web/src/party.css
   - avrana-party:contracts/games/arcade-gauntlet2.json
   - avrana-party-games:games/bluff/web/onboarding.json
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # The game UX contract

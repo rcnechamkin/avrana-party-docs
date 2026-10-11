@@ -11,7 +11,7 @@ sources:
   - avrana-party-games:provider/catalog.json
   - avrana-party-games:web/avrana-integration.js
   - avrana-party-games:server.py
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # ADR 0005: The LAN Games fork becomes a provider behind the Party

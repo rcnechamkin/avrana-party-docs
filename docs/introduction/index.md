@@ -8,7 +8,7 @@ sources:
   - avrana-party:docs/design/PARTY-PLATFORM.md
   - avrana-party:docs/adr/0011-party-console-model.md
   - avrana-party:docs/findings/2026-10-06-ux-redesign-slice-1-acceptance.md
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # What Avrana Party is

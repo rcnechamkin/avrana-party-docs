@@ -8,7 +8,7 @@ sources:
   - avrana-party:docs/adr/0006-party-session-protocol.md
   - avrana-party:docs/adr/0014-native-games-isolated-lan-games-retired.md
   - avrana-party:docs/adr/0016-service-identities-and-local-trust-boundary.md
-verified: 2026-10-09
+verified: 2026-10-11
 ---
 
 # Architecture overview
