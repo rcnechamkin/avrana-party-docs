@@ -10,7 +10,7 @@ sources:
   - avrana-party:docs/adr/0003-ids-and-keys.md
   - avrana-party:docs/adr/0011-party-console-model.md
   - avrana-party:docs/adr/0015-game-result-envelope.md
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # Party platform design
@@ -310,8 +310,7 @@ that will.
 
 The device cookie was once described as scoped to `/party/`. In source it is now
 `__Host-avrana_device` with `Path=/`, and nginx clears the `Cookie` header on game locations
-instead (<span class="avr-badge source">In source</span>, not deployed; see
-[Known discrepancies](../status/discrepancies.md#1-the-device-cookie-and-same-origin-game-servers)).
+instead (<span class="avr-badge source">In source</span>, not deployed).
 
 Untrusted community games would later get a stronger, sandboxed tier on top of the origin
 split. The document also lists what it deliberately does *not* do, including private certificate

@@ -16,7 +16,7 @@ sources:
   - avrana-party:avrana/party/result.py
   - avrana-party:contracts/party-games.v0.json
   - avrana-party-games:core/party_session.py
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # Game sessions

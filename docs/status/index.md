@@ -14,7 +14,7 @@ sources:
   - avrana-party:arcade/README.md
   - avrana-party:docs/runbooks/provision-game.md
   - avrana-party:docs/TESTING.md
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # What works today
@@ -50,7 +50,7 @@ four people on four phones finishing a round of BLUFF offline, including a recon
 The latest **verified** deployment is the one from 2026-09-29. No dated finding records the
 later result, and capturing the exact deployed revisions is an open task in Linear. Until it is
 done, treat anything after 2026-09-29 as owner-reported, not verified. The
-[known discrepancies](discrepancies.md#2-the-system-map-predates-most-october-work) page sets out
+[known discrepancies](discrepancies.md#1-the-system-map-predates-most-october-work) page sets out
 the conflicting records.
 
 None of the October 2026 platform work (native-game machinery, origin separation, Limited Mode,
@@ -71,14 +71,19 @@ Each entry notes the strongest evidence behind it.
 | Party ↔ Games compatibility | The contract checker and cross-repository tests in both CIs | Automated |
 | Native-game path (systemd units, dynamic users, socket activation, a full session) | Proof jobs on a disposable CI runner with the stand-in game, with Checkers and with an experimental package | Automated, not the appliance |
 
+## Merged in source, not deployed
+
+From the engineering repository, as of the revision this page was last reconciled against:
+
+- **Checkers as the first native game process**, launched and ended by Party Core. Party's side
+  (AVR-238) and the one owner-run step that prepares an appliance for native games (AVR-304) are
+  merged with runner proofs. The experimental `.avrgame` package and installer (AVR-39) are also
+  merged and unfrozen. None of it is deployed.
+
 ## Work in progress
 
 From Linear, as of the snapshot date:
 
-- **Checkers as the first native game process**, launched and ended by Party Core. Party's side
-  (AVR-238) and the one owner-run step that prepares an appliance for native games (AVR-304) are
-  merged in source with runner proofs; neither is deployed. The experimental `.avrgame` package
-  and installer (AVR-39) are also merged in source and unfrozen.
 - **Real-phone verification** of the deployed console model (AVR-212) and of the repaired
   *Gauntlet II* launch (AVR-92).
 - **Appliance reliability**: a Wi-Fi qualification harness and pre-event network gate

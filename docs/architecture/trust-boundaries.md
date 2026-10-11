@@ -14,7 +14,7 @@ sources:
   - avrana-party:docs/runbooks/network.md
   - avrana-party:docs/adr/0009-arcade-party-provider.md
   - avrana-party:web/party/lib/party-chat.js
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # Trust boundaries
@@ -154,11 +154,9 @@ result.
 If you are evaluating Avrana Party, treat the appliance today as a **trusted-friends device**.
 The network-facing surface is small and deliberately designed. Inside the box, the separation
 between components is a plan with good groundwork in source, not yet a property of the deployed
-system. [What works today, in detail](../status/index.md) tracks that work. The
-[known discrepancies](../status/discrepancies.md) page records how the device cookie's scope was
-handled: in source, nginx now drops the cookie header on game locations, but that holds on the
-appliance only after the owner deploys it, and game pages still share the Party's origin until the
-split.
+system. [What works today, in detail](../status/index.md) tracks that work. In source, nginx now
+drops the device cookie header on game locations, but that holds on the appliance only after the
+owner deploys it, and game pages still share the Party's origin until the split.
 
 ## Where to read more
 

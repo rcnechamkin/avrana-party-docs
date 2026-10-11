@@ -9,7 +9,7 @@ sources:
   - avrana-party:docs/design/BROWSER-ORIGINS.md
   - avrana-party:docs/design/GAME-UX-CONTRACT.md
   - avrana-party:docs/design/ACCESSIBILITY.md
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # Design documents

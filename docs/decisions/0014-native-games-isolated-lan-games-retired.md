@@ -12,7 +12,7 @@ sources:
   - avrana-party:avrana-party.nginx
   - avrana-party:contracts/games/standin.json
   - avrana-party:avrana/contracts/game.py
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # ADR 0014: Native games are isolated platform consumers; LAN Games is retired
@@ -116,7 +116,7 @@ merged. The deployed appliance still runs BLUFF inside the LAN Games fork. A nat
 SDK do not exist, and `.avrgame` exists only as an experimental, unfrozen format. Checkers and Spades exist only as LAN Games modules in the donor library. One mismatch: the ADR names
 `process` as the native runtime type, but the contract validator accepts only `lan_games_module`,
 `emulator_profile` and `external`, and the stand-in declares `external` (see
-[known discrepancies](../status/discrepancies.md#4-the-native-runtime-type)).
+[known discrepancies](../status/discrepancies.md#3-the-native-runtime-type)).
 
 ## Related decisions
 

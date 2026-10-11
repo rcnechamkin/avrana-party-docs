@@ -20,7 +20,7 @@ sources:
   - avrana-party:docs/runbooks/deploy.md
   - avrana-party:docs/runbooks/rebuild.md
   - avrana-party:avrana/ops/status.py
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # The appliance and its network

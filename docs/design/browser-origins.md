@@ -11,7 +11,7 @@ sources:
   - avrana-party:web/party/lib/bridge.js
   - avrana-party:contracts/vectors/party-bridge.v1.json
   - avrana-party:avrana-party.nginx
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # Browser origins
@@ -146,8 +146,7 @@ game-server location (and the arcade), so a game process receives no device cook
 (<span class="avr-badge source">In source</span>, AVR-314; it holds on the appliance only after the
 owner deploys the site file). Once the separate game origin exists the browser itself never sends
 the Party's cookie there, and the nginx rule stays as a second layer. Game pages on the shared
-host can still call the Party API as the viewer until the split. See
-[Known discrepancies](../status/discrepancies.md#1-the-device-cookie-and-same-origin-game-servers).
+host can still call the Party API as the viewer until the split.
 
 ## Returning to the Party
 

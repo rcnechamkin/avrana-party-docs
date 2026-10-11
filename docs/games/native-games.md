@@ -14,7 +14,7 @@ sources:
   - avrana-party:deploy/games/avrana-game@.socket
   - avrana-party:avrana/games/standin
   - avrana-party:docs/ROADMAP.md
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # Native games and SDK status
@@ -97,8 +97,7 @@ roadmap sets the order:
    navigation and the console model, while running inside the LAN Games fork.
 2. **Checkers**: deliberately simple. It is the first game to live entirely outside the LAN
    Games runtime, launched and ended by Party Core as its own process. Party's side of the
-   integration is merged and has a real-systemd proof on a CI runner; this site has not re-read
-   the Games repository's side. Playing it on real phones on the appliance is a separate,
+   integration is merged and has a real-systemd proof on a CI runner. Playing it on real phones on the appliance is a separate,
    later step.
 3. **Spades**: the pressure test, covering teams, private hands, reconnect, scoring and richer
    results. A readiness packet and rule characterization tests exist. A Spades module already lives in the
@@ -136,6 +135,11 @@ has been run only on CI runners and scratch directories, never on the appliance,
 rollback, signing and a package repository do not exist. The format cannot be called stable
 until the Checkers integration, a review of the four-human BLUFF playtest evidence and the Spades
 validation have happened and the owner accepts it.
+
+Two limits of the installer at this revision matter to a reader. Permissions a package requests
+and the operator grants are recorded and shown, but are **not enforced** when the game launches.
+And an installed package gets **no tile in Party Home**: the phone catalog is a static file, so a
+package game has no entry for a phone to tap, even though Party Core can offer and launch it.
 
 The concept, from the project's open game installation design, is an installable package for
 an Avrana game. Some principles around it are already

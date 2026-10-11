@@ -4,7 +4,7 @@ description: How this site relates to the engineering repositories, how claims a
 sources:
   - avrana-party:AGENTS.md
   - avrana-party:docs/README.md
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # About this documentation

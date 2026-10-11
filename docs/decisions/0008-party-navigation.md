@@ -9,7 +9,7 @@ sources:
   - avrana-party:avrana/party/service.py
   - avrana-party:web/party/lib/party-follow.js
   - avrana-party:web/party/lib/party-mode.js
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # ADR 0008: One activity, a host switch, and game pages that follow

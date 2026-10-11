@@ -7,7 +7,7 @@ sources:
   - avrana-party:avrana/party/core.py
   - avrana-party:web/party/lib/party-mode.js
   - avrana-party:web/party/lib/party-client.js
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # ADR 0007: The host starts the game, and Party Home follows

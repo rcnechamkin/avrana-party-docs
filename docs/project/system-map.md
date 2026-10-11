@@ -11,7 +11,7 @@ sources:
   - avrana-party:avrana-party.nginx
   - avrana-party:avrana/ops/status.py
   - avrana-party:avrana/ops/boundary.py
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # Deployed system and history
@@ -228,7 +228,7 @@ that the appliance was at `bb7364c` on 2026-10-04, and the owner reports the con
 deployed. No dated finding records either, and capturing the exact deployed revisions is an open
 task. Nothing from the October platform work is recorded as deployed. The conflicting records are
 set out in
-[Known discrepancies](../status/discrepancies.md#2-the-system-map-predates-most-october-work).
+[Known discrepancies](../status/discrepancies.md#1-the-system-map-predates-most-october-work).
 
 ### What every record leaves open
 

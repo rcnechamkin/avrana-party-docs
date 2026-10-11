@@ -10,7 +10,7 @@ sources:
   - avrana-party:docs/adr/0014-native-games-isolated-lan-games-retired.md
   - avrana-party:docs/findings/2026-09-24-ps1-bomberman-party-slice.md
   - avrana-party:arcade/stream.py
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # Roadmap

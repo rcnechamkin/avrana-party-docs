@@ -7,7 +7,7 @@ sources:
   - avrana-party:docs/GAME-PLATFORM-ARCHITECTURE.md
   - avrana-party:docs/AVRANA-EXPERIENCE.md
   - avrana-party:docs/adr/0014-native-games-isolated-lan-games-retired.md
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # What exists, and what is planned

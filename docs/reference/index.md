@@ -4,7 +4,7 @@ description: The decision records, design documents and glossary, and when you n
 sources:
   - avrana-party:docs/README.md
   - avrana-party:docs/design/README.md
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # Technical reference

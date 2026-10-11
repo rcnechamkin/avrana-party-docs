@@ -16,7 +16,7 @@ sources:
   - avrana-party:avrana/games/standin
   - avrana-party-games:README.md
   - avrana-party-games:games/registry.py
-verified: 2026-10-11
+verified: 2026-10-10
 ---
 
 # Execution models
@@ -53,8 +53,7 @@ real systemd, first with a **test-only stand-in game** (which must never be inst
 appliance) and then with **Checkers**, the first real game on this boundary. Party's side of the
 Checkers integration is merged: its game contract, its entry in the appliance profile and the
 tests and runner proof. The provisioning runbook is still labelled as a proposed procedure that has
-not been run on the appliance, so no game is provisioned there and nothing here is deployed. This
-page does not re-read the Games repository's Checkers code.
+not been run on the appliance, so no game is provisioned there and nothing here is deployed.
 [Native games and SDK status](native-games.md) explains the plan in detail.
 
 Today's games still run the older way, described next.
